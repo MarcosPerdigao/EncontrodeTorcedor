@@ -100,6 +100,7 @@ beforeAll(async () => {
     );
   }
 
+  console.info('Fixtures: carregando regras nos emuladores locais.');
   environment = await initializeTestEnvironment({
     projectId,
     firestore: {
@@ -113,8 +114,10 @@ beforeAll(async () => {
       rules: await readFile('firebase/storage.rules', 'utf8'),
     },
   });
+  console.info('Fixtures: limpando dados sintéticos.');
   await environment.clearFirestore();
   await environment.clearStorage();
+  console.info('Fixtures: semeando documentos e objetos sintéticos.');
   await environment.withSecurityRulesDisabled(async (admin) => {
     for (const path of paths) await setDoc(doc(admin.firestore(), path), { fixture: true });
     for (const path of objects) await uploadBytes(ref(admin.storage(), path), bytes);
