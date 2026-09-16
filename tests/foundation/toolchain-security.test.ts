@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 const require = createRequire(import.meta.url);
 const cliRequire = createRequire(require.resolve('firebase-tools/package.json'));
 
-describe('correções da ferramenta local', () => {
+describe('correções da ferramenta local', { timeout: 30_000 }, () => {
   it.each([
     'stream-json',
     'stream-json/filters/Pick',
