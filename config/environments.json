@@ -1,0 +1,9 @@
+{
+  "development": {
+    "provisioned": false,
+    "emulatorOnly": true,
+    "projectId": "demo-social-foundation"
+  },
+  "staging": { "provisioned": false, "projectId": null },
+  "production": { "provisioned": false, "projectId": null }
+}
