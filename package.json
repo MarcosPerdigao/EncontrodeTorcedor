@@ -1,0 +1,59 @@
+{
+  "name": "social-foundation",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "functions",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22.21.1 <23",
+    "npm": ">=10 <12"
+  },
+  "scripts": {
+    "start": "npm run start --workspace @social/mobile",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -p tsconfig.json --noEmit && npm run typecheck --workspaces --if-present",
+    "build": "npm run build --workspace @social/contracts && npm run build --workspace @social/functions",
+    "build:mobile": "npm run export --workspace @social/mobile",
+    "test:unit": "vitest run --config vitest.config.ts",
+    "test:rules": "node scripts/run-emulators.mjs test",
+    "test:rules:inside": "vitest run --config vitest.rules.config.ts",
+    "test": "npm run test:unit && npm run test:rules",
+    "emulators": "node scripts/run-emulators.mjs start",
+    "security:secrets": "node scripts/scan-secrets.mjs",
+    "security:dependencies": "npm audit --audit-level=moderate",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run build && npm run security:secrets && npm run security:dependencies"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@firebase/rules-unit-testing": "5.0.2",
+    "@types/node": "22.20.3",
+    "eslint": "10.10.0",
+    "eslint-config-prettier": "10.1.8",
+    "firebase": "12.19.0",
+    "firebase-tools": "15.30.1",
+    "prettier": "3.9.6",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.0",
+    "vitest": "5.0.1"
+  },
+  "overrides": {
+    "@google-cloud/pubsub": {
+      "@opentelemetry/core": "2.8.0"
+    },
+    "re2": "1.26.1",
+    "uuid@<11.1.1": "11.1.1",
+    "firebase-tools": {
+      "csv-parse": "7.0.2",
+      "stream-json": "file:../../tools/disabled-json-import"
+    },
+    "xcode": {
+      "uuid": "11.1.1"
+    }
+  }
+}

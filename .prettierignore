@@ -1,0 +1,11 @@
+package-lock.json
+node_modules
+dist
+lib
+.expo
+.cache
+.firebase
+coverage
+artifacts
+*.rules
+*-debug.log*
