@@ -9,7 +9,7 @@
 | Todo objeto Storage: leitura/listagem/upload/update/delete | Negado  | Negado      | Negado                             |
 | Caminho desconhecido/nested/collection group               | Negado  | Negado      | Negado                             |
 
-Nenhum endpoint é exportado. Não há exceção temporária para desenvolvimento. As Rules fechadas não bloqueiam Admin SDK/IAM privilegiado: credenciais de serviço são uma fronteira separada. Bypass nos testes existe **apenas** no emulador para semear fixtures, nunca em uma regra ou API.
+Na base 0/1 nenhum endpoint é exportado; a etapa 2 autoriza somente operações de conta própria após checkpoint 1.5. Não há exceção temporária para desenvolvimento. As Rules fechadas não bloqueiam Admin SDK/IAM privilegiado: credenciais de serviço são uma fronteira separada. Bypass nos testes existe **apenas** no emulador para semear fixtures, nunca em uma regra ou API.
 
 ## Matriz planejada para a API futura
 
@@ -37,3 +37,8 @@ Não abrir Rules com custom claim admin: painel separado usa API com MFA, escopo
 Testes com o SDK cliente e emuladores reais devem distinguir permission-denied de falha de rede. Testar dados existentes e inexistentes, documento próprio/alheio, listas e collection groups, escritas individuais/lotes, desconhecidos e claims privilegiadas. Validar todas as operações Storage, inclusive listagem, metadata e download. Um controle com bypass de Rules deve comprovar que fixtures existem e os serviços estão funcionando.
 
 O contrato fechado das regras terá teste estático exato adicional: qualquer mudança de política exige atualização revisada. Teste textual não substitui execução no emulador.
+
+
+## Etapa 2 autorizada
+
+Identidade do token, conta vigente, sessionVersion, elegibilidade, schema, operação, limites e idempotência serão avaliados no servidor. Estado próprio mínimo pode ser consultado antes da conclusão de elegibilidade; ações protegidas exigem todos os gates. Suspensos/banidos não executam mutações. Claims não substituem estado vigente. Cliente não pode enviar UID como autoridade nem editar estados. Nenhum endpoint lista usuários.

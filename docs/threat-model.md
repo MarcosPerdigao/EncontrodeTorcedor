@@ -46,3 +46,10 @@ Atacante pode modificar bundle, forjar caminhos/payloads e usar SDK/REST diretam
 Este resultado não prova IAM de um ambiente real ainda inexistente, não protege contra roubo de credencial administrativa e não torna emuladores seguros para internet. Vincular emuladores somente a loopback; seu bypass administrativo é exclusivo de testes artificiais.
 
 Mudança de política, endpoint, SDK móvel ou coleta exige atualizar esta análise e adicionar testes negativos antes de uso.
+
+
+## Riscos adicionais multiclube e identidade
+
+Brigading entre torcidas exige deduplicar denúncias e avaliar procedência, não contagem bruta. Autocomplete/aliases exigem moderação e decisões editoriais auditáveis; não julgar automaticamente por notícias ou IA. Há risco de expor preferências privadas em explicações de compatibilidade: usar somente atributos autorizados. Analytics de coortes pequenas pode reidentificar pessoas.
+
+Etapa 2 deve testar tokens inválidos, revogação lógica, claims antigas, estados forjados, nascimento adulterado e enumeração no provedor. CPF possui espaço limitado: não armazenar bruto ou hash simples. Nascer há 18 anos não prova identidade/idade declarada. Não ativar conta automaticamente com declaração. App Check não substitui autenticação. Provedores reais e controles de lançamento permanecem pendentes.

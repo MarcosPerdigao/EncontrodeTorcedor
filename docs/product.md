@@ -1,43 +1,14 @@
-# Produto — Projeto Match Alvinegro
+# Produto — Encontro de Torcedor
+Plataforma nacional de conexões entre torcedores, na qual a paixão pelo clube funciona como identidade social e cada torcida possui seu próprio universo dentro da mesma plataforma. Atlético Mineiro é a primeira comunidade/piloto, não uma dependência da arquitetura. Clubes, ídolos e cultura serão dados configuráveis.
 
-Status: arquitetura aprovada como base; implementação autorizada somente para as etapas 0 (documentação) e 1 (fundação). A etapa 2 exige nova autorização. O nome é provisório, independente dos nomes técnicos dos pacotes.
+Não é rede social, clone do Tinder, feed, plataforma de seguidores/influência ou aplicativo exclusivamente de namoro. Intenções: relacionamento, paquera/conhecer alguém, amizade, companhia para jogos e para eventos/rolês. Público 18+, com aferição definitiva ainda pendente; checkbox ou nascimento declarado não comprovam idade.
 
-## Objetivo e público
+A [cartilha](SAFETY_CHARTER.md) rege produto e segurança. [PROJECT_STATE](PROJECT_STATE.md) resume decisões vigentes; [PROFILE_MODEL](PROFILE_MODEL.md), [MATCH_ENGINE](MATCH_ENGINE.md) e [ROADMAP](ROADMAP.md) descrevem funcionalidades futuras.
 
-Conectar torcedores do Atlético Mineiro com 18 anos ou mais para relacionamento, amizade e companhia. A afinidade com a torcida é o ponto de partida; intenções explícitas e controle de exposição são parte da proposta de valor. Marca própria, sem escudo, mascote, fotografias ou marcas oficiais sem autorização.
+Jogos fora do MVP. GPS, coordenadas, geohash, bairro, endereço e localização precisa completamente excluídos: não coletar, armazenar, processar, registrar ou retornar. Cidade/região será catálogo declarado, sem distância ou alegação de verificação. Encontro Seguro é futuro e exige decisão específica sobre dados voluntários.
 
-## Escopo de produto planejado
+Sem publicidade comportamental, importação de contatos, presença online, último acesso ou confirmação de leitura no MVP. Redes sociais não aparecem por padrão. Conversas não alimentam analytics. Marca própria e ativos licenciados; não usar escudos/imagens oficiais sem autorização.
 
-| MVP futuro                                                             | Versão 2                                          | Avaliação futura                                  |
-| ---------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
-| Cadastro, recuperação, elegibilidade 18+, perfil, fotos e preferências | Jogos cadastrados pela administração              | Integrações esportivas externas                   |
-| Descoberta por cidade declarada e intenção, like, passar e match       | “Vou ao jogo”, com audiência e duração explícitas | Proximidade, somente após nova avaliação de risco |
-| Chat de texto, bloquear, desfazer match e denunciar                    | Setor opcional e modo Dia de Jogo                 | Grupos, eventos, multimídia e monetização         |
-| Pausar descoberta, exportar dados, excluir conta e moderação           | Melhorias de recomendação                         | Verificação adicional de identidade               |
+Bloqueio, denúncia e moderação são centrais. Sem banimento por contagem bruta. Segurança para mulheres com ferramentas disponíveis a todos. Privacidade, acessibilidade, botões alternativos a gestos e notificações genéricas são requisitos.
 
-Jogos estão fora do MVP. GPS, coordenadas, geohash, bairro, endereço e localização precisa estão completamente fora do MVP: não coletar, armazenar, processar, registrar ou retornar. Cidade será selecionada de catálogo, sem alegação de verificação; regiões pouco povoadas podem exigir exibição mais ampla.
-
-Não haverá publicidade comportamental, importação de contatos, presença online, último acesso ou confirmação de leitura no MVP. Redes sociais não aparecem no perfil por padrão. Conteúdo de conversas não é insumo para analytics.
-
-## Experiência planejada
-
-Dois contextos de descoberta: relacionamentos; companhia e amizade. A pessoa escolhe onde navegar; reciprocidade deve ocorrer no mesmo contexto. Participar de ambos não transforma intenção de amizade em interesse romântico.
-
-Fluxo: abertura → cadastro/login → elegibilidade e verificação de contato → escolhas de privacidade → perfil → preferências → prévia e ativação explícita → descoberta → match → conversa.
-
-Navegação: Descobrir, Conexões e Perfil. Jogos só será adicionado na versão 2. Perfil incompleto, inelegível, suspenso ou pendente de aprovação não aparece na descoberta.
-
-Requisitos: botões como alternativa aos gestos, acessibilidade, estado vazio honesto, intenção visível, denúncia/bloqueio acessíveis e notificações genéricas. Avisar sobre informações identificadoras em texto livre; não prometer anonimato de imagens ou conteúdo voluntariamente publicado.
-
-## Limites desta entrega
-
-Somente documentação, workspace, aplicativo vazio para validar a ferramenta, base sem endpoints de Cloud Functions, contratos estruturais, regras fechadas, testes, emuladores e CI. Não implementar autenticação, onboarding, perfil, descoberta, interações, chat, administração ou jogos.
-
-## Condições para operação futura
-
-- Aferição de idade proporcional e validada juridicamente; data declarada e checkbox não comprovam idade.
-- Moderação, suporte, resposta a incidentes e tratamento de direitos do titular operacionais.
-- Retenção de mensagens decidida por produto e jurídico: **180 dias é hipótese não aprovada**, não configuração.
-- Métricas minimizadas: ativação, reciprocidade, conversas iniciadas e resposta a denúncias. Nenhuma meta justifica exposição adicional.
-
-Ver [arquitetura](architecture.md), [retenção](retention.md) e [princípios](security-principles.md).
+Etapas 1.5 e 2 autorizadas; nenhum perfil completo, catálogo real, descoberta, interação ou chat nesta entrega. Retenção de mensagens continua pendente; 180 dias é apenas hipótese. Ver [retenção](retention.md).

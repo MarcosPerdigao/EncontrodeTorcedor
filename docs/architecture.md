@@ -62,3 +62,11 @@ App Check nativo, autenticação, IAM de produção, MFA e configuração de pro
 - [Emulator Suite](https://firebase.google.com/docs/emulator-suite/install_and_configure): configuração local e de CI.
 
 ADRs em [decisions](decisions/). Políticas de segurança e retenção prevalecem sobre conveniência técnica.
+
+## Evolução aprovada em 1.5
+
+Uma plataforma nacional multiclube; piloto Atlético Mineiro como dado, sem acoplamento técnico. Cultura, clubes e ídolos são catálogos futuros. SAFETY_CHARTER.md rege produto, PROJECT_STATE.md registra estado e ROADMAP.md substitui cronogramas anteriores: Passaporte V2 e Dia de Jogo V3. Encontro Seguro não é autorizado no MVP.
+
+Os parágrafos que descrevem aplicativo vazio e ausência de endpoints registram a base 0/1. A etapa 2 está autorizada após validação 1.5 para Firebase Auth, conta, identidade abstrata e sessão, sem abrir Rules ou implantar produção. Não há autorização para onboarding completo ou demais features.
+
+Separar auditoria operacional de analytics agregados/pseudonimizados. Futuras recomendações exigem versão de algoritmo e razões mínimas auditáveis; não registrar perfil inteiro nem dados privados. Hard filters bilaterais precedem ranking configurável, sem percentual público de compatibilidade.

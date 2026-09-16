@@ -39,7 +39,7 @@ Nenhuma collection de negócio é criada nesta fundação. Os nomes/campos abaix
 | staffAccess/{uid}                  | papel, estado, escopo                                                                      | Provisionamento privilegiado; nunca campo editável no perfil |
 | auditEvents/{id}                   | operador, ação, recurso, justificativa, resultado                                          | Sem payload sensível; cópia protegida independente           |
 
-Versão 2 somente: games/{id} e gameAttendance/{id}. Presença em partida precisa de audiência explícita e expiração; não é diretório público.
+V2: Passaporte do Torcedor, histórico opcional e agregados por padrão. V3: games/{id} e gameAttendance/{id} para presença voluntária/temporária, somente após análise específica de stalking. Nenhum desses modelos é implementado agora.
 
 ## Índices a implementar com as consultas
 
@@ -62,3 +62,11 @@ O arquivo de índices inicial fica vazio: não criar índices especulativos. Des
 Nascimento, contato, documento, IP, tokens, UID, verificação, administração e todos os campos de localização precisa não podem entrar no DTO. Campos de localização precisa sequer pertencem ao modelo do MVP. Referência opaca não deve ser UID renomeado ou UID codificado em base64.
 
 Bloqueios, paginação, exclusão de subcollections e consistência serão testados quando existirem os casos de uso, sem antecipar essas funcionalidades agora.
+
+## Sincronização 1.5: multiclube e identidade
+
+Prever clubs, idols e idolAliases com IDs canônicos, status editorial e aliases. Motivo de inelegibilidade editorial separado e restrito. Usar clubId, clubPreferences e fanProfile; nenhum tipo específico do clube piloto. Preferências de torcida são bilaterais e simpatias autodeclaradas, sem alianças oficiais. Ver PROFILE_MODEL.md.
+
+Distinguir report, reviewedReport, substantiatedReport e safetyIncident; apenas processo de revisão pode produzir procedência, com deduplicação, integridade e contestação. Sem banimento por contagem bruta. Nenhuma automação disciplinar implementada na etapa 2.
+
+Etapa 2 autoriza modelo de conta, sessão e nascimento privado mínimo. CPF bruto ou simplesmente hashed permanece proibido, inclusive logs/fixtures reais. Provas mínimas de provedor futuro alimentam status, sem documento civil nos demais módulos. Os modelos concretos serão registrados após o checkpoint 1.5.

@@ -32,3 +32,8 @@ Arquivos product, architecture, data-model, authorization, threat-model, retenti
 - Coordenadas não constam do modelo MVP, mesmo privado.
 - Controles futuros não são descritos como implementados.
 - Produção real e etapa 2 permanecem fora da autorização atual.
+
+
+## Invariantes adicionais 1.5
+
+SAFETY_CHARTER.md é regra superior de produto. Plataforma nacional, filtros bilaterais e catálogos configuráveis. Sem banimento por denúncias brutas, score de beleza, percentual público de compatibilidade ou analytics de dados privados. CPF bruto e hash simples proibidos; provedor futuro entrega prova mínima. Etapas 1.5/2 autorizadas; etapa 3 depende de nova autorização. A revisão acima é registro histórico da base 0/1.
