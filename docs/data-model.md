@@ -13,31 +13,31 @@ Nenhuma collection de negócio é criada nesta fundação. Os nomes/campos abaix
 
 ## Collections futuras
 
-| Caminho | Finalidade/campos | Relação e risco |
-| --- | --- | --- |
-| accounts/{uid} | status, eligibilityStatus, sessionVersion, timestamps | Autoridade da conta; cliente não pode alterar estado |
-| identities/{uid} | birthDate, comprovação mínima de elegibilidade | Privado; sem senha ou coleta padrão de documento |
-| profiles/{uid} | nickname, cityId, bio, interests, goals, photoIds, fanFields, visibility, moderationStatus | Somente projeção autorizada; moderacão/UID não saem no DTO |
-| preferences/{uid} | modes, ageRange, cityScope, preferências opcionais | Não publicar; podem revelar informações sensíveis |
-| consents/{uid}/records/{id} | finalidade, versão, decisão, timestamp, revogação | Histórico privado; sem consentimento genérico |
-| media/{id} | ownerUid, paths, status, dimensions, moderation | Caminhos e proprietário internos |
-| discoverySessions/{id} | solicitante, filtros, validade | Sessão com universo limitado de candidatos |
-| discoverySessions/{id}/cards/{ref} | candidato interno, contexto, validade | Ref opaca vinculada ao solicitante |
-| pairStates/{key} | participantes, bloqueios por direção, versão, estados por contexto | Fonte de verdade transacional |
-| decisions/{id} | ator, alvo, contexto, like/pass, timestamps | Chave determinística interna; não revelar likes de terceiros |
-| matches/{id} | participantes, contexto, status, timestamps | Criado somente após reciprocidade válida |
-| matches/{id}/messages/{id} | autor, texto, sequência, timestamps | Mensagem privada; retenção pendente |
-| reports/{id} | denunciante, alvo, motivo, descrição, refs, status, responsável | Só moderação; denunciante recebe protocolo separado |
-| reportEvidence/{id} | evidência mínima, origem, retenção, legalHold | Não misturar com logs; acesso por caso |
-| moderationActions/{id} | caso, operador, ação, motivo, timestamp | Auditoria da decisão |
-| devices/{uid}/tokens/{id} | token FCM, plataforma, atualização | Tokens nunca públicos |
-| signals/{uid} | contador de atualização | Possível leitura própria futura; fechado agora |
-| privacyRequests/{id} | titular, tipo, estado, prazo, referência do resultado | Exportação não expõe dados privados de terceiros |
-| rateLimits/{key} | janela, contador, expiração | Só serviço; sem contador global concentrador |
-| operations/{id} | ator, operação, chave idempotente, estado, validade | Impede repetição de efeitos |
-| outbox/{id} | evento, versão, tentativas, estado | Trabalho assíncrono após commit |
-| staffAccess/{uid} | papel, estado, escopo | Provisionamento privilegiado; nunca campo editável no perfil |
-| auditEvents/{id} | operador, ação, recurso, justificativa, resultado | Sem payload sensível; cópia protegida independente |
+| Caminho                            | Finalidade/campos                                                                          | Relação e risco                                              |
+| ---------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| accounts/{uid}                     | status, eligibilityStatus, sessionVersion, timestamps                                      | Autoridade da conta; cliente não pode alterar estado         |
+| identities/{uid}                   | birthDate, comprovação mínima de elegibilidade                                             | Privado; sem senha ou coleta padrão de documento             |
+| profiles/{uid}                     | nickname, cityId, bio, interests, goals, photoIds, fanFields, visibility, moderationStatus | Somente projeção autorizada; moderacão/UID não saem no DTO   |
+| preferences/{uid}                  | modes, ageRange, cityScope, preferências opcionais                                         | Não publicar; podem revelar informações sensíveis            |
+| consents/{uid}/records/{id}        | finalidade, versão, decisão, timestamp, revogação                                          | Histórico privado; sem consentimento genérico                |
+| media/{id}                         | ownerUid, paths, status, dimensions, moderation                                            | Caminhos e proprietário internos                             |
+| discoverySessions/{id}             | solicitante, filtros, validade                                                             | Sessão com universo limitado de candidatos                   |
+| discoverySessions/{id}/cards/{ref} | candidato interno, contexto, validade                                                      | Ref opaca vinculada ao solicitante                           |
+| pairStates/{key}                   | participantes, bloqueios por direção, versão, estados por contexto                         | Fonte de verdade transacional                                |
+| decisions/{id}                     | ator, alvo, contexto, like/pass, timestamps                                                | Chave determinística interna; não revelar likes de terceiros |
+| matches/{id}                       | participantes, contexto, status, timestamps                                                | Criado somente após reciprocidade válida                     |
+| matches/{id}/messages/{id}         | autor, texto, sequência, timestamps                                                        | Mensagem privada; retenção pendente                          |
+| reports/{id}                       | denunciante, alvo, motivo, descrição, refs, status, responsável                            | Só moderação; denunciante recebe protocolo separado          |
+| reportEvidence/{id}                | evidência mínima, origem, retenção, legalHold                                              | Não misturar com logs; acesso por caso                       |
+| moderationActions/{id}             | caso, operador, ação, motivo, timestamp                                                    | Auditoria da decisão                                         |
+| devices/{uid}/tokens/{id}          | token FCM, plataforma, atualização                                                         | Tokens nunca públicos                                        |
+| signals/{uid}                      | contador de atualização                                                                    | Possível leitura própria futura; fechado agora               |
+| privacyRequests/{id}               | titular, tipo, estado, prazo, referência do resultado                                      | Exportação não expõe dados privados de terceiros             |
+| rateLimits/{key}                   | janela, contador, expiração                                                                | Só serviço; sem contador global concentrador                 |
+| operations/{id}                    | ator, operação, chave idempotente, estado, validade                                        | Impede repetição de efeitos                                  |
+| outbox/{id}                        | evento, versão, tentativas, estado                                                         | Trabalho assíncrono após commit                              |
+| staffAccess/{uid}                  | papel, estado, escopo                                                                      | Provisionamento privilegiado; nunca campo editável no perfil |
+| auditEvents/{id}                   | operador, ação, recurso, justificativa, resultado                                          | Sem payload sensível; cópia protegida independente           |
 
 Versão 2 somente: games/{id} e gameAttendance/{id}. Presença em partida precisa de audiência explícita e expiração; não é diretório público.
 

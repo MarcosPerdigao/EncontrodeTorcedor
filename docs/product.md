@@ -8,12 +8,12 @@ Conectar torcedores do Atlético Mineiro com 18 anos ou mais para relacionamento
 
 ## Escopo de produto planejado
 
-| MVP futuro | Versão 2 | Avaliação futura |
-| --- | --- | --- |
-| Cadastro, recuperação, elegibilidade 18+, perfil, fotos e preferências | Jogos cadastrados pela administração | Integrações esportivas externas |
-| Descoberta por cidade declarada e intenção, like, passar e match | “Vou ao jogo”, com audiência e duração explícitas | Proximidade, somente após nova avaliação de risco |
-| Chat de texto, bloquear, desfazer match e denunciar | Setor opcional e modo Dia de Jogo | Grupos, eventos, multimídia e monetização |
-| Pausar descoberta, exportar dados, excluir conta e moderação | Melhorias de recomendação | Verificação adicional de identidade |
+| MVP futuro                                                             | Versão 2                                          | Avaliação futura                                  |
+| ---------------------------------------------------------------------- | ------------------------------------------------- | ------------------------------------------------- |
+| Cadastro, recuperação, elegibilidade 18+, perfil, fotos e preferências | Jogos cadastrados pela administração              | Integrações esportivas externas                   |
+| Descoberta por cidade declarada e intenção, like, passar e match       | “Vou ao jogo”, com audiência e duração explícitas | Proximidade, somente após nova avaliação de risco |
+| Chat de texto, bloquear, desfazer match e denunciar                    | Setor opcional e modo Dia de Jogo                 | Grupos, eventos, multimídia e monetização         |
+| Pausar descoberta, exportar dados, excluir conta e moderação           | Melhorias de recomendação                         | Verificação adicional de identidade               |
 
 Jogos estão fora do MVP. GPS, coordenadas, geohash, bairro, endereço e localização precisa estão completamente fora do MVP: não coletar, armazenar, processar, registrar ou retornar. Cidade será selecionada de catálogo, sem alegação de verificação; regiões pouco povoadas podem exigir exibição mais ampla.
 

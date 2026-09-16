@@ -8,16 +8,16 @@ Status: **prazos ainda sujeitos a decisão de produto e validação jurídica**.
 
 ## Demais hipóteses para análise
 
-| Classe | Hipótese inicial, não obrigação jurídica |
-| --- | --- |
-| Perfil/fotos/preferências | Enquanto necessários para conta ativa |
-| Original de imagem | Eliminar após processamento; abandonados em até 24h |
-| Likes sem reciprocidade/passes | Avaliar 90 dias |
-| Exportação gerada | Avaliar 24h, com download autenticado |
-| Logs operacionais minimizados | Avaliar 30 dias |
-| Auditoria administrativa | Avaliar 180 dias, política distinta de mensagens |
-| Denúncias/evidências | Prazo específico da finalidade/caso e eventual preservação legal |
-| Backups | Prazo finito a definir, com reaplicação de exclusões na restauração |
+| Classe                         | Hipótese inicial, não obrigação jurídica                            |
+| ------------------------------ | ------------------------------------------------------------------- |
+| Perfil/fotos/preferências      | Enquanto necessários para conta ativa                               |
+| Original de imagem             | Eliminar após processamento; abandonados em até 24h                 |
+| Likes sem reciprocidade/passes | Avaliar 90 dias                                                     |
+| Exportação gerada              | Avaliar 24h, com download autenticado                               |
+| Logs operacionais minimizados  | Avaliar 30 dias                                                     |
+| Auditoria administrativa       | Avaliar 180 dias, política distinta de mensagens                    |
+| Denúncias/evidências           | Prazo específico da finalidade/caso e eventual preservação legal    |
+| Backups                        | Prazo finito a definir, com reaplicação de exclusões na restauração |
 
 Não reter indefinidamente sob justificativa genérica de segurança. Documentar dado, finalidade, base legal, operador, acesso, marco temporal, exclusão e exceção de preservação. Dados sensíveis e inferências de preferências requerem avaliação específica; não usar consentimento genérico como solução universal.
 

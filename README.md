@@ -45,6 +45,7 @@ Development builds são o caminho previsto para integração nativa. Nenhuma cre
 - [Princípios de segurança](docs/security-principles.md)
 - [ADRs](docs/decisions/)
 - [Desenvolvimento e ambientes](docs/development.md)
+- [Revisão final, testes e inventário completo](docs/foundation-review.md)
 
 ## Limites
 
