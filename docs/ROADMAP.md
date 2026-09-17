@@ -4,7 +4,7 @@ A [cartilha](SAFETY_CHARTER.md) é superior às prioridades de versão.
 
 ## Etapas autorizadas
 
-0/1: fundação concluída. 1.5: sincronização documental concluída e base existente validada. Pausa obrigatória para revisão intermediária. Etapa 2 (autenticação, identidade e estado da conta) conceitualmente autorizada, mas implementação depende de nova instrução. Depois de 2 haverá nova revisão antes de 3. O restante deste roadmap é planejamento, não autorização.
+0/1: fundação concluída. 1.5: sincronização documental concluída e base existente validada. Revisão intermediária concluída com CI aprovado. Etapa 2 (autenticação, identidade e estado da conta) expressamente autorizada. Depois de 2 haverá nova revisão antes de 3. O restante deste roadmap é planejamento, não autorização.
 
 ## V1 / MVP
 

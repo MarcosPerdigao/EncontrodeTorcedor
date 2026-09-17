@@ -1,56 +1,47 @@
 # Estado do projeto
 
-Última atualização: 17/09/2026. Último commit publicado do checkpoint documental: `8914601`; fundação de referência: `536fedd`. Os commits finais de revisão constam no histórico desta branch. Branch de trabalho: `codex/auth-identity-foundation`.
+Última atualização: 17/09/2026. Branch: `codex/stage-2-auth-identity`. Base aprovada: `eff5825`. Último commit funcional/de testes: `0b4138b`.
 
 ## Visão
 
-Plataforma nacional de conexões entre torcedores: a paixão pelo clube funciona como identidade social e cada torcida possui seu universo cultural dentro da mesma plataforma. Atlético Mineiro é somente a comunidade piloto. Não é rede social, feed, plataforma de seguidores/influência, clone de Tinder ou aplicativo exclusivamente de namoro.
+Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente a comunidade piloto. Clubes e cultura configuráveis, sem feed, seguidores ou acoplamento técnico à torcida.
 
 ## Etapas
 
-Etapas 0, 1 e 1.5 concluídas. Etapa 1.5 publicada para revisão. Nenhuma etapa de implementação em execução. Etapa 2 aguardando autorização expressa para iniciar a implementação; a aprovação conceitual anterior não libera esse início. Nenhum código de autenticação, identidade ou conta foi implementado. Etapa 3 e funcionalidades posteriores não autorizadas.
+0, 1 e 1.5 concluídas e aprovadas; CI remoto da 1.5 aprovado. Etapa 2 expressamente autorizada após revisão intermediária: implementação local concluída, aguardando validação do CI remoto e revisão final. Etapa 3 não autorizada. Nenhum perfil completo, foto, descoberta, ranking, interação, chat ou catálogo real implementado.
 
-## Decisões aprovadas
+## Entregue na Etapa 2
 
-- Segurança e privacidade prevalecem sobre engajamento; [cartilha](SAFETY_CHARTER.md) é regra superior de produto.
-- Uma arquitetura multiclube, sem tipos ou regras acoplados ao piloto; catálogos configuráveis.
-- API mediando negócio; Firestore/Storage deny-all, inclusive signals e claims administrativas.
-- Apenas fixtures sintéticas, referências opacas e DTOs por allowlist; sem UID alheio, CPF ou nascimento público.
-- Jogos e localização precisa fora do MVP; nenhum GPS/background.
-- Etapa 2: Firebase Auth e-mail/senha, conta, sessão e abstração de identidade, sem provedor real ou CPF armazenado.
-- Retenção de mensagens não aprovada; 180 dias permanece hipótese.
-- Nenhuma produção ou alteração administrativa do GitHub autorizada.
+E-mail/senha, confirmação/recuperação local Firebase Auth; sessão volátil do app e sessão lógica da API; conta com estados explícitos; nascimento privado e cálculo de idade; referência opaca e DTO estrito; abstração de identidade sem provedor real; autorização transacional, limites por ator/operação e logger por allowlist.
 
-## Versões
+API local: bootstrap, estado próprio, completar nascimento e revogar sessões. Conta suspensa, banida, inelegível ou em exclusão perde acesso mesmo com token Firebase válido. Claims não substituem estado vigente. Nenhum UID ou nascimento no DTO. CPF não integra modelo, persistência, fluxo ou provedor abstrato.
 
-V1: segurança, identidade, perfil, preferências, descoberta, compatibilidade, like/pass, match, chat, bloqueio, denúncias, moderação e privacidade. V2: Passaporte do Torcedor. V3: Dia de Jogo. V4: aprimorar compatibilidade. V5: gamificação saudável. Ver [roadmap](ROADMAP.md); pertencer ao roadmap não autoriza implementar.
+## Decisões preservadas
 
-## Pendências e bloqueios
+Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive signals; somente fixtures sintéticas; sem localização precisa; jogos fora do MVP; retenção de mensagens não aprovada. Uma declaração de idade adulta resulta em revisão pendente, não conta ativa. Identidade/idade definitivas dependem de mecanismo posterior validado.
 
-Provedor e mecanismo de aferição de idade/identidade, política editorial de ídolos, critérios operacionais de denúncias procedentes, retenção, Google/Apple, ambiente Firebase real, App Check nativo e políticas de lançamento precisam de validação específica. Perfil, fotos, catálogos reais e todas as interações estão bloqueados pelo escopo atual.
+## Evidência local
 
-## Riscos
+368 testes aprovados: 132 unitários, 211 Rules, 25 integração. npm run check com saída 0; lint, TypeScript strict, formato, build e scanner aprovados. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
 
-Enumeração no provedor Auth, roubo de sessão, abuso administrativo, cliente manipulado, stalking entre torcidas, brigading, exposição de preferências e reidentificação de analytics. Emuladores não comprovam segurança de infraestrutura real. Ver threat-model e revisão da fundação.
+## Riscos e decisões pendentes
 
-## Processo
+Enumeração no cadastro Firebase (EMAIL_EXISTS), controles de abuso do provedor/edge, App Check nativo, persistência segura de sessão em dispositivo, aferição de idade/identidade, processo de correção do nascimento e exclusão, retenção/limpeza operacional, políticas de moderação e editoriais. Antes de qualquer ambiente real, esses controles e testes exigem revisão. Runtime atual recusa configuração não emulada.
 
-Atualizar este documento ao concluir cada etapa relevante, com evidência, pendências e commit de referência. Recomendar proteção de main, CI obrigatório, bloqueio de force push e PRs. Avaliar privacidade do repositório antes de avançar em implementação proprietária; se já privado, manter. Não alterar visibilidade ou regras administrativas automaticamente.
+Google não habilitado; se adotado no iOS, avaliar Sign in with Apple/regras de login. SDK JS App/Auth e sessões em memória são escolha desta fase local; ver ADR 0008. Convenção de aniversário em 29/02: 01/03 no ano não bissexto, sujeita a validação antes do lançamento.
 
-## GitHub verificado em 16/09/2026
+## Versões futuras
 
-A API informa visibilidade PUBLIC. Recomenda-se avaliar torná-lo privado antes de avançar em implementação proprietária. Nenhuma alteração de visibilidade ou ruleset foi realizada. Os dois workflows da fundação (main e codex/secure-foundation) concluíram com sucesso. Mudanças relevantes devem passar por PR e CI; proteção de main e bloqueio de force push dependem de autorização administrativa.
+V1 conexões, segurança, perfil e interações ainda não implementadas; V2 Passaporte; V3 Dia de Jogo; V4 aprimoramento de compatibilidade; V5 gamificação saudável. Ver ROADMAP. Esses itens não estão autorizados para implementação agora.
 
-## Evidência do checkpoint 1.5
+## GitHub e processo
 
-Revisão cruzada concluída. npm run check passou com 256 testes (65 unitários e 191 Rules), lint, tipos, build, scanner e auditoria sem vulnerabilidades conhecidas. Scanner final documental: 70 arquivos, 0 ocorrências. Ver [relatório da etapa 1.5](stage-1.5-review.md). A implementação da etapa 2 permanece bloqueada até nova instrução, independentemente do sucesso destas verificações.
+Repositório observado como público; nenhuma visibilidade, ruleset ou configuração administrativa alterada. Recomendações permanecem: avaliar privacidade, proteger main, exigir CI e impedir force push. Trabalho em branch separada, commits pequenos e sem merge automático. A autorização de executar CI da etapa 2 é atendida publicando somente a branch de revisão, sem deploy.
 
-## Publicação da Etapa 1.5 — 17/09/2026
+## Registros
 
-Push concluído na branch codex/auth-identity-foundation, com autorização explícita para publicação no repositório público existente. Commits publicados: 8867724, 6e7d991, 5ae6bf8, 6502357 e 8914601. Este registro posterior ao push será publicado em commit documental separado.
+- [Etapa 1.5 e seus commits](stage-1.5-review.md): 8867724, 6e7d991, 5ae6bf8, 6502357, 8914601; publicação registrada em eff5825.
+- Etapa 2: 09dc2ca (modelos/contratos), aa96138 (API/sessão), 9e991d3 (mobile), 0b4138b (testes/CI).
+- [Revisão da etapa 2](stage-2-review.md), [ADR 0008](decisions/0008-local-authentication-and-session-boundary.md).
 
-Revisão pré-publicação: 15 arquivos Markdown alterados/criados; documentos conceituais de produto, arquitetura, segurança e processo. Scanner atual: 70 arquivos, 0 ocorrências. Revisão dos cinco commits: 29 versões documentais, 0 achados nos padrões verificados. Não foram encontrados valores de secrets, tokens, credenciais, CPF, dados privados de usuários, chaves privadas ou configuração real de produção. Termos como CPF e token aparecem somente em políticas/proibições; os aliases de personalidade pública são exemplos conceituais, não cadastro de usuário.
-
-Testes locais realizados no checkpoint: 65 unitários + 191 Rules = 256 aprovados. Formatação, lint, TypeScript strict, build, scanner e dependency audit aprovados; 0 vulnerabilidades conhecidas naquela auditoria. Após as alterações exclusivamente documentais, formatação, scanner e git diff --check foram repetidos. Isso não constitui certificação absoluta de ausência de dados sensíveis nem substitui revisão de futuros commits.
-
-Nenhuma mudança de visibilidade, proteção de branch ou configuração de produção. Nenhum merge em main. Nenhuma implementação da Etapa 2. PARAR e aguardar nova instrução.
+Ao concluir a validação remota: PARAR e aguardar revisão. Não avançar para etapa 3.

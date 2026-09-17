@@ -2,7 +2,7 @@
 
 Estimativas iniciais antes das mitigações, não medições. Ativos: identidade, nascimento, preferências, relações, imagens, conversas, denúncias, credenciais e privilégios. Agentes: cliente manipulado, usuários abusivos, bots, fraudadores, sessões roubadas, insiders e dependências comprometidas.
 
-Fronteiras: dispositivo → Auth/API → banco/Storage; mídia → processador; serviço → notificações; operador → API administrativa. Nesta fundação existem apenas código estático e emuladores locais; controles de features abaixo são requisitos futuros, não funcionalidades já entregues.
+Fronteiras: dispositivo → Auth/API → banco/Storage; mídia → processador; serviço → notificações; operador → API administrativa. Na etapa 2 existem Auth e API de conta somente em emuladores locais; controles das demais features abaixo são requisitos futuros, não funcionalidades já entregues.
 
 | Risco                                      | Impacto | Probabilidade             | Mitigação / limite                                                                     |
 | ------------------------------------------ | ------- | ------------------------- | -------------------------------------------------------------------------------------- |

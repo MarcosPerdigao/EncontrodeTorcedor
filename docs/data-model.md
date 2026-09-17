@@ -1,6 +1,6 @@
 # Modelo de dados proposto
 
-Nenhuma collection de negócio é criada nesta fundação. Os nomes/campos abaixo são conceituais para implementação posterior autorizada. Fixtures dos testes são artificiais. Não transformar este modelo em DTO público.
+A etapa 2 persiste somente conta, identidade mínima e metadados de sessão nos emuladores, conforme stage-2-review.md. A tabela geral abaixo continua conceitual para demais funcionalidades futuras. Fixtures dos testes são artificiais. Não transformar este modelo em DTO público.
 
 ## Classes de dados
 
@@ -69,4 +69,4 @@ Prever clubs, idols e idolAliases com IDs canônicos, status editorial e aliases
 
 Distinguir report, reviewedReport, substantiatedReport e safetyIncident; apenas processo de revisão pode produzir procedência, com deduplicação, integridade e contestação. Sem banimento por contagem bruta. Nenhuma automação disciplinar implementada na etapa 2.
 
-Etapa 2 autoriza modelo de conta, sessão e nascimento privado mínimo. CPF bruto ou simplesmente hashed permanece proibido, inclusive logs/fixtures reais. Provas mínimas de provedor futuro alimentam status, sem documento civil nos demais módulos. Os modelos concretos só poderão ser implementados após revisão intermediária da etapa 1.5 e nova instrução expressa.
+Etapa 2 autoriza modelo de conta, sessão e nascimento privado mínimo. CPF bruto ou simplesmente hashed permanece proibido, inclusive logs/fixtures reais. Provas mínimas de provedor futuro alimentam status, sem documento civil nos demais módulos. A implementação mínima foi autorizada após essa revisão e está registrada em stage-2-review.md; o restante continua futuro.

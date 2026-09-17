@@ -2,7 +2,7 @@
 
 ## Workspace
 
-Npm workspaces com apps/mobile, functions e packages/contracts. Nomes técnicos neutros, lockfile único, dependências fixadas e TypeScript strict. ESLint impede `any` explícito, importação de módulos privados e SDKs Firebase no mobile nesta etapa. Prettier e LF padronizados.
+Npm workspaces com apps/mobile, functions e packages/contracts. Nomes técnicos neutros, lockfile único, dependências fixadas e TypeScript strict. ESLint impede `any` explícito, importação de módulos privados e SDKs de banco/Storage no mobile; apenas Firebase App/Auth é permitido. Prettier e LF padronizados.
 
 O compilador ignora checagem interna de declarações de terceiros (`skipLibCheck`), mas checa nosso código e consumo de tipos em modo strict. Não é justificativa para `any` no código próprio.
 
@@ -32,7 +32,7 @@ Branch principal main; mudanças seguintes em codex/<objetivo>. Commits pequenos
 
 ## Limites da evidência
 
-Emuladores não validam IAM, App Check real, quotas, bucket ACL, MFA, push ou comportamento nativo. Export Android/iOS valida bundling, não instalação em dispositivo. Operação pública e recursos futuros exigem testes correspondentes e nova autorização. Não usar dados reais. A implementação da etapa 2 aguarda revisão intermediária da etapa 1.5 e nova instrução expressa; etapa 3 exige nova autorização.
+Emuladores não validam IAM, App Check real, quotas, bucket ACL, MFA, push ou comportamento nativo. Export Android/iOS valida bundling, não instalação em dispositivo. Operação pública e recursos futuros exigem testes correspondentes e nova autorização. Não usar dados reais. A etapa 2 foi autorizada após revisão intermediária; etapa 3 exige nova autorização. Ver ADR 0008 e README para execução local do Auth/API.
 
 ## Correções transitivas e caches
 

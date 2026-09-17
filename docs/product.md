@@ -12,4 +12,4 @@ Sem publicidade comportamental, importação de contatos, presença online, últ
 
 Bloqueio, denúncia e moderação são centrais. Sem banimento por contagem bruta. Segurança para mulheres com ferramentas disponíveis a todos. Privacidade, acessibilidade, botões alternativos a gestos e notificações genéricas são requisitos.
 
-Etapa 1.5 concluída. Etapa 2 conceitualmente autorizada, com implementação pausada até revisão intermediária e nova instrução; nenhum código funcional adicional nesta entrega. Retenção de mensagens continua pendente; 180 dias é apenas hipótese. Ver [retenção](retention.md).
+Etapa 1.5 concluída e aprovada. Etapa 2 autorizada para autenticação, sessão e estado da conta local; perfil completo, catálogos reais e interações permanecem fora da entrega. Retenção de mensagens continua pendente; 180 dias é apenas hipótese. Ver [retenção](retention.md).

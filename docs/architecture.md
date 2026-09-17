@@ -4,7 +4,7 @@
 
 React Native + Expo + TypeScript strict, Cloud Functions, Cloud Firestore e Firebase Storage como infraestrutura inicial. Backend modular único; sem microserviços ou segundo banco. Fundação local apenas: nenhum projeto real de production ou staging é criado ou associado.
 
-O cliente **não acessa Firestore/Storage diretamente para dados de negócio**. Firebase no dispositivo será avaliado na etapa de autenticação, ainda não autorizada. Nesta fundação não há SDK Firebase no pacote mobile, endpoints, autenticação, credenciais ou inicialização de Admin SDK.
+O cliente **não acessa Firestore/Storage diretamente para dados de negócio**. Na etapa 2 há Firebase App/Auth no dispositivo, exclusivamente emulado e com memória volátil, e API de conta no backend local. Ver ADR 0008 para decisões, endpoints e bloqueios de ambiente real. As demais funcionalidades descritas como futuras permanecem não implementadas.
 
 ## Fronteiras
 
@@ -67,6 +67,6 @@ ADRs em [decisions](decisions/). Políticas de segurança e retenção prevalece
 
 Uma plataforma nacional multiclube; piloto Atlético Mineiro como dado, sem acoplamento técnico. Cultura, clubes e ídolos são catálogos futuros. SAFETY_CHARTER.md rege produto, PROJECT_STATE.md registra estado e ROADMAP.md substitui cronogramas anteriores: Passaporte V2 e Dia de Jogo V3. Encontro Seguro não é autorizado no MVP.
 
-Os parágrafos que descrevem aplicativo vazio e ausência de endpoints registram a base 0/1. A etapa 2 está conceitualmente autorizada para Firebase Auth, conta, identidade abstrata e sessão, sem abrir Rules ou implantar produção. Por instrução de 17/09/2026, sua implementação depende de revisão intermediária da etapa 1.5 e nova instrução expressa, mesmo após os testes passarem. Não há autorização para onboarding completo ou demais features.
+Os parágrafos que descrevem aplicativo vazio e ausência de endpoints registram a base 0/1. A etapa 2 está conceitualmente autorizada para Firebase Auth, conta, identidade abstrata e sessão, sem abrir Rules ou implantar produção. Após revisão intermediária e CI aprovado, a implementação da etapa 2 foi expressamente autorizada. Etapa 3 segue bloqueada. Não há autorização para onboarding completo ou demais features.
 
 Separar auditoria operacional de analytics agregados/pseudonimizados. Futuras recomendações exigem versão de algoritmo e razões mínimas auditáveis; não registrar perfil inteiro nem dados privados. Hard filters bilaterais precedem ranking configurável, sem percentual público de compatibilidade.

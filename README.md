@@ -1,67 +1,57 @@
 # Encontro de Torcedor
 
-Base de um aplicativo independente para conexões entre torcedores adultos. Etapas 0, 1 e 1.5 concluídas. Implementação da etapa 2 pausada até revisão intermediária e nova instrução, conforme docs/PROJECT_STATE.md. Não há autenticação, perfil funcional, descoberta, match, chat ou endpoint.
+Plataforma nacional de conexões entre torcedores; Atlético Mineiro é o piloto. Etapas 0/1/1.5 aprovadas. Etapa 2: autenticação, sessão e conta somente em ambiente local. Etapa 3 exige nova autorização.
 
-## Começar
+## Executar localmente
 
-Requisitos: Node 22.21.1 (ver `.nvmrc`), npm 10+, Java 21, Git. Não precisa de login Firebase, projeto real ou service account. Apenas fixtures sintéticas.
+Node 22.21.1, npm 10+, Java 21 e Git. Sem login Firebase ou projeto real.
 
 ```sh
 npm ci
 npm run check
 npm run build:mobile
+npm run emulators
 ```
 
-O primeiro teste baixa os binários oficiais dos emuladores. Reserve as portas locais 8080, 9199, 4400 e 4500. O executor fixa `demo-social-foundation` e recusa variáveis com projeto real/credenciais explícitas. Firestore e Storage negam todo acesso cliente.
+Em outro terminal, `npm start` para development build Expo. Android Emulator usa 10.0.2.2 para chegar ao loopback do computador; iOS Simulator usa 127.0.0.1. Dispositivo físico/rede pública não configurados. Use apenas contas sintéticas com domínio example.invalid. Auth Emulator exibe links locais para confirmar e-mail/recuperar acesso; esses logs são ignorados no Git e não devem conter dados reais.
+
+Portas: Auth 9099, API 5001, Firestore 8080, Storage 9199, hub 4400, logs 4500. Bind em loopback. O app recusa autenticação fora de desenvolvimento; o backend recusa runtime não emulado. Nenhuma configuração de produção, segredo ou chave administrativa necessária.
+
+## Fluxo entregue
+
+Cadastro/login e recuperação Firebase Auth; confirmação de e-mail; estado da própria conta; registro privado e único de nascimento; saída com tentativa de revogação no servidor. Sessões e credenciais ficam só em memória. Reiniciar o app exige login. Nenhum CPF solicitado.
+
+Uma declaração de 18+ não ativa a conta: elegibilidade fica em revisão até aferição futura. Menores ficam inelegíveis; não podem mudar nascimento para contornar a restrição. Perfil completo, fotos, descoberta e interações não foram implementados.
 
 ## Comandos
 
-| Comando                            | Finalidade                                                      |
-| ---------------------------------- | --------------------------------------------------------------- |
-| npm run lint                       | ESLint, sem avisos                                              |
-| npm run typecheck                  | TypeScript strict em ferramentas, contratos, mobile e functions |
-| npm run format:check               | Prettier                                                        |
-| npm run test:unit                  | Contratos, política e ferramentas de segurança                  |
-| npm run test:rules                 | Inicia emuladores, testa autorização e encerra                  |
-| npm test                           | Todos os testes                                                 |
-| npm run build                      | Compila contratos e base de Functions                           |
-| npm run build:mobile               | Exporta bundles Android/iOS; não é build nativo                 |
-| npm run security:secrets           | Padrões de secrets nos arquivos Git/candidatos                  |
-| npm run security:dependencies      | npm audit, bloqueia moderate ou superior                        |
-| npm run check                      | Todas as verificações acima, exceto export mobile               |
-| npm run build && npm run emulators | Emuladores locais incluindo base vazia de Functions             |
-| npm start                          | Metro local para development build; app deliberadamente vazio   |
-
-Development builds são o caminho previsto para integração nativa. Nenhuma credencial, projeto EAS ou binário nativo é criado nesta etapa. Expo Go não é critério de validação. O app sem telas apenas comprova que a fundação pode ser empacotada.
+| Comando                       | Finalidade                                                                      |
+| ----------------------------- | ------------------------------------------------------------------------------- |
+| npm run check                 | Formato, lint, tipos, testes unitários/Rules/integração, build, scanner e audit |
+| npm run test:unit             | Contratos, domínio, sessão e ferramentas                                        |
+| npm run test:rules            | Somente Rules Firestore/Storage                                                 |
+| npm run test:emulators        | Rules e integração Auth/API/Firestore/Functions                                 |
+| npm run build                 | Compila contratos e backend                                                     |
+| npm run build:mobile          | Exporta bundles Android/iOS; não é instalação nativa                            |
+| npm run emulators             | Inicia serviços locais, após build                                              |
+| npm start                     | Metro local                                                                     |
+| npm run security:secrets      | Scanner de arquivos versionados/candidatos                                      |
+| npm run security:dependencies | Audit bloqueando moderate ou superior                                           |
 
 ## Documentação
 
-- [Produto e escopo](docs/product.md)
-- [Arquitetura](docs/architecture.md)
-- [Dados](docs/data-model.md)
-- [Autorização](docs/authorization.md)
-- [Threat model](docs/threat-model.md)
-- [Retenção pendente](docs/retention.md)
-- [Princípios de segurança](docs/security-principles.md)
-- [ADRs](docs/decisions/)
-- [Desenvolvimento e ambientes](docs/development.md)
-- [Revisão final, testes e inventário completo](docs/foundation-review.md)
+- [Estado vigente](docs/PROJECT_STATE.md)
+- [Cartilha superior](docs/SAFETY_CHARTER.md)
+- [Produto](docs/product.md), [arquitetura](docs/architecture.md), [dados](docs/data-model.md)
+- [Autorização](docs/authorization.md), [ameaças](docs/threat-model.md), [retenção](docs/retention.md)
+- [Perfil futuro](docs/PROFILE_MODEL.md), [compatibilidade conceitual](docs/MATCH_ENGINE.md), [roadmap](docs/ROADMAP.md)
+- [Decisão de Auth/sessão](docs/decisions/0008-local-authentication-and-session-boundary.md)
+- [Revisão da etapa 2](docs/stage-2-review.md)
 
 ## Limites
 
-Produção e staging não provisionados. Não há deploy no CI. Rules não controlam Admin SDK/IAM. Emuladores têm interfaces administrativas sem autenticação e nunca devem ser expostos à rede pública. O scanner de secrets é defesa por padrões conhecidos, não garantia matemática; revisar diffs e acessos continua obrigatório.
+Firestore/Storage permanecem deny-all. Emuladores têm canais administrativos inseguros para internet; não os exponha. SDK Admin contorna Rules. Enumeração do provedor, App Check real, IAM, aferição de idade/identidade e retenção operacional exigem validação antes de qualquer ambiente real. Não confundir scanner por padrões com garantia absoluta.
 
-Parar após a etapa 1.5: aguardar revisão intermediária e nova instrução antes de implementar a etapa 2.
+O CLI Firebase local tem importadores JSON/Next Hosting desabilitados para remover dependência vulnerável; apenas emuladores documentados são suportados. Ver [ADR 0007](docs/decisions/0007-restricted-local-toolchain.md). No Windows, confira processos/portas após interrupção dos emuladores.
 
-## Restrição da ferramenta Firebase
-
-O Firebase CLI deste workspace é destinado aos emuladores documentados. Pipelines de importação JSON de Auth/Realtime Database e processamento Next Hosting foram desabilitadas para remover uma dependência vulnerável incompatível com a API corrigida. Não usar esta instalação para importação/deploy. A auditoria continua obrigatória, sem allowlist de advisories. Veja [ADR 0007](docs/decisions/0007-restricted-local-toolchain.md).
-
-## Produto vigente e revisão intermediária
-
-- [Estado atual](docs/PROJECT_STATE.md)
-- [Cartilha superior de segurança](docs/SAFETY_CHARTER.md)
-- [Modelo futuro de perfil](docs/PROFILE_MODEL.md)
-- [Compatibilidade conceitual](docs/MATCH_ENGINE.md)
-- [Roadmap](docs/ROADMAP.md)
-- [Revisão da etapa 1.5](docs/stage-1.5-review.md)
+Ao concluir esta etapa, parar para revisão. Nenhum deploy ou merge automático em main.
