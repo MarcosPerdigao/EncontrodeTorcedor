@@ -12,7 +12,9 @@
     "expo": "57.0.23",
     "expo-dev-client": "57.0.19",
     "react": "19.2.3",
-    "react-native": "0.86.3"
+    "react-native": "0.86.3",
+    "firebase": "12.19.0",
+    "@social/contracts": "0.0.0"
   },
   "devDependencies": {
     "@types/react": "19.2.18"

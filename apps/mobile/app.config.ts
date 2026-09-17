@@ -11,7 +11,7 @@ if (environment !== 'development') {
 }
 
 const config: ExpoConfig = {
-  name: 'Projeto Match Alvinegro',
+  name: 'Encontro de Torcedor',
   slug: 'social-foundation',
   version: '0.0.0',
   platforms: ['android', 'ios'],

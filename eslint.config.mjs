@@ -43,16 +43,9 @@ export default tseslint.config(
         {
           patterns: [
             {
-              group: [
-                'firebase',
-                'firebase/*',
-                'firebase-admin',
-                'firebase-admin/*',
-                '@google-cloud/*',
-                '@react-native-firebase/*',
-              ],
-              message:
-                'Nenhum SDK Firebase no mobile nesta fundação; negócio será acessado via API.',
+              regex:
+                '^(?:firebase(?:$|/(?!app$|auth$))|firebase-admin(?:/|$)|@google-cloud/|@react-native-firebase/)',
+              message: 'Somente Firebase App/Auth no mobile; dados de negócio passam pela API.',
             },
             {
               group: ['**/private-user-data*', '**/server/*', '**/functions/*'],
