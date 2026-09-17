@@ -87,6 +87,8 @@ Produto, cartilha, perfil, compatibilidade, roadmap, arquitetura, dados, autoriz
 - `6e7d991` — docs: add safety charter and product state
 - `5ae6bf8` — docs: define profile compatibility and roadmap
 
+- `6502357` — docs: complete stage 1.5 review and pause implementation
+
 Os commits finais de revisão/formatação e pausa constam no histórico da branch e na entrega. Nenhum merge em main ou alteração administrativa faz parte desta etapa.
 
 ## Próximo passo

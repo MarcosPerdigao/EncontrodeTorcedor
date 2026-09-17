@@ -1,6 +1,6 @@
 # Estado do projeto
 
-Última atualização: 17/09/2026. Último commit de conteúdo da sincronização: `5ae6bf8`; fundação de referência: `536fedd`. Os commits finais de revisão constam no histórico desta branch. Branch de trabalho: `codex/auth-identity-foundation`.
+Última atualização: 17/09/2026. Último commit de conteúdo/revisão da sincronização: `6502357`; fundação de referência: `536fedd`. Os commits finais de revisão constam no histórico desta branch. Branch de trabalho: `codex/auth-identity-foundation`.
 
 ## Visão
 
@@ -40,3 +40,7 @@ Atualizar este documento ao concluir cada etapa relevante, com evidência, pend�
 ## GitHub verificado em 16/09/2026
 
 A API informa visibilidade PUBLIC. Recomenda-se avaliar torná-lo privado antes de avançar em implementação proprietária. Nenhuma alteração de visibilidade ou ruleset foi realizada. Os dois workflows da fundação (main e codex/secure-foundation) concluíram com sucesso. Mudanças relevantes devem passar por PR e CI; proteção de main e bloqueio de force push dependem de autorização administrativa.
+
+## Evidência do checkpoint 1.5
+
+Revisão cruzada concluída. npm run check passou com 256 testes (65 unitários e 191 Rules), lint, tipos, build, scanner e auditoria sem vulnerabilidades conhecidas. Scanner final documental: 70 arquivos, 0 ocorrências. Ver [relatório da etapa 1.5](stage-1.5-review.md). A implementação da etapa 2 permanece bloqueada até nova instrução, independentemente do sucesso destas verificações.
