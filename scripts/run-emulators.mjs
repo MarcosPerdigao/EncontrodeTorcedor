@@ -5,8 +5,8 @@ import { fileURLToPath } from 'node:url';
 
 const projectId = 'demo-social-foundation';
 const mode = process.argv[2];
-if (mode !== 'test' && mode !== 'start') {
-  throw new Error('Use test ou start.');
+if (mode !== 'test' && mode !== 'start' && mode !== 'integration') {
+  throw new Error('Use test, integration ou start.');
 }
 
 for (const variable of ['FIREBASE_PROJECT_ID', 'GCLOUD_PROJECT', 'GOOGLE_CLOUD_PROJECT']) {
@@ -28,15 +28,19 @@ const temporaryPath = join(root, '.cache', 'tmp');
 mkdirSync(temporaryPath, { recursive: true });
 const args = [
   cli,
-  mode === 'test' ? 'emulators:exec' : 'emulators:start',
+  mode === 'start' ? 'emulators:start' : 'emulators:exec',
   '--project',
   projectId,
   '--config',
   'firebase.json',
   '--only',
-  mode === 'test' ? 'firestore,storage' : 'firestore,storage,functions',
+  mode === 'test' ? 'firestore,storage' : 'auth,firestore,storage,functions',
 ];
-if (mode === 'test') args.push('--non-interactive', 'npm run test:rules:inside');
+if (mode !== 'start')
+  args.push(
+    '--non-interactive',
+    mode === 'test' ? 'npm run test:rules:inside' : 'npm run test:emulators:inside',
+  );
 
 const child = spawn(process.execPath, args, {
   cwd: root,
@@ -47,6 +51,7 @@ const child = spawn(process.execPath, args, {
     GCLOUD_PROJECT: projectId,
     GOOGLE_CLOUD_PROJECT: projectId,
     FIREBASE_CLI_DISABLE_TELEMETRY: '1',
+    FUNCTIONS_DISCOVERY_TIMEOUT: '120',
     FIREBASE_EMULATORS_PATH:
       process.env.FIREBASE_EMULATORS_PATH ?? join(root, '.cache', 'firebase', 'emulators'),
     XDG_CONFIG_HOME: process.env.XDG_CONFIG_HOME ?? join(root, '.cache', 'config'),

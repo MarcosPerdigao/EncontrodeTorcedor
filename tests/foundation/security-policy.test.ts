@@ -41,13 +41,12 @@ describe('política fechada da fundação', () => {
     });
   });
 
-  it('mobile não declara SDK de acesso direto ao banco/Storage', () => {
-    const manifest = JSON.parse(read('apps/mobile/package.json')) as {
-      dependencies: Record<string, string>;
-    };
-    expect(
-      Object.keys(manifest.dependencies).some((name) => /firebase|google-cloud/.test(name)),
-    ).toBe(false);
+  it('mobile usa somente Firebase App/Auth, sem acesso direto a negócio', () => {
+    const source = read('apps/mobile/src/auth.ts');
+    const imports = [...source.matchAll(/from ['"](firebase[^'"]*)['"]/g)].map((match) => match[1]);
+    expect(imports.sort()).toEqual(['firebase/app', 'firebase/auth']);
+    expect(source).toContain('inMemoryPersistence');
+    expect(source).not.toMatch(/firebase\/(?:firestore|storage|database)/);
   });
 
   it('entrypoint de contratos não exporta PrivateUserData ou módulos internos', () => {

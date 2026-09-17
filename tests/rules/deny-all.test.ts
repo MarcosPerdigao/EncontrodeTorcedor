@@ -137,6 +137,23 @@ it('controle: dados e objetos existem; negações não são falhas de rede', asy
 });
 
 describe.each(actors)('cliente %s', (actor) => {
+  it.each(['accountStatus', 'eligibilityStatus', 'sessionVersion', 'identityVerificationStatus'])(
+    'não forja campo de conta %s',
+    async (field) => {
+      const database = context(actor).firestore();
+      await assertFails(
+        setDoc(
+          doc(database, 'accounts/synthetic-a'),
+          { [field]: 'synthetic-forged' },
+          { merge: true },
+        ),
+      );
+      await assertFails(
+        setDoc(doc(database, 'accounts/synthetic-new'), { [field]: 'synthetic-forged' }),
+      );
+    },
+  );
+
   it.each(collections)('não lista a collection %s', async (name) => {
     await assertFails(getDocs(collection(context(actor).firestore(), name)));
   });
