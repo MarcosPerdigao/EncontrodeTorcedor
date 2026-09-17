@@ -1,6 +1,6 @@
 # Estado do projeto
 
-Última atualização: 17/09/2026. Último commit de conteúdo/revisão da sincronização: `6502357`; fundação de referência: `536fedd`. Os commits finais de revisão constam no histórico desta branch. Branch de trabalho: `codex/auth-identity-foundation`.
+Última atualização: 17/09/2026. Último commit publicado do checkpoint documental: `8914601`; fundação de referência: `536fedd`. Os commits finais de revisão constam no histórico desta branch. Branch de trabalho: `codex/auth-identity-foundation`.
 
 ## Visão
 
@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores: a paixão pelo clube funciona
 
 ## Etapas
 
-Etapas 0, 1 e 1.5 concluídas. Nenhuma etapa de implementação em execução: aguardando revisão intermediária da Etapa 1.5. A Etapa 2 permanece conceitualmente autorizada, mas sua implementação está bloqueada até nova instrução expressa. Nenhum código de autenticação, identidade ou conta foi implementado. Etapa 3 e funcionalidades posteriores não autorizadas.
+Etapas 0, 1 e 1.5 concluídas. Etapa 1.5 publicada para revisão. Nenhuma etapa de implementação em execução. Etapa 2 aguardando autorização expressa para iniciar a implementação; a aprovação conceitual anterior não libera esse início. Nenhum código de autenticação, identidade ou conta foi implementado. Etapa 3 e funcionalidades posteriores não autorizadas.
 
 ## Decisões aprovadas
 
@@ -44,3 +44,13 @@ A API informa visibilidade PUBLIC. Recomenda-se avaliar torná-lo privado antes 
 ## Evidência do checkpoint 1.5
 
 Revisão cruzada concluída. npm run check passou com 256 testes (65 unitários e 191 Rules), lint, tipos, build, scanner e auditoria sem vulnerabilidades conhecidas. Scanner final documental: 70 arquivos, 0 ocorrências. Ver [relatório da etapa 1.5](stage-1.5-review.md). A implementação da etapa 2 permanece bloqueada até nova instrução, independentemente do sucesso destas verificações.
+
+## Publicação da Etapa 1.5 — 17/09/2026
+
+Push concluído na branch codex/auth-identity-foundation, com autorização explícita para publicação no repositório público existente. Commits publicados: 8867724, 6e7d991, 5ae6bf8, 6502357 e 8914601. Este registro posterior ao push será publicado em commit documental separado.
+
+Revisão pré-publicação: 15 arquivos Markdown alterados/criados; documentos conceituais de produto, arquitetura, segurança e processo. Scanner atual: 70 arquivos, 0 ocorrências. Revisão dos cinco commits: 29 versões documentais, 0 achados nos padrões verificados. Não foram encontrados valores de secrets, tokens, credenciais, CPF, dados privados de usuários, chaves privadas ou configuração real de produção. Termos como CPF e token aparecem somente em políticas/proibições; os aliases de personalidade pública são exemplos conceituais, não cadastro de usuário.
+
+Testes locais realizados no checkpoint: 65 unitários + 191 Rules = 256 aprovados. Formatação, lint, TypeScript strict, build, scanner e dependency audit aprovados; 0 vulnerabilidades conhecidas naquela auditoria. Após as alterações exclusivamente documentais, formatação, scanner e git diff --check foram repetidos. Isso não constitui certificação absoluta de ausência de dados sensíveis nem substitui revisão de futuros commits.
+
+Nenhuma mudança de visibilidade, proteção de branch ou configuração de produção. Nenhum merge em main. Nenhuma implementação da Etapa 2. PARAR e aguardar nova instrução.
