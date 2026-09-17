@@ -38,7 +38,6 @@ Planejar consulta, correção, pausa, exportação, exclusão, revogação de es
 
 Fontes: [LGPD](https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm), [ANPD: transferências internacionais](https://www.gov.br/anpd/pt-br/assuntos/assuntos-internacionais/transferencia-internacional-de-dados), [Firestore TTL](https://firebase.google.com/docs/firestore/ttl), [Lei 15.211/2025](https://planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15211.htm).
 
-
 ## Sincronização 1.5
 
 Nenhum prazo de mensagens foi aprovado. Definir retenção separada para nascimento privado, sessões, contadores, idempotência, provas mínimas de verificação, auditoria e analytics. CPF bruto ou simplesmente hashed não está autorizado. Evidência de incidente exige finalidade, acesso por caso e preservação controlada; denúncia coordenada não justifica retenção indefinida. Passaporte e Dia de Jogo exigirão políticas específicas antes das respectivas versões.

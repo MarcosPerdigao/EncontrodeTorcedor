@@ -9,7 +9,7 @@
 | Todo objeto Storage: leitura/listagem/upload/update/delete | Negado  | Negado      | Negado                             |
 | Caminho desconhecido/nested/collection group               | Negado  | Negado      | Negado                             |
 
-Na base 0/1 nenhum endpoint é exportado; a etapa 2 autoriza somente operações de conta própria após checkpoint 1.5. Não há exceção temporária para desenvolvimento. As Rules fechadas não bloqueiam Admin SDK/IAM privilegiado: credenciais de serviço são uma fronteira separada. Bypass nos testes existe **apenas** no emulador para semear fixtures, nunca em uma regra ou API.
+Na base 0/1 nenhum endpoint é exportado; a etapa 2 prevê somente operações de conta própria, mas sua implementação aguarda revisão intermediária da etapa 1.5 e nova instrução. Não há exceção temporária para desenvolvimento. As Rules fechadas não bloqueiam Admin SDK/IAM privilegiado: credenciais de serviço são uma fronteira separada. Bypass nos testes existe **apenas** no emulador para semear fixtures, nunca em uma regra ou API.
 
 ## Matriz planejada para a API futura
 
@@ -38,7 +38,6 @@ Testes com o SDK cliente e emuladores reais devem distinguir permission-denied d
 
 O contrato fechado das regras terá teste estático exato adicional: qualquer mudança de política exige atualização revisada. Teste textual não substitui execução no emulador.
 
-
-## Etapa 2 autorizada
+## Etapa 2 conceitualmente autorizada, implementação pausada
 
 Identidade do token, conta vigente, sessionVersion, elegibilidade, schema, operação, limites e idempotência serão avaliados no servidor. Estado próprio mínimo pode ser consultado antes da conclusão de elegibilidade; ações protegidas exigem todos os gates. Suspensos/banidos não executam mutações. Claims não substituem estado vigente. Cliente não pode enviar UID como autoridade nem editar estados. Nenhum endpoint lista usuários.

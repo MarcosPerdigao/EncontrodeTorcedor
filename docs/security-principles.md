@@ -31,9 +31,8 @@ Arquivos product, architecture, data-model, authorization, threat-model, retenti
 - Tipos privados são internos; lista de campos proibidos não autoriza coleta.
 - Coordenadas não constam do modelo MVP, mesmo privado.
 - Controles futuros não são descritos como implementados.
-- Produção real e etapa 2 permanecem fora da autorização atual.
-
+- Na revisão histórica 0/1, produção real e etapa 2 estavam fora da autorização; etapa 2 foi posteriormente autorizada, produção continua excluída.
 
 ## Invariantes adicionais 1.5
 
-SAFETY_CHARTER.md é regra superior de produto. Plataforma nacional, filtros bilaterais e catálogos configuráveis. Sem banimento por denúncias brutas, score de beleza, percentual público de compatibilidade ou analytics de dados privados. CPF bruto e hash simples proibidos; provedor futuro entrega prova mínima. Etapas 1.5/2 autorizadas; etapa 3 depende de nova autorização. A revisão acima é registro histórico da base 0/1.
+SAFETY_CHARTER.md é regra superior de produto. Plataforma nacional, filtros bilaterais e catálogos configuráveis. Sem banimento por denúncias brutas, score de beleza, percentual público de compatibilidade ou analytics de dados privados. CPF bruto e hash simples proibidos; provedor futuro entrega prova mínima. Etapa 1.5 concluída; etapa 2 conceitualmente autorizada, mas implementação bloqueada até revisão intermediária e nova instrução. Etapa 3 depende de nova autorização. A revisão acima é registro histórico da base 0/1.

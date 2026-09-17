@@ -32,7 +32,7 @@ Branch principal main; mudanças seguintes em codex/<objetivo>. Commits pequenos
 
 ## Limites da evidência
 
-Emuladores não validam IAM, App Check real, quotas, bucket ACL, MFA, push ou comportamento nativo. Export Android/iOS valida bundling, não instalação em dispositivo. Operação pública e recursos futuros exigem testes correspondentes e nova autorização. Não usar dados reais nem avançar para etapa 2 nesta entrega.
+Emuladores não validam IAM, App Check real, quotas, bucket ACL, MFA, push ou comportamento nativo. Export Android/iOS valida bundling, não instalação em dispositivo. Operação pública e recursos futuros exigem testes correspondentes e nova autorização. Não usar dados reais. A implementação da etapa 2 aguarda revisão intermediária da etapa 1.5 e nova instrução expressa; etapa 3 exige nova autorização.
 
 ## Correções transitivas e caches
 

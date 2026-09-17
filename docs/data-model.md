@@ -69,4 +69,4 @@ Prever clubs, idols e idolAliases com IDs canônicos, status editorial e aliases
 
 Distinguir report, reviewedReport, substantiatedReport e safetyIncident; apenas processo de revisão pode produzir procedência, com deduplicação, integridade e contestação. Sem banimento por contagem bruta. Nenhuma automação disciplinar implementada na etapa 2.
 
-Etapa 2 autoriza modelo de conta, sessão e nascimento privado mínimo. CPF bruto ou simplesmente hashed permanece proibido, inclusive logs/fixtures reais. Provas mínimas de provedor futuro alimentam status, sem documento civil nos demais módulos. Os modelos concretos serão registrados após o checkpoint 1.5.
+Etapa 2 autoriza modelo de conta, sessão e nascimento privado mínimo. CPF bruto ou simplesmente hashed permanece proibido, inclusive logs/fixtures reais. Provas mínimas de provedor futuro alimentam status, sem documento civil nos demais módulos. Os modelos concretos só poderão ser implementados após revisão intermediária da etapa 1.5 e nova instrução expressa.

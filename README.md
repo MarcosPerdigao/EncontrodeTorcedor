@@ -1,6 +1,6 @@
-# Projeto Match Alvinegro — fundação
+# Encontro de Torcedor
 
-Base de um aplicativo independente para conexões entre torcedores adultos. Somente etapas 0 e 1 autorizadas: documentação, ferramentas, contratos e regras fechadas. Não há autenticação, perfil funcional, descoberta, match, chat ou endpoint.
+Base de um aplicativo independente para conexões entre torcedores adultos. Etapas 0, 1 e 1.5 concluídas. Implementação da etapa 2 pausada até revisão intermediária e nova instrução, conforme docs/PROJECT_STATE.md. Não há autenticação, perfil funcional, descoberta, match, chat ou endpoint.
 
 ## Começar
 
@@ -51,8 +51,17 @@ Development builds são o caminho previsto para integração nativa. Nenhuma cre
 
 Produção e staging não provisionados. Não há deploy no CI. Rules não controlam Admin SDK/IAM. Emuladores têm interfaces administrativas sem autenticação e nunca devem ser expostos à rede pública. O scanner de secrets é defesa por padrões conhecidos, não garantia matemática; revisar diffs e acessos continua obrigatório.
 
-Após esta fundação, aguardar autorização antes da etapa 2.
+Parar após a etapa 1.5: aguardar revisão intermediária e nova instrução antes de implementar a etapa 2.
 
 ## Restrição da ferramenta Firebase
 
 O Firebase CLI deste workspace é destinado aos emuladores documentados. Pipelines de importação JSON de Auth/Realtime Database e processamento Next Hosting foram desabilitadas para remover uma dependência vulnerável incompatível com a API corrigida. Não usar esta instalação para importação/deploy. A auditoria continua obrigatória, sem allowlist de advisories. Veja [ADR 0007](docs/decisions/0007-restricted-local-toolchain.md).
+
+## Produto vigente e revisão intermediária
+
+- [Estado atual](docs/PROJECT_STATE.md)
+- [Cartilha superior de segurança](docs/SAFETY_CHARTER.md)
+- [Modelo futuro de perfil](docs/PROFILE_MODEL.md)
+- [Compatibilidade conceitual](docs/MATCH_ENGINE.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Revisão da etapa 1.5](docs/stage-1.5-review.md)

@@ -1,4 +1,5 @@
 # Produto — Encontro de Torcedor
+
 Plataforma nacional de conexões entre torcedores, na qual a paixão pelo clube funciona como identidade social e cada torcida possui seu próprio universo dentro da mesma plataforma. Atlético Mineiro é a primeira comunidade/piloto, não uma dependência da arquitetura. Clubes, ídolos e cultura serão dados configuráveis.
 
 Não é rede social, clone do Tinder, feed, plataforma de seguidores/influência ou aplicativo exclusivamente de namoro. Intenções: relacionamento, paquera/conhecer alguém, amizade, companhia para jogos e para eventos/rolês. Público 18+, com aferição definitiva ainda pendente; checkbox ou nascimento declarado não comprovam idade.
@@ -11,4 +12,4 @@ Sem publicidade comportamental, importação de contatos, presença online, últ
 
 Bloqueio, denúncia e moderação são centrais. Sem banimento por contagem bruta. Segurança para mulheres com ferramentas disponíveis a todos. Privacidade, acessibilidade, botões alternativos a gestos e notificações genéricas são requisitos.
 
-Etapas 1.5 e 2 autorizadas; nenhum perfil completo, catálogo real, descoberta, interação ou chat nesta entrega. Retenção de mensagens continua pendente; 180 dias é apenas hipótese. Ver [retenção](retention.md).
+Etapa 1.5 concluída. Etapa 2 conceitualmente autorizada, com implementação pausada até revisão intermediária e nova instrução; nenhum código funcional adicional nesta entrega. Retenção de mensagens continua pendente; 180 dias é apenas hipótese. Ver [retenção](retention.md).

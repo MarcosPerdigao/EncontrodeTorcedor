@@ -47,7 +47,6 @@ Este resultado não prova IAM de um ambiente real ainda inexistente, não proteg
 
 Mudança de política, endpoint, SDK móvel ou coleta exige atualizar esta análise e adicionar testes negativos antes de uso.
 
-
 ## Riscos adicionais multiclube e identidade
 
 Brigading entre torcidas exige deduplicar denúncias e avaliar procedência, não contagem bruta. Autocomplete/aliases exigem moderação e decisões editoriais auditáveis; não julgar automaticamente por notícias ou IA. Há risco de expor preferências privadas em explicações de compatibilidade: usar somente atributos autorizados. Analytics de coortes pequenas pode reidentificar pessoas.
