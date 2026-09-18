@@ -25,23 +25,36 @@ export const audienceRuleSchema = z.strictObject({
 });
 export type AudienceRule = z.infer<typeof audienceRuleSchema>;
 
-export const discoveryEligibilitySchema = z.strictObject({
-  canView: z.boolean(),
-  reason: z.enum(['eligible', 'blocked', 'participant_unavailable', 'policy_pending']),
-});
+export const discoveryEligibilitySchema = z.discriminatedUnion('reason', [
+  z.strictObject({ canView: z.literal(true), reason: z.literal('eligible') }),
+  z.strictObject({ canView: z.literal(false), reason: z.literal('blocked') }),
+  z.strictObject({ canView: z.literal(false), reason: z.literal('participant_unavailable') }),
+  z.strictObject({ canView: z.literal(false), reason: z.literal('policy_pending') }),
+]);
 export type DiscoveryEligibility = z.infer<typeof discoveryEligibilitySchema>;
 
-export const interactionPermissionSchema = z.strictObject({
-  canInitiate: z.boolean(),
-  requiresVerification: z.boolean(),
-  remainingInWindow: z.number().int().nonnegative().max(10_000),
-  reason: z.enum([
-    'allowed',
-    'blocked',
-    'participant_unavailable',
-    'policy_pending',
-    'verification_required',
-    'rate_limited',
-  ]),
-});
+const remainingInWindowSchema = z.number().int().nonnegative().max(10_000);
+export const interactionPermissionSchema = z.discriminatedUnion('reason', [
+  z.strictObject({
+    canInitiate: z.literal(true),
+    requiresVerification: z.literal(false),
+    remainingInWindow: remainingInWindowSchema.min(1),
+    reason: z.literal('allowed'),
+  }),
+  z.strictObject({
+    canInitiate: z.literal(false),
+    requiresVerification: z.literal(true),
+    remainingInWindow: remainingInWindowSchema,
+    reason: z.literal('verification_required'),
+  }),
+  ...(['blocked', 'participant_unavailable', 'policy_pending', 'rate_limited'] as const).map(
+    (reason) =>
+      z.strictObject({
+        canInitiate: z.literal(false),
+        requiresVerification: z.literal(false),
+        remainingInWindow: remainingInWindowSchema,
+        reason: z.literal(reason),
+      }),
+  ),
+]);
 export type InteractionPermission = z.infer<typeof interactionPermissionSchema>;
