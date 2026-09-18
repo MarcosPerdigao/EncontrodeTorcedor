@@ -5,7 +5,7 @@ import {
   fanIntensitySchema,
 } from './fan-domain.js';
 
-const profileReferenceSchema = z.string().regex(/^prf_[A-Za-z0-9_-]{32}$/);
+export const publicProfileReferenceSchema = z.string().regex(/^prf_[A-Za-z0-9_-]{32}$/);
 const publicPhotoReferenceSchema = z.string().regex(/^med_[A-Za-z0-9_-]{32}$/);
 export const cityIdSchema = z.string().regex(/^city_[A-Za-z0-9_-]{24}$/);
 
@@ -37,7 +37,7 @@ export const publicProfileSettingsSchema = z.strictObject({
 });
 export type PublicProfileSettings = z.infer<typeof publicProfileSettingsSchema>;
 
-const publicCatalogNameSchema = z
+export const publicCatalogNameSchema = z
   .string()
   .trim()
   .min(1)
@@ -75,7 +75,7 @@ export const publicLifestyleSchema = z.strictObject({
 
 /** Allowlist explícita. Campos extras são rejeitados, nunca silenciosamente publicados. */
 export const publicProfileSchema = z.strictObject({
-  profileRef: profileReferenceSchema,
+  profileRef: publicProfileReferenceSchema,
   displayName: displayNameSchema,
   age: z.number().int().min(18).max(120),
   city: z.string().trim().min(1).max(100),

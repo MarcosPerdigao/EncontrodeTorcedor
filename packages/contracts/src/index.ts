@@ -1,3 +1,18 @@
+export {
+  discoveryAgeRangeSchema,
+  discoveryFiltersSchema,
+  discoveryCardPresentationSchema,
+  discoveryCardLifestyleSchema,
+  discoveryCardFanIdentitySchema,
+  discoveryCardSchema,
+  parseDiscoveryFilters,
+  parseDiscoveryCard,
+} from './discovery-card.js';
+export type {
+  DiscoveryFilters,
+  DiscoveryCardPresentation,
+  DiscoveryCard,
+} from './discovery-card.js';
 export { trustLevelSchema, participatingTrustLevelSchema } from './trust.js';
 export type { TrustLevel, ParticipatingTrustLevel } from './trust.js';
 export {
@@ -16,6 +31,8 @@ export type {
 } from './discovery.js';
 // Único entrypoint público. Não reexportar entidades privadas ou tipos de persistência.
 export {
+  publicProfileReferenceSchema,
+  publicCatalogNameSchema,
   cityIdSchema,
   displayNameSchema,
   publicBioSchema,
