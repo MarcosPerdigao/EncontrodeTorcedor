@@ -1,6 +1,6 @@
 # Revisão da Etapa 4 — Descoberta Segura e Regras de Audiência
 
-Estado: implementação local concluída em codex/discovery-safety-boundary; aguardando revisão e autorização explícita para publicação.
+Estado: concluída e aprovada; publicação autorizada em codex/discovery-safety-boundary e usada como base da Etapa 4.5.
 
 ## Resultado
 
@@ -75,4 +75,4 @@ O runtime de Rules emitiu o aviso conhecido ao encerrar, depois da aprovação d
 - Verificação pode ser interpretada incorretamente como garantia pessoal; texto de produto precisa preservar a decisão do ADR 0012.
 - Descoberta real exige paginação opaca, exposição gradual, bloqueio antes da projeção e testes de abuso.
 
-Etapa 4 concluída localmente. Parar e aguardar revisão.
+Etapa 4 concluída e aprovada.

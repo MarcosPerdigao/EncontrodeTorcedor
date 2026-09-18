@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-Etapas 0, 1, 1.5, 2, 2.5, 3 e 3.5 concluídas e aprovadas. Etapa 4 concluída localmente e aguardando revisão. Nenhuma etapa posterior está autorizada.
+Etapas 0, 1, 1.5, 2, 2.5, 3, 3.5 e 4 concluídas e aprovadas. Etapa 4.5 autorizada, ainda não iniciada. Etapa 5 não está autorizada.
 
 ## Entregue na Etapa 2
 
@@ -76,6 +76,6 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 - Etapa 2.5: 71ea170, 7db948d, 5e8fbdf e fbe25c9.
 - Etapa 3 aprovada: 3712595, 28ae668, bb6fc9b, 0ed79d1, 82165e0 e 07a834b.
 - Etapa 3.5 aprovada: ab68d77, 51ed3df, e092b97, 4c618f2 e 40dfb9a.
-- Etapa 4 local: f9390fe (princípios), 284f3d0 (contratos), c5d1a0d (fronteira) e 3717fe6 (testes); revisão documental no commit final da etapa.
+- Etapa 4 aprovada: f9390fe (princípios), 284f3d0 (contratos), c5d1a0d (fronteira), 3717fe6 (testes) e 7e49cb6 (revisão).
 
-Etapa 4 concluída localmente: PARAR e aguardar revisão. Algoritmo, cards, swipe, likes, match, ranking, recomendação e chat continuam proibidos.
+Etapa 4 concluída e aprovada. Etapa 4.5 autorizada somente para DiscoveryCard, projeção pública, filtros e apresentação; algoritmo, score, ranking, recomendação, swipe, likes, match e chat continuam proibidos.
