@@ -1,6 +1,6 @@
 # Estado do projeto
 
-Última atualização: 18/09/2026. Branch: `codex/stage-2-auth-identity`. Base aprovada: `eff5825`. Último commit publicado antes do registro remoto: `e2616b0`.
+Última atualização: 18/09/2026. Branch: codex/fan-domain-model. Base aprovada: 66110d3.
 
 ## Visão
 
@@ -8,13 +8,19 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-0, 1, 1.5 e 2 concluídas; CI remoto da Etapa 2 aprovado. Aguardando revisão final do responsável. Etapa 3 não autorizada. Nenhum perfil completo, foto, descoberta, ranking, interação, chat ou catálogo real implementado.
+0, 1, 1.5 e 2 concluídas e aprovadas. Etapa 2.5 implementada localmente e em validação. A decisão posterior autoriza a Etapa 3 somente após consolidar este domínio.
 
 ## Entregue na Etapa 2
 
 E-mail/senha, confirmação/recuperação local Firebase Auth; sessão volátil do app e sessão lógica da API; conta com estados explícitos; nascimento privado e cálculo de idade; referência opaca e DTO estrito; abstração de identidade sem provedor real; autorização transacional, limites por ator/operação e logger por allowlist.
 
 API local: bootstrap, estado próprio, completar nascimento e revogar sessões. Conta suspensa, banida, inelegível ou em exclusão perde acesso mesmo com token Firebase válido. Claims não substituem estado vigente. Nenhum UID ou nascimento no DTO. CPF não integra modelo, persistência, fluxo ou provedor abstrato.
+
+## Entregue na Etapa 2.5
+
+Domínio multiclube com Club e Idol canônicos, aliases não ambíguos e status editoriais; FanProfile separado da conta; preferências de clube e conexão autodeclaradas; intenções múltiplas; LifestyleProfile opcional e minimizado. Referências são validadas contra catálogo ativo fornecido ao parser. Fixtures são integralmente fictícias. Não há endpoint, persistência, tela, catálogo real, descoberta, score, foto, interação ou analytics.
+
+Ver modelo do torcedor em FAN_DOMAIN_MODEL.md, entradas futuras do motor em MATCH_ENGINE_INPUTS.md, ADR 0010 e revisão da Etapa 2.5.
 
 ## Decisões preservadas
 
@@ -50,4 +56,4 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 - Etapa 2 publicada: 09dc2ca (modelos/contratos), aa96138 (API/sessão), 9e991d3 (mobile), 0b4138b (testes/CI), e2616b0 (revisão/limites). O registro do resultado remoto é um commit documental posterior.
 - [Revisão da etapa 2](stage-2-review.md), [ADR 0008](decisions/0008-local-authentication-and-session-boundary.md).
 
-Etapa 2 concluída: PARAR e aguardar revisão. Não avançar para etapa 3.
+Etapa 2.5: concluir validações e commits. A Etapa 3 foi autorizada por decisão posterior, em branch separada e sem descoberta, match ou chat.
