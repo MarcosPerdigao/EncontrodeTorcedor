@@ -1,6 +1,6 @@
 # Revisão da Etapa 2
 
-Estado: implementação e validação local concluídas; CI remoto pendente. Base aprovada: eff5825, CI remoto da etapa 1.5 aprovado. Branch: codex/stage-2-auth-identity.
+Estado: implementação, validação local e CI remoto concluídos. Base aprovada: eff5825, CI remoto da etapa 1.5 aprovado. Branch: codex/stage-2-auth-identity.
 
 ## Escopo
 
@@ -46,7 +46,9 @@ Checkpoint em 17/09/2026:
 | npm audit                                 | 0 vulnerabilidades conhecidas          |
 | git diff --check                          | Aprovado                               |
 
-CI remoto da Etapa 2: aguardando execução após push. Será registrado separadamente; não confundir com CI aprovado da base 1.5.
+CI remoto da Etapa 2: aprovado em 18/09/2026. Execução [35301636217](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35301636217), job `verify` concluído em 1min52s. Passaram checkout sem credenciais persistidas, scanner pré-instalação, `npm ci`, checkpoint completo, compatibilidade Expo e exportação Android/iOS. Não houve deploy, merge ou criação de ambiente Firebase real.
+
+O GitHub anotou que as versões fixadas de checkout/setup-node/setup-java ainda miram o runtime Node 20 das actions, atualmente executado forçadamente em Node 24, e que `ubuntu-latest` migrará para Ubuntu 26 a partir de 19/10/2026. São riscos de manutenção do CI; não são falhas dos testes. Atualizar SHAs somente após revisão das versões oficiais e repetir toda a matriz.
 
 ## Revisão adversarial
 
@@ -71,6 +73,7 @@ Limite essencial: emuladores aceitam canais administrativos/tokens artificiais e
 - Nascimento imutável e ausência de aferição real exigem processo posterior de correção/revisão. Política de 29/02 conservadora deve ser validada. Exclusão completa e reautenticação orientada na UI não foram antecipadas; revogação exige login de até cinco minutos e saída local continua possível se a revogação falhar.
 - Sessões expiram para autorização em uma hora; limpeza física dos metadados persistidos não existe em nuvem, pois só há emuladores. Retenção operacional deve preceder ambiente real; prazo de mensagens não foi decidido.
 - A descoberta das Functions precisou de timeout local de 120s para disco frio. O runtime Storage mantém aviso conhecido ao encerrar depois do sucesso; testes não foram ignorados. Processos residuais do próprio emulador são encerrados após validação.
+- O CI atual usa `ubuntu-latest`; a imagem mudará no futuro, e actions fixadas por SHA precisam migrar do runtime Node 20. O resultado aprovado vale para a execução identificada acima.
 - Export mobile valida bundles; nenhuma instalação em Android/iOS físico foi realizada.
 - Apenas dados sintéticos. Logs do Auth Emulator contêm links de ação para essas fixtures; ficam fora do Git. Logger de aplicação não inclui dados privados.
 
@@ -128,6 +131,14 @@ Arquivos alterados:
 - tests/rules/deny-all.test.ts
 - vitest.config.ts
 
+## Commits publicados
+
+- `09dc2ca` — feat: add account identity models and privacy contracts
+- `aa96138` — feat: add authenticated session bootstrap and account API
+- `9e991d3` — feat: add local email authentication and account access
+- `0b4138b` — test: enforce authentication and account security in emulator CI
+- `e2616b0` — docs: record stage 2 verification and operational limits
+
 ## Encerramento
 
-Após CI e revisão final, parar. Nenhum merge em main, deploy ou etapa posterior está autorizado por esta entrega.
+Etapa 2 concluída na branch e aprovada pelo CI remoto. Parar para revisão. Nenhum merge em main, deploy, ambiente real ou etapa posterior está autorizado por esta entrega.

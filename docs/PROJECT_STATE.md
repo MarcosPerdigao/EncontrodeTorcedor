@@ -1,6 +1,6 @@
 # Estado do projeto
 
-Última atualização: 17/09/2026. Branch: `codex/stage-2-auth-identity`. Base aprovada: `eff5825`. Último commit funcional/de testes: `0b4138b`.
+Última atualização: 18/09/2026. Branch: `codex/stage-2-auth-identity`. Base aprovada: `eff5825`. Último commit publicado antes do registro remoto: `e2616b0`.
 
 ## Visão
 
@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-0, 1 e 1.5 concluídas e aprovadas; CI remoto da 1.5 aprovado. Etapa 2 expressamente autorizada após revisão intermediária: implementação local concluída, aguardando validação do CI remoto e revisão final. Etapa 3 não autorizada. Nenhum perfil completo, foto, descoberta, ranking, interação, chat ou catálogo real implementado.
+0, 1, 1.5 e 2 concluídas; CI remoto da Etapa 2 aprovado. Aguardando revisão final do responsável. Etapa 3 não autorizada. Nenhum perfil completo, foto, descoberta, ranking, interação, chat ou catálogo real implementado.
 
 ## Entregue na Etapa 2
 
@@ -23,6 +23,12 @@ Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive sign
 ## Evidência local
 
 368 testes aprovados: 132 unitários, 211 Rules, 25 integração. npm run check com saída 0; lint, TypeScript strict, formato, build e scanner aprovados. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
+
+## Evidência remota
+
+GitHub Actions [35301636217](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35301636217) aprovado em 18/09/2026; job `verify` em 1min52s. Passaram instalação reproduzível, scanner, formato, lint, TypeScript strict, 368 testes, builds, auditoria, compatibilidade Expo e exportação Android/iOS. Nenhum deploy ou ambiente Firebase real integra o workflow.
+
+Avisos não bloqueantes: actions fixadas por SHA ainda miram runtime Node 20 e foram executadas pelo GitHub em Node 24; `ubuntu-latest` migrará para Ubuntu 26 em outubro de 2026. Exigem manutenção futura e nova validação, sem alterar o resultado desta execução.
 
 ## Riscos e decisões pendentes
 
@@ -41,7 +47,7 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 ## Registros
 
 - [Etapa 1.5 e seus commits](stage-1.5-review.md): 8867724, 6e7d991, 5ae6bf8, 6502357, 8914601; publicação registrada em eff5825.
-- Etapa 2: 09dc2ca (modelos/contratos), aa96138 (API/sessão), 9e991d3 (mobile), 0b4138b (testes/CI).
+- Etapa 2 publicada: 09dc2ca (modelos/contratos), aa96138 (API/sessão), 9e991d3 (mobile), 0b4138b (testes/CI), e2616b0 (revisão/limites). O registro do resultado remoto é um commit documental posterior.
 - [Revisão da etapa 2](stage-2-review.md), [ADR 0008](decisions/0008-local-authentication-and-session-boundary.md).
 
-Ao concluir a validação remota: PARAR e aguardar revisão. Não avançar para etapa 3.
+Etapa 2 concluída: PARAR e aguardar revisão. Não avançar para etapa 3.
