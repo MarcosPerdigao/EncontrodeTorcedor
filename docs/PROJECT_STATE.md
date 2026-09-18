@@ -1,6 +1,6 @@
 # Estado do projeto
 
-Última atualização: 18/09/2026. Branch: codex/public-profile-security. Base aprovada: 07a834b.
+Última atualização: 18/09/2026. Branch: codex/discovery-safety-boundary. Base aprovada: 40dfb9a.
 
 ## Visão
 
@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-0, 1, 1.5 e 2 concluídas e aprovadas. Etapa 2.5 concluída localmente. Etapas 2.5 e 3 aprovadas. Etapa 3.5 concluída localmente e aguardando revisão. Nenhuma etapa posterior está autorizada.
+Etapas 0, 1, 1.5, 2, 2.5, 3 e 3.5 concluídas e aprovadas. Etapa 4 concluída localmente e aguardando revisão. Nenhuma etapa posterior está autorizada.
 
 ## Entregue na Etapa 2
 
@@ -32,13 +32,17 @@ Firestore/Storage seguem fechados ao cliente. Não existem fotos, perfil públic
 
 PublicProfileDTO por allowlist; PublicProfileSettings com autoridade limitada; idade e selo derivados; projeção canônica de clube/ídolos; lifestyle e intenções sob opt-in; PhotoReference interno e filtro de fotos aprovadas. Nenhum endpoint público, upload, Storage aberto ou descoberta foi criado. Ver PUBLIC_PROFILE_MODEL.md, ADR 0010 e stage-3.5-review.md.
 
+## Entregue na Etapa 4
+
+TrustLevel derivado no servidor; contratos estritos de contexto, regra, elegibilidade e interação; matriz de audiência sem algoritmo; bloqueio bidirecional; estados bloqueantes; exigência opcional de verificação para interação; cota diária finita. Basic→basic permanece pendente e negado por padrão. Nenhum endpoint, candidato, card ou ação social foi criado. Ver DISCOVERY_AUDIENCE_RULES.md, ADR 0012 e stage-4-review.md.
+
 ## Decisões preservadas
 
 Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive signals; somente fixtures sintéticas; sem localização precisa; jogos fora do MVP; retenção de mensagens não aprovada. Uma declaração de idade adulta resulta em revisão pendente, não conta verificada. A confiança progressiva permite perfil básico sem identidade verificada; identidade/idade definitivas dependem de mecanismo posterior validado. CPF permanece fora do fluxo.
 
 ## Evidência local
 
-427 testes aprovados: 189 unitários, 211 Rules, 27 integração. npm run check com saída 0; lint, TypeScript strict, formato e builds aprovados. Scanner: 107 arquivos, 0 ocorrências. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
+451 testes aprovados: 213 unitários, 211 Rules, 27 integração. npm run check com saída 0; lint, TypeScript strict, formato e builds aprovados. Scanner: 115 arquivos, 0 ocorrências. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
 
 ## Evidência remota
 
@@ -52,7 +56,7 @@ ADR 0009: identityVerificationStatus começa em not_started. Conta básica pode 
 
 ## Riscos e decisões pendentes
 
-Enumeração no cadastro Firebase (EMAIL_EXISTS), controles de abuso do provedor/edge, App Check nativo, persistência segura de sessão em dispositivo, aferição de idade/identidade, processo de correção do nascimento e exclusão, retenção/limpeza operacional, políticas de moderação e editoriais. Antes de qualquer ambiente real, esses controles e testes exigem revisão. Runtime atual recusa configuração não emulada.
+Política basic→basic, valores e persistência transacional das cotas, enumeração no cadastro Firebase (EMAIL_EXISTS), controles de abuso do provedor/edge, App Check nativo, persistência segura de sessão em dispositivo, aferição de idade/identidade, processo de correção do nascimento e exclusão, retenção/limpeza operacional, políticas de moderação e editoriais. Antes de qualquer ambiente real, esses controles e testes exigem revisão. Runtime atual recusa configuração não emulada.
 
 Google não habilitado; se adotado no iOS, avaliar Sign in with Apple/regras de login. SDK JS App/Auth e sessões em memória são escolha desta fase local; ver ADR 0008. Convenção de aniversário em 29/02: 01/03 no ano não bissexto, sujeita a validação antes do lançamento.
 
@@ -71,6 +75,7 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 - [Revisão da etapa 2](stage-2-review.md), [ADR 0008](decisions/0008-local-authentication-and-session-boundary.md).
 - Etapa 2.5: 71ea170, 7db948d, 5e8fbdf e fbe25c9.
 - Etapa 3 aprovada: 3712595, 28ae668, bb6fc9b, 0ed79d1, 82165e0 e 07a834b.
-- Etapa 3.5 local: ab68d77 (documentação), 51ed3df (contratos), e092b97 (projeção) e 4c618f2 (testes); revisão documental no commit final da etapa.
+- Etapa 3.5 aprovada: ab68d77, 51ed3df, e092b97, 4c618f2 e 40dfb9a.
+- Etapa 4 local: f9390fe (princípios), 284f3d0 (contratos), c5d1a0d (fronteira) e 3717fe6 (testes); revisão documental no commit final da etapa.
 
-Etapa 3.5 concluída localmente: PARAR e aguardar revisão. Descoberta, algoritmo, swipe, likes, match, chat e fotos reais continuam proibidos.
+Etapa 4 concluída localmente: PARAR e aguardar revisão. Algoritmo, cards, swipe, likes, match, ranking, recomendação e chat continuam proibidos.

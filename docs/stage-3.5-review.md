@@ -1,6 +1,6 @@
 # Revisão da Etapa 3.5 — Perfil Público e Segurança de Exposição
 
-Estado: implementação local concluída em codex/public-profile-security; aguardando revisão e autorização explícita para publicação.
+Estado: concluída e aprovada; usada como base da Etapa 4.
 
 ## Resultado
 

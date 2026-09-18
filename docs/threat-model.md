@@ -64,3 +64,9 @@ Antes de expor pessoas entre si: definir capacidades por nível, antifraude, App
 Mesmo um DTO mínimo pode facilitar scraping, correlação, assédio e inferência de rotina. Cidade, setor de estádio e intenções exigem audiência e bloqueio antes de qualquer consulta de terceiros. Opt-in pode ser obtido por interface enganosa; texto pode codificar contato apesar de filtros; selo pode ser interpretado como garantia.
 
 A Etapa 3.5 mitiga vazamento estrutural com allowlist, nomes canônicos, selo/idade derivados, bio limitada e fotos filtradas. Ainda faltam endpoint autorizado, bloqueio, cotas, moderação textual, upload seguro, revogação/cache de mídia e testes de abuso. Por isso não existe descoberta nem rota pública.
+
+## Ameaças da audiência
+
+A fronteira reduz exposição indevida, mas ainda depende de armazenamento futuro confiável. Corridas no contador podem exceder cotas; cache pode manter bloqueio antigo; diferenças de resposta podem revelar existência ou estado; múltiplas contas e automação podem contornar limites simples.
+
+Antes de qualquer endpoint: aplicar bloqueio e estado vigente na mesma decisão, consumir cota de modo atômico, limitar por camadas, uniformizar respostas, testar enumeração e automação e auditar sem armazenar payload do perfil ou detalhes sensíveis.

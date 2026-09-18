@@ -82,3 +82,9 @@ Account e Identity permanecem collections separadas. trustLevel é projeção ca
 PublicProfileDTO não é persistência nem espelho de FanDomain. A projeção recebe Account/Identity/FanDomain/configuração/catálogos/fotos já autorizados e devolve somente a allowlist. Idade é calculada; selo é derivado; IDs de clube/ídolo, status editoriais e preferências privadas não saem.
 
 PhotoReference interno contém photoId opaco, ownerAccountRef, status, ordering e moderationStatus. Não há coleção, upload ou Storage aberto nesta etapa. Somente contrato e filtro de exposição foram implementados.
+
+## Estado conceitual de audiência
+
+A Etapa 4 não cria collections. Uma integração futura precisará obter bloqueios bidirecionais, restrição derivada e consumo de cota de fontes protegidas e consistentes. Detalhes de denúncia, estado administrativo e contadores não pertencem ao PublicProfileDTO.
+
+TrustContext e AudienceRule são valores internos efêmeros. DiscoveryEligibility e InteractionPermission são decisões mínimas; não constituem lista de candidatos, match ou autorização reutilizável.

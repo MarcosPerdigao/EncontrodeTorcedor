@@ -48,3 +48,9 @@ CPF permanece fora do cadastro, mobile, logs, analytics, modelos comuns, fixture
 Nunca serializar Account, Identity, FanDomain, documento Firestore ou PhotoReference diretamente. Construir PublicProfileDTO por allowlist e validar novamente na saída. Selo e idade são derivados no servidor. Opt-in não substitui autorização, bloqueio ou audiência.
 
 Bio/displayName recusam contato, link e handle. Cidade vem de catálogo amplo; não há GPS, bairro, endereço ou distância. Fotos públicas futuras exigem owner correto, processamento concluído e moderação aprovada. Storage permanece deny-all.
+
+## Audiência e confiança — Etapa 4
+
+Confiança verificada não supera bloqueio, restrição, suspensão, banimento ou cota. Conta básica não recebe marca negativa. A mesma regra de bloqueio vale nos dois sentidos e é aplicada antes da projeção pública.
+
+Falhas são genéricas e fechadas. Nenhum detalhe privado explica indisponibilidade. A descoberta futura deve impedir enumeração com paginação opaca, exposição gradual, cotas em camadas e auditoria mínima.

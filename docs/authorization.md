@@ -53,3 +53,9 @@ O comando é estrito e não aceita UID, accountRef, CPF, nascimento, contato, tr
 A Etapa 3.5 implementa somente contrato e projeção pura. Não existe rota para ler perfil próprio ou alheio. Uma futura operação deve verificar conta vigente, audiência, bloqueio em ambas as direções e contexto antes de projetar. PublicProfileDTO não concede autorização por si só e profileRef opaca não é capability.
 
 O cliente pode propor apenas displayName, cityId, bio e opt-ins pelo schema PublicProfileSettings. Selo, idade, trustLevel, estado administrativo e foto/moderação vêm de fontes internas.
+
+## Audiência da Etapa 4
+
+Visualização e interação possuem decisões separadas. evaluateAudience deriva confiança do estado interno; nenhum request pode fornecer trustLevel, bloqueio, restrição ou saldo de cota. Estado indisponível e bloqueio são avaliados antes de qualquer perfil público.
+
+Verified não ignora bloqueio nem limite. Basic pode visualizar verified, mas uma exigência do alvo pode impedir o início de interação até verificação. Basic→basic permanece negado por padrão enquanto a política estiver pendente. Não existe rota de descoberta nesta etapa.

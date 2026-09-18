@@ -84,3 +84,9 @@ O mobile implementa seis passos: boas-vindas e cultura de segurança, identidade
 PublicProfileDTO é gerado somente por projectPublicProfile no servidor a partir de fontes privadas validadas. A função calcula idade, deriva selo, resolve nomes canônicos, aplica opt-ins e filtra fotos aprovadas; ela cria um objeto novo e o valida pelo contrato público estrito.
 
 Nenhum endpoint para consultar perfis foi criado. Autorização por audiência, bloqueio e contexto deve envolver a projeção antes de futura descoberta. PublicProfileSettings representa apenas escolhas editáveis; trustLevel, selo, idade e estados administrativos não são aceitos do cliente.
+
+## Etapa 4 — fronteira de audiência
+
+A função evaluateAudience opera no servidor antes de qualquer projeção pública. Ela valida fontes estritas, deriva TrustLevel, verifica participação de ambas as contas, aplica bloqueio bidirecional, decide visualização e avalia separadamente exigência de verificação e cota de interação.
+
+Não há endpoint, repositório de candidatos, paginação funcional ou ação social. Uma integração futura deverá carregar estados vigentes de fontes confiáveis e consumir limites de forma transacional antes de projetar PublicProfileDTO.
