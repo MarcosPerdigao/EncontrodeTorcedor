@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { participatingTrustLevelSchema } from './trust.js';
 
 export const accountStatusSchema = z.enum([
   'pending',
@@ -27,7 +28,7 @@ export const sessionSchema = z.strictObject({
   eligibilityStatus: eligibilityStatusSchema,
   emailVerified: z.boolean(),
   identityVerificationStatus: identityStatusSchema,
-  trustLevel: z.enum(['basic', 'verified']),
+  trustLevel: participatingTrustLevelSchema,
   onboardingState: z.enum([
     'email_required',
     'birth_date_required',

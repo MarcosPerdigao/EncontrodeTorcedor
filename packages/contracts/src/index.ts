@@ -1,3 +1,19 @@
+export { trustLevelSchema, participatingTrustLevelSchema } from './trust.js';
+export type { TrustLevel, ParticipatingTrustLevel } from './trust.js';
+export {
+  trustContextSchema,
+  interactionLimitSchema,
+  audienceRuleSchema,
+  discoveryEligibilitySchema,
+  interactionPermissionSchema,
+} from './discovery.js';
+export type {
+  TrustContext,
+  InteractionLimit,
+  AudienceRule,
+  DiscoveryEligibility,
+  InteractionPermission,
+} from './discovery.js';
 // Único entrypoint público. Não reexportar entidades privadas ou tipos de persistência.
 export {
   cityIdSchema,
