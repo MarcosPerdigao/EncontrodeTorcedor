@@ -10,7 +10,14 @@ import {
   signOut,
 } from 'firebase/auth';
 import { Platform } from 'react-native';
-import { bootstrapResponseSchema, sessionResponseSchema, type SessionDTO } from '@social/contracts';
+import {
+  bootstrapResponseSchema,
+  fanProfileResponseSchema,
+  sessionResponseSchema,
+  type CreateFanProfileCommand,
+  type FanProfileResponse,
+  type SessionDTO,
+} from '@social/contracts';
 
 let runtime: ReturnType<typeof initializeAuth> | undefined;
 let applicationSession: string | undefined;
@@ -105,4 +112,15 @@ export async function leave(): Promise<boolean> {
     await signOut(auth());
   }
   return revoked;
+}
+
+export async function createFanProfile(
+  command: Omit<CreateFanProfileCommand, 'requestKey'>,
+): Promise<FanProfileResponse> {
+  return fanProfileResponseSchema.parse(
+    await request('/fan-profile/create', {
+      ...command,
+      requestKey: 'initial-fan-profile-v1',
+    }),
+  );
 }

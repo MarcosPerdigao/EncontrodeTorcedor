@@ -10,7 +10,16 @@ import {
   View,
 } from 'react-native';
 import type { SessionDTO } from '@social/contracts';
-import { completeAccount, enter, leave, recover, refreshSession, verifyEmail } from './auth';
+import {
+  completeAccount,
+  createFanProfile,
+  enter,
+  leave,
+  recover,
+  refreshSession,
+  verifyEmail,
+} from './auth';
+import { FanOnboarding } from './FanOnboarding';
 
 export default function App() {
   const [email, setEmail] = useState('');
@@ -143,12 +152,30 @@ export default function App() {
                   }
                 />
               </>
+            ) : session.onboardingState === 'fan_profile_required' ? (
+              <FanOnboarding
+                busy={busy}
+                onSubmit={async (draft) => {
+                  await run(async () => {
+                    const result = await createFanProfile(draft);
+                    setSession(result.session);
+                    setMessage('Perfil de torcedor criado.');
+                  });
+                }}
+              />
             ) : (
-              <Text>
-                {session.eligibilityStatus === 'ineligible'
-                  ? 'O acesso não está disponível para esta conta.'
-                  : 'Dados iniciais registrados. A verificação de elegibilidade ainda está pendente.'}
-              </Text>
+              <>
+                <Text>
+                  {session.onboardingState === 'access_unavailable'
+                    ? 'O acesso não está disponível para esta conta.'
+                    : 'Perfil criado. Sua conta básica já pode usar as funcionalidades iniciais autorizadas.'}
+                </Text>
+                <Text>
+                  {session.trustLevel === 'verified'
+                    ? 'Conta verificada.'
+                    : 'A verificação ajuda a manter a comunidade segura e poderá ser feita depois.'}
+                </Text>
+              </>
             )}
             <Button
               title="Atualizar estado"
