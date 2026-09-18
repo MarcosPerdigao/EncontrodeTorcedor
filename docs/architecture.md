@@ -67,6 +67,14 @@ ADRs em [decisions](decisions/). Políticas de segurança e retenção prevalece
 
 Uma plataforma nacional multiclube; piloto Atlético Mineiro como dado, sem acoplamento técnico. Cultura, clubes e ídolos são catálogos futuros. SAFETY_CHARTER.md rege produto, PROJECT_STATE.md registra estado e ROADMAP.md substitui cronogramas anteriores: Passaporte V2 e Dia de Jogo V3. Encontro Seguro não é autorizado no MVP.
 
-Os parágrafos que descrevem aplicativo vazio e ausência de endpoints registram a base 0/1. A etapa 2 está conceitualmente autorizada para Firebase Auth, conta, identidade abstrata e sessão, sem abrir Rules ou implantar produção. Após revisão intermediária e CI aprovado, a implementação da etapa 2 foi expressamente autorizada. Etapa 3 segue bloqueada. Não há autorização para onboarding completo ou demais features.
+Os parágrafos que descrevem aplicativo vazio e ausência de endpoints registram a base 0/1. A Etapa 2 foi autorizada e concluída após revisão intermediária e CI. A Etapa 3 foi autorizada posteriormente apenas para onboarding e perfil de torcedor; demais features continuam bloqueadas. Rules permanecem fechadas e não existe produção.
 
 Separar auditoria operacional de analytics agregados/pseudonimizados. Futuras recomendações exigem versão de algoritmo e razões mínimas auditáveis; não registrar perfil inteiro nem dados privados. Hard filters bilaterais precedem ranking configurável, sem percentual público de compatibilidade.
+
+## Etapa 3 — onboarding e confiança progressiva
+
+A API local adiciona POST /fan-profile/create. A identidade continua derivada do token e da sessão lógica; o caminho interno do perfil usa hash do UID e nenhum UID entra no comando ou resposta. A operação exige e-mail confirmado, nascimento privado já registrado e elegibilidade review_required ou eligible. Não exige identityVerificationStatus verified.
+
+O servidor deriva trustLevel basic ou verified do estado de identidade vigente. O cliente não envia esse nível nem status administrativos. FanProfile é persistido separado de Account e Identity, validado contra catálogo local fictício injetado no serviço. A criação é transacional, idempotente e limitada a cinco tentativas por conta/minuto. Edição ainda não existe.
+
+O mobile implementa seis passos: boas-vindas e cultura de segurança, identidade de torcedor, intenções, abertura entre torcidas, poucos dados opcionais e revisão. O catálogo é explicitamente fictício e local. Não há fotos, perfil público, descoberta, swipe, interação, analytics ou provedor de identidade.

@@ -41,3 +41,9 @@ O contrato fechado das regras terá teste estático exato adicional: qualquer mu
 ## Etapa 2 — autorização implementada localmente
 
 Identidade do token, conta vigente, sessionVersion, elegibilidade, schema, operação, limites e idempotência são avaliados no servidor. Estado próprio mínimo pode ser consultado antes da conclusão de elegibilidade; ações protegidas exigem todos os gates. Suspensos/banidos não executam mutações. Claims não substituem estado vigente. Cliente não pode enviar UID como autoridade nem editar estados. Nenhum endpoint lista usuários.
+
+## Perfil básico na Etapa 3
+
+fan-profile/create exige token Firebase vigente, sessão da API pertencente ao mesmo ator, conta acessível, e-mail confirmado, identidade privada já criada e declaração adulta em review_required ou eligible. Conta suspensa, banida, inelegível, excluída ou em exclusão falha antes da operação. identityVerificationStatus not_started é permitido para esta única capacidade básica.
+
+O comando é estrito e não aceita UID, accountRef, CPF, nascimento, contato, trustLevel, status de identidade/conta/elegibilidade ou papéis. Referências de clube e ídolo precisam existir e estar ativas no catálogo injetado. O cliente nunca escolhe o caminho do documento. Firestore e Storage permanecem deny-all para qualquer SDK cliente.

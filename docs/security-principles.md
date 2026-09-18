@@ -35,7 +35,7 @@ Arquivos product, architecture, data-model, authorization, threat-model, retenti
 
 ## Invariantes adicionais 1.5
 
-SAFETY_CHARTER.md é regra superior de produto. Plataforma nacional, filtros bilaterais e catálogos configuráveis. Sem banimento por denúncias brutas, score de beleza, percentual público de compatibilidade ou analytics de dados privados. CPF bruto e hash simples proibidos; provedor futuro entrega prova mínima. Etapa 1.5 concluída; etapa 2 expressamente autorizada após revisão intermediária e CI aprovado, exclusivamente no escopo de autenticação/conta. Etapa 3 depende de nova autorização. A revisão acima é registro histórico da base 0/1.
+SAFETY_CHARTER.md é regra superior de produto. Plataforma nacional, filtros bilaterais e catálogos configuráveis. Sem banimento por denúncias brutas, score de beleza, percentual público de compatibilidade ou analytics de dados privados. CPF bruto e hash simples proibidos; provedor futuro entrega prova mínima. Etapa 1.5 concluída; etapa 2 expressamente autorizada após revisão intermediária e CI aprovado, exclusivamente no escopo de autenticação/conta. A Etapa 3 foi posteriormente autorizada e concluída somente para onboarding/perfil; descoberta e interações dependem de nova autorização. A revisão acima é registro histórico da base 0/1.
 
 ## Confiança progressiva — Etapa 3
 

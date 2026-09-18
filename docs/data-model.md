@@ -70,3 +70,9 @@ Prever clubs, idols e idolAliases com IDs canônicos, status editorial e aliases
 Distinguir report, reviewedReport, substantiatedReport e safetyIncident; apenas processo de revisão pode produzir procedência, com deduplicação, integridade e contestação. Sem banimento por contagem bruta. Nenhuma automação disciplinar implementada na etapa 2.
 
 Etapa 2 autoriza modelo de conta, sessão e nascimento privado mínimo. CPF bruto ou simplesmente hashed permanece proibido, inclusive logs/fixtures reais. Provas mínimas de provedor futuro alimentam status, sem documento civil nos demais módulos. A implementação mínima foi autorizada após essa revisão e está registrada em stage-2-review.md; o restante continua futuro.
+
+## Modelo implementado na Etapa 3
+
+fanProfiles/{hash-do-uid} contém somente o agregado FanDomain validado: referência opaca, clube/ídolos canônicos, intensidade, estádio/história opcionais, preferências autodeclaradas, intenções e lifestyle opcional. O hash é chave interna de particionamento e não sai da API. O documento não contém UID, accountRef, CPF, nascimento, contato, trustLevel ou estado administrativo.
+
+Account e Identity permanecem collections separadas. trustLevel é projeção calculada a partir de identityVerificationStatus e não é persistido no perfil. A resposta de criação devolve somente SessionDTO e FanDomain do titular. Não é PublicProfileDTO e não autoriza exposição a terceiros.

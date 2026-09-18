@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-0, 1, 1.5 e 2 concluídas e aprovadas. Etapa 2.5 concluída localmente. Etapa 3 em implementação restrita a onboarding e perfil de torcedor.
+0, 1, 1.5 e 2 concluídas e aprovadas. Etapa 2.5 concluída localmente. Etapa 3 concluída localmente e aguardando revisão. Nenhuma etapa posterior está autorizada.
 
 ## Entregue na Etapa 2
 
@@ -22,13 +22,19 @@ Domínio multiclube com Club e Idol canônicos, aliases não ambíguos e status 
 
 Ver modelo do torcedor em FAN_DOMAIN_MODEL.md, entradas futuras do motor em MATCH_ENGINE_INPUTS.md, ADR 0010 e revisão da Etapa 2.5.
 
+## Entregue na Etapa 3
+
+Confiança progressiva conforme ADR 0009; trustLevel derivado; criação transacional e idempotente de FanDomain pela API local; catálogo fictício injetado; fluxo mobile de seis passos com revisão de privacidade e cultura de segurança. Conta básica cria perfil com identidade not_started, sem CPF. Verificação posterior não altera o perfil.
+
+Firestore/Storage seguem fechados ao cliente. Não existem fotos, perfil público ampliado, descoberta, swipe, likes, match, chat, algoritmo, analytics, moderação automática ou ambiente real.
+
 ## Decisões preservadas
 
 Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive signals; somente fixtures sintéticas; sem localização precisa; jogos fora do MVP; retenção de mensagens não aprovada. Uma declaração de idade adulta resulta em revisão pendente, não conta verificada. A confiança progressiva permite perfil básico sem identidade verificada; identidade/idade definitivas dependem de mecanismo posterior validado. CPF permanece fora do fluxo.
 
 ## Evidência local
 
-368 testes aprovados: 132 unitários, 211 Rules, 25 integração. npm run check com saída 0; lint, TypeScript strict, formato, build e scanner aprovados. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
+397 testes aprovados: 159 unitários, 211 Rules, 27 integração. npm run check com saída 0; lint, TypeScript strict, formato e builds aprovados. Scanner: 101 arquivos, 0 ocorrências. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
 
 ## Evidência remota
 
@@ -59,5 +65,7 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 - [Etapa 1.5 e seus commits](stage-1.5-review.md): 8867724, 6e7d991, 5ae6bf8, 6502357, 8914601; publicação registrada em eff5825.
 - Etapa 2 publicada: 09dc2ca (modelos/contratos), aa96138 (API/sessão), 9e991d3 (mobile), 0b4138b (testes/CI), e2616b0 (revisão/limites). O registro do resultado remoto é um commit documental posterior.
 - [Revisão da etapa 2](stage-2-review.md), [ADR 0008](decisions/0008-local-authentication-and-session-boundary.md).
+- Etapa 2.5: 71ea170, 7db948d, 5e8fbdf e fbe25c9.
+- Etapa 3: 3712595, 28ae668, bb6fc9b, 0ed79d1 e 82165e0; revisão documental final pendente de commit.
 
-Etapa 3 em andamento somente para onboarding e perfil. Descoberta, swipe, likes, match, chat, fotos reais e moderação automática continuam proibidos.
+Etapa 3 concluída localmente: PARAR e aguardar revisão. Descoberta, swipe, likes, match, chat, fotos reais e moderação automática continuam proibidos.

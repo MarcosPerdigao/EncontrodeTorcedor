@@ -1,6 +1,6 @@
 # Revisão da Etapa 2.5 — Domínio do Torcedor
 
-Estado: implementação local concluída em codex/fan-domain-model; aguardando checkpoint completo antes de publicação.
+Estado: concluída localmente em codex/fan-domain-model e usada como base da Etapa 3. Branch ainda não publicada.
 
 ## Entregue
 

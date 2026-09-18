@@ -1,6 +1,6 @@
-# Modelo futuro de perfil
+# Modelo de perfil
 
-Documento conceitual; não implementa perfil, foto ou catálogo. A [cartilha](SAFETY_CHARTER.md) prevalece.
+Documento de referência. O agregado privado e o catálogo fictício local foram implementados na Etapa 3; perfil público, fotos e catálogo real continuam ausentes. A [cartilha](SAFETY_CHARTER.md) prevalece.
 
 ## Separação
 
@@ -30,3 +30,9 @@ Abertura: somente minha torcida, outras torcidas, rivais também, qualquer torci
 Poucos campos opcionais: aproximadamente três estilos musicais, cinco hobbies, caseiro/equilibrado/rolezeiro, estilo de viagem e programa favorito. Filhos, desejo de filhos, pets, fuma e bebe são opcionais; avaliar finalidade e sensibilidade antes de coletar. Ausência de resposta não deve ser interpretada como resposta negativa.
 
 Informação suficiente para gerar interesse e conversa, mas não para eliminar a descoberta entre as pessoas. Não transformar perfil em questionário excessivo. Preferências de filtro não são automaticamente atributos publicáveis.
+
+## Estado implementado na Etapa 3
+
+O agregado privado FanDomain e sua criação local estão implementados. A interface coleta catálogo fictício, intensidade, ídolo opcional, estádio opcional, múltiplas intenções, abertura declarada, música, hobbies e estilo de vida. PublicProfileDTO não foi ampliado, fotos não existem e nenhuma pessoa pode consultar perfil alheio.
+
+A verificação de identidade é progressiva. Perfil básico aceita not_started; selo e capacidades verificadas permanecem futuros. Ver ADR 0009.

@@ -39,3 +39,9 @@ Emuladores não validam IAM, App Check real, quotas, bucket ACL, MFA, push ou co
 Ver [ADR 0007](decisions/0007-restricted-local-toolchain.md) antes de ampliar o uso do Firebase CLI: pipelines JSON não necessárias aos emuladores falham explicitamente. Testes de compatibilidade cobrem as dependências atualizadas. Nenhum advisory é ignorado pelo CI.
 
 Npm usa `.cache/npm` no projeto; o executor de emuladores usa `.cache/firebase`, `.cache/config` e `.cache/tmp`. Esses diretórios são ignorados pelo Git. Nesta máquina o usuário escolheu `D:\EncontrodeTorcedor` após o disco C: ficar sem espaço; o código e o lockfile continuam portáveis e não incluem esse caminho local.
+
+## Onboarding local da Etapa 3
+
+Clube Horizonte, União das Estrelas e Alex da Serra são fixtures fictícias compiladas apenas no runtime local protegido por assertLocalRuntime. Não representam catálogo, pessoa ou licenciamento real. O fluxo pode ser exercitado após confirmar o e-mail artificial e registrar nascimento sintético adulto.
+
+A API continua emulada e não deve ser exposta na rede. O encerramento do runtime de Rules pode imprimir uma NullPointerException depois de todos os testes passarem; o runner retorna zero e pode deixar processo Java órfão em algumas execuções. Confirmar o código de saída e liberar a porta 8080 antes de repetir.
