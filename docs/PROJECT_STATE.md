@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-Etapas 0, 1, 1.5, 2, 2.5, 3, 3.5, 4 e 4.5 concluídas e aprovadas. Etapa 5 concluída localmente e aguardando revisão; publicação depende de autorização separada. A etapa seguinte não está autorizada.
+Etapas 0, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5 e 5 concluídas e aprovadas. A Etapa 5 foi publicada e validada pelo CI remoto. A etapa seguinte não está autorizada.
 
 ## Entregue na Etapa 2
 
@@ -54,7 +54,7 @@ Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive sign
 
 ## Evidência remota
 
-GitHub Actions da Etapa 4 [35382987930](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35382987930) aprovado em 18/09/2026 após a correção Expo 57.0.24 em 38f8707. Passaram instalação reproduzível, scanner, formato, lint, TypeScript strict, 451 testes, builds, auditoria, compatibilidade Expo e exportação Android/iOS. A execução anterior 35357728151 falhou somente na compatibilidade Expo 57.0.23→57.0.24. O CI da Etapa 4.5 [35383947519](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35383947519) também foi aprovado, com 496 testes e exportações móveis; a execução documental final [35384309972](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35384309972) aprovou o head publicado a899c95. A Etapa 5 ainda não possui CI remoto. Nenhum deploy ou ambiente Firebase real integra o workflow.
+GitHub Actions da Etapa 4 [35382987930](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35382987930) aprovado em 18/09/2026 após a correção Expo 57.0.24 em 38f8707. Passaram instalação reproduzível, scanner, formato, lint, TypeScript strict, 451 testes, builds, auditoria, compatibilidade Expo e exportação Android/iOS. A execução anterior 35357728151 falhou somente na compatibilidade Expo 57.0.23→57.0.24. O CI da Etapa 4.5 [35383947519](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35383947519) também foi aprovado, com 496 testes e exportações móveis; a execução documental final [35384309972](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35384309972) aprovou o head publicado a899c95. A Etapa 5 foi aprovada no GitHub Actions [35405339758](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35405339758) em 1min53s sobre ed72f72. Passaram scanner, instalação reproduzível, formato, lint, TypeScript strict, 521 testes, builds, auditoria, compatibilidade Expo e exportações Android/iOS. Nenhum deploy ou ambiente Firebase real integra o workflow.
 
 Avisos não bloqueantes: actions fixadas por SHA ainda miram runtime Node 20 e foram executadas pelo GitHub em Node 24; `ubuntu-latest` migrará para Ubuntu 26 em outubro de 2026. Exigem manutenção futura e nova validação, sem alterar o resultado desta execução.
 
@@ -86,6 +86,6 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 - Etapa 3.5 aprovada: ab68d77, 51ed3df, e092b97, 4c618f2 e 40dfb9a.
 - Etapa 4 aprovada e publicada: f9390fe, 284f3d0, c5d1a0d, 3717fe6, 7e49cb6, c84cff0 e correção Expo 38f8707; CI remoto 35382987930 aprovado.
 - Etapa 4.5 publicada: 747a30c (exposição), 3af6f5c (contratos), 3cabf3d (projeção), 0ed707a (testes), 9fc4864 (revisão) e a899c95 (CI remoto final); execuções 35383947519 e 35384309972 aprovadas.
-- Etapa 5 local: 310878f (princípios), 6ecd568 (contratos), d02e0f4 (regras) e d68fb3d (testes); revisão documental final registrada no commit que contém este estado.
+- Etapa 5 publicada: 310878f (princípios), 6ecd568 (contratos), d02e0f4 (regras), d68fb3d (testes) e ed72f72 (revisão); CI remoto 35405339758 aprovado. O commit que contém este estado registra a evidência final.
 
-Etapa 5 concluída localmente: PARAR e aguardar revisão. Publicação e etapa seguinte dependem de nova autorização; algoritmo de candidatos, score, ranking, recomendação, swipe, likes, match e chat continuam proibidos.
+Etapa 5 concluída, aprovada e publicada: PARAR e aguardar revisão. A etapa seguinte depende de nova autorização; algoritmo de candidatos, score, ranking, recomendação, swipe, likes, match, chat, notificações e algoritmo adaptativo continuam proibidos.

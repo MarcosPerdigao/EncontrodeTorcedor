@@ -1,6 +1,6 @@
 # Revisão da Etapa 5 — Motor de Afinidade e Compatibilidade
 
-Estado: implementação local concluída na branch `codex/affinity-engine`; aguardando revisão e autorização separada para publicação.
+Estado: concluída, aprovada e publicada na branch `codex/affinity-engine`; CI remoto aprovado. Aguardando revisão final.
 
 Base aprovada: Etapa 4.5 em `a899c95`.
 
@@ -46,7 +46,9 @@ Os 25 testes focados validam os nove sinais, explicações obrigatórias, ausên
 
 O checkpoint completo `npm run check` terminou com código 0: 283 testes unitários, 211 testes de Rules e 27 testes de integração, totalizando 521. Formato, lint, TypeScript strict, builds e scanner foram aprovados; o scanner final examinou 128 arquivos versionados/candidatos, sem ocorrências, e `npm audit` encontrou 0 vulnerabilidades. A checagem de compatibilidade Expo e as exportações Android/iOS foram aprovadas.
 
-O runtime de Rules emitiu a exceção interna conhecida ao encerrar, após todos os testes passarem, sem alterar o código de saída. O Firestore Emulator deixou o processo Java 12360 ouvindo na porta 8080; a linha de comando confirmou o jar local, o projeto fictício e o caminho deste repositório antes do encerramento controlado.
+O CI remoto [35405339758](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35405339758) foi aprovado em 1min53s sobre o commit `ed72f72`. Passaram scanner pré-instalação, `npm ci`, formato, lint, TypeScript strict, 521 testes, builds, scanner final, auditoria, compatibilidade Expo e exportações Android/iOS.
+
+O runtime de Rules emitiu a exceção interna conhecida ao encerrar localmente, após todos os testes passarem, sem alterar o código de saída. O Firestore Emulator deixou o processo Java 12360 ouvindo na porta 8080; a linha de comando confirmou o jar local, o projeto fictício e o caminho deste repositório antes do encerramento controlado.
 
 ## Divergências encontradas
 
@@ -61,6 +63,8 @@ O runtime de Rules emitiu a exceção interna conhecida ao encerrar, após todos
 - Muitas coincidências podem ser interpretadas como classificação se uma interface futura enfatizar contagem; a apresentação deve listar razões sem total competitivo.
 - Uma futura entrega funcional precisará revalidar audiência e perfil vigente no mesmo fluxo, controlar enumeração, paginação, cotas, cache e auditoria.
 - Catálogos e conteúdo reais dependem de governança editorial; nenhuma infraestrutura Firebase real ou dado real foi usado.
+- Actions fixadas por SHA que ainda miram Node 20 foram executadas pelo GitHub em Node 24; exigem atualização futura.
+- O runner `ubuntu-latest` migrará para Ubuntu 26 em outubro de 2026; a mudança exigirá nova validação do workflow.
 
 ## Arquivos da etapa
 
@@ -91,8 +95,9 @@ Alterados:
 - `6ecd568` — feat: add affinity context contracts
 - `d02e0f4` — feat: add explainable affinity rules
 - `d68fb3d` — test: validate affinity explanations
-- revisão documental final: registrada no commit que contém este relatório.
+- `ed72f72` — docs: add stage 5 review
+- registro do CI remoto: commit que contém esta atualização.
 
 ## Limite final
 
-Etapa 5 concluída localmente. Parar para revisão. Publicação da branch, endpoint funcional, algoritmo de candidatos, score, ranking, recomendação, swipe, likes, match, chat, IA e machine learning dependem de nova autorização.
+Etapa 5 concluída, aprovada, publicada e validada remotamente. Parar para revisão. Endpoint funcional, algoritmo de candidatos, score, ranking, recomendação, swipe, likes, match, chat, notificações, IA e algoritmo adaptativo dependem de nova autorização.
