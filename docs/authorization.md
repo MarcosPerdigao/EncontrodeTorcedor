@@ -65,3 +65,9 @@ Verified não ignora bloqueio nem limite. Basic pode visualizar verified, mas um
 DiscoveryCard não é capability. Sua projeção só pode ocorrer depois de uma decisão vigente de audiência e utiliza exclusivamente PublicProfileDTO. Reabrir perfil completo ou usar mídia exige nova autorização adequada ao recurso.
 
 DiscoveryCardPresentation é configuração do servidor. DiscoveryFilters pode futuramente ser entrada estrita do cliente, mas nunca fornece trustLevel, identidade do alvo, bloqueio, score ou autoridade de ordenação.
+
+## Afinidade da Etapa 5
+
+`AffinityExplanation` não concede acesso nem substitui autorização. O servidor deve produzir a audiência antes do motor; somente `canView: true` com motivo `eligible` é aceito. Decisões negativas geram falha genérica, sem revelar bloqueio, suspensão ou estado privado.
+
+O cliente não envia confiança, estado de conta, bloqueio ou contexto arbitrário como autoridade. Não existe endpoint nesta etapa. Uma integração futura deverá carregar perfis públicos vigentes, revalidar audiência no mesmo fluxo e aplicar limites contra enumeração antes de devolver qualquer explicação.

@@ -1,34 +1,27 @@
-# Entradas futuras do motor de compatibilidade
+# Entradas do motor de afinidade
 
-Nenhum algoritmo, ranking, score, consulta de descoberta ou analytics é implementado nesta etapa. Este inventário limita quais atributos poderão ser avaliados em uma futura decisão específica.
+Status: implementadas localmente na Etapa 5 como contexto efêmero e explicável. Não existe ranking, score, consulta de descoberta, recomendação ou analytics.
 
-## Hard filters
+## Fronteira anterior
 
-Podem excluir candidatos antes de qualquer ordenação:
+`DiscoveryEligibility` decide se a dupla pode chegar ao motor. Conta suspensa, banida, restrita ou inelegível e bloqueio em qualquer direção encerram o fluxo antes de qualquer explicação. O motor não recebe nem reinterpreta esses estados.
 
-- idade calculada pelo servidor e elegibilidade vigente;
-- conta suspensa, banida, excluída ou em exclusão;
-- bloqueio em qualquer direção;
-- interseção de intenções quando exigida pelo modo;
-- abertura bilateral entre mesma torcida, outras torcidas, rivais autodeclarados e clubes específicos;
-- requisitos futuros de segurança e audiência.
+## Sinais explicáveis
 
-A ausência de resposta opcional não pode ser tratada como rejeição. UID, CPF, nascimento, contato, localização precisa, prova de identidade e dados administrativos nunca são entrada do motor.
+Somente atributos presentes no `PublicProfileDTO` autorizado podem formar `AffinityContext`:
 
-## Soft signals
+- clube principal e ídolos canônicos;
+- intensidade da torcida e interesse amplo em estádio;
+- hobbies e música públicos;
+- estilo de vida e relação com pets públicos;
+- intenções de conexão públicas.
 
-Podem ordenar somente candidatos já autorizados:
+Esses sinais explicam pontos em comum. Eles não ordenam candidatos e não medem qualidade, atração ou probabilidade de relacionamento. A ordem estável das regras serve apenas à apresentação.
 
-- clube principal e simpatias autodeclaradas;
-- ídolos canônicos;
-- intensidade da torcida;
-- experiência ampla de estádio;
-- hobbies e música;
-- estilo de vida, viagem e preferências opcionais;
-- intenções compartilhadas quando não forem filtro.
+## Campos excluídos
 
-Não há pesos aprovados. Qualquer experimento futuro exige versão, avaliação de viés, explicação segura, limites de exposição e métricas que não revelem preferências privadas.
+Nome, idade, cidade, foto e bio não são necessários às regras V1. UID, accountRef, CPF, nascimento, contato, localização precisa, prova de identidade, renda, gênero, religião, política, saúde, orientação sexual, mensagens, denúncias, comportamento privado e dados administrativos nunca são entrada.
 
-## Dependências antes de implementar
+## Evolução condicionada
 
-Autorização por operação, bloqueios, catálogo editorial auditável, projeção pública por allowlist, consentimento/audiência, retenção e protocolo de avaliação. Atributo disponível no domínio não significa atributo publicável nem autorização para coletá-lo.
+Pesos, agregados, comportamento, ordenação, estatística e machine learning não estão autorizados. Qualquer evolução exige nova decisão, avaliação de viés e privacidade, versão auditável e preservação das explicações sem nota pessoal ou percentual público.

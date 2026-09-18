@@ -76,3 +76,9 @@ Antes de qualquer endpoint: aplicar bloqueio e estado vigente na mesma decisão,
 Mesmo reduzido, um card pode ser coletado em massa, correlacionado ou mantido após bloqueio. Antes de endpoint real, aplicar paginação opaca, expiração curta, limitação por camadas, bloqueio antes da projeção e revogação de mídia/cache.
 
 A fronteira atual mitiga vazamento estrutural com fonte única, allowlist e limites de apresentação. Ela não implementa entrega, cache, enumeração de candidatos ou interação.
+
+## Ameaças da explicação de afinidade
+
+Uma explicação pode revelar um atributo que deixou de ser público, facilitar correlação ou virar ranking indireto pela contagem de sinais. Uma integração futura deverá revalidar audiência e perfil vigente, evitar totais competitivos, limitar coleta em massa e invalidar respostas/cache quando bloqueio ou exposição mudar.
+
+Filtros de contato reduzem padrões óbvios, mas não substituem moderação de texto. Pesos ou aprendizagem podem introduzir viés e inferência invisível; permanecem proibidos sem nova decisão, avaliação e auditoria.

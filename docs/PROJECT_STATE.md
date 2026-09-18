@@ -1,6 +1,6 @@
 # Estado do projeto
 
-Última atualização: 18/09/2026. Branch: codex/discovery-card. Base aprovada: 38f8707.
+Última atualização: 18/09/2026. Branch: codex/affinity-engine. Base aprovada: a899c95.
 
 ## Visão
 
@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-Etapas 0, 1, 1.5, 2, 2.5, 3, 3.5 e 4 concluídas e aprovadas. Etapa 4.5 concluída, publicada e aguardando revisão. Etapa 5 não está autorizada.
+Etapas 0, 1, 1.5, 2, 2.5, 3, 3.5, 4 e 4.5 concluídas e aprovadas. Etapa 5 concluída localmente e aguardando revisão; publicação depende de autorização separada. A etapa seguinte não está autorizada.
 
 ## Entregue na Etapa 2
 
@@ -40,17 +40,21 @@ TrustLevel derivado no servidor; contratos estritos de contexto, regra, elegibil
 
 DiscoveryCard por allowlist menor que PublicProfileDTO; projeção pura com PublicProfile como fonte única; filtros declarativos estritos; regras do servidor que somente reduzem apresentação. O card omite estádio, limita fotos/ídolos/lifestyle e não contém localização precisa, contatos, estado interno, score ou ranking. Não existe endpoint, candidato, algoritmo ou interação. Ver DISCOVERY_CARD_MODEL.md e stage-4.5-review.md.
 
+## Entregue na Etapa 5
+
+AffinityContext mínimo derivado de PublicProfileDTO autorizado; AffinityExplanation com nove tipos de sinais explícitos; elegibilidade obrigatória antes do motor; filtros para contato em textos públicos; erros neutros para audiência negada. Não há endpoint, persistência, score, percentual, peso, ranking, recomendação, seleção de candidatos, swipe, likes, match, chat, IA ou machine learning. Ver AFFINITY_ENGINE.md, ADR 0014 e stage-5-review.md.
+
 ## Decisões preservadas
 
 Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive signals; somente fixtures sintéticas; sem localização precisa; jogos fora do MVP; retenção de mensagens não aprovada. Uma declaração de idade adulta resulta em revisão pendente, não conta verificada. A confiança progressiva permite perfil básico sem identidade verificada; identidade/idade definitivas dependem de mecanismo posterior validado. CPF permanece fora do fluxo.
 
 ## Evidência local
 
-496 testes aprovados: 258 unitários, 211 Rules, 27 integração. npm run check com saída 0; lint, TypeScript strict, formato e builds aprovados. Scanner: 121 arquivos, 0 ocorrências. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
+521 testes aprovados: 283 unitários, 211 Rules, 27 integração. npm run check com saída 0; lint, TypeScript strict, formato e builds aprovados. Scanner final: 128 arquivos versionados/candidatos, 0 ocorrências. Auditoria: 0 vulnerabilidades conhecidas. Compatibilidade Expo e exportações Android/iOS aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
 
 ## Evidência remota
 
-GitHub Actions da Etapa 4 [35382987930](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35382987930) aprovado em 18/09/2026 após a correção Expo 57.0.24 em 38f8707. Passaram instalação reproduzível, scanner, formato, lint, TypeScript strict, 451 testes, builds, auditoria, compatibilidade Expo e exportação Android/iOS. A execução anterior 35357728151 falhou somente na compatibilidade Expo 57.0.23→57.0.24. O CI da Etapa 4.5 [35383947519](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35383947519) também foi aprovado, com 496 testes e exportações móveis. Nenhum deploy ou ambiente Firebase real integra o workflow.
+GitHub Actions da Etapa 4 [35382987930](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35382987930) aprovado em 18/09/2026 após a correção Expo 57.0.24 em 38f8707. Passaram instalação reproduzível, scanner, formato, lint, TypeScript strict, 451 testes, builds, auditoria, compatibilidade Expo e exportação Android/iOS. A execução anterior 35357728151 falhou somente na compatibilidade Expo 57.0.23→57.0.24. O CI da Etapa 4.5 [35383947519](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35383947519) também foi aprovado, com 496 testes e exportações móveis; a execução documental final [35384309972](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35384309972) aprovou o head publicado a899c95. A Etapa 5 ainda não possui CI remoto. Nenhum deploy ou ambiente Firebase real integra o workflow.
 
 Avisos não bloqueantes: actions fixadas por SHA ainda miram runtime Node 20 e foram executadas pelo GitHub em Node 24; `ubuntu-latest` migrará para Ubuntu 26 em outubro de 2026. Exigem manutenção futura e nova validação, sem alterar o resultado desta execução.
 
@@ -81,6 +85,7 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 - Etapa 3 aprovada: 3712595, 28ae668, bb6fc9b, 0ed79d1, 82165e0 e 07a834b.
 - Etapa 3.5 aprovada: ab68d77, 51ed3df, e092b97, 4c618f2 e 40dfb9a.
 - Etapa 4 aprovada e publicada: f9390fe, 284f3d0, c5d1a0d, 3717fe6, 7e49cb6, c84cff0 e correção Expo 38f8707; CI remoto 35382987930 aprovado.
-- Etapa 4.5 publicada: 747a30c (exposição), 3af6f5c (contratos), 3cabf3d (projeção), 0ed707a (testes) e 9fc4864 (revisão); CI remoto 35383947519 aprovado.
+- Etapa 4.5 publicada: 747a30c (exposição), 3af6f5c (contratos), 3cabf3d (projeção), 0ed707a (testes), 9fc4864 (revisão) e a899c95 (CI remoto final); execuções 35383947519 e 35384309972 aprovadas.
+- Etapa 5 local: 310878f (princípios), 6ecd568 (contratos), d02e0f4 (regras) e d68fb3d (testes); revisão documental final registrada no commit que contém este estado.
 
-Etapa 4.5 concluída e publicada: PARAR e aguardar revisão. Etapa 5 não está autorizada; algoritmo, score, ranking, recomendação, swipe, likes, match e chat continuam proibidos.
+Etapa 5 concluída localmente: PARAR e aguardar revisão. Publicação e etapa seguinte dependem de nova autorização; algoritmo de candidatos, score, ranking, recomendação, swipe, likes, match e chat continuam proibidos.

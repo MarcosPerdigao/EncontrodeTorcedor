@@ -60,3 +60,9 @@ Falhas são genéricas e fechadas. Nenhum detalhe privado explica indisponibilid
 Projetar o card somente a partir de PublicProfileDTO já autorizado. Aplicar uma allowlist menor, omitir experiência de estádio e limitar fotos, ídolos e lifestyle. Regra de apresentação pode reduzir exposição, nunca acrescentar dados privados ou inventar selo.
 
 Filtros não são autorização. Coordenadas, distância, score, rank e motivo de recomendação permanecem proibidos.
+
+## Afinidade sem classificação — Etapa 5
+
+Afinidade só explica atributos públicos em comum depois da audiência. Não há score, percentual, peso, ranking, probabilidade, recomendação ou julgamento da pessoa. Bloqueio e estado vigente têm precedência e jamais viram sinal negativo.
+
+Schemas estritos e derivação mínima impedem que CPF, UID, conta, identidade, localização precisa, atributos sensíveis, mensagens, denúncias ou administração entrem no cálculo. Textos com padrões comuns de contato e link são descartados do contexto.

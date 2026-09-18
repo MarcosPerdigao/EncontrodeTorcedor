@@ -92,3 +92,9 @@ TrustContext e AudienceRule são valores internos efêmeros. DiscoveryEligibilit
 ## DiscoveryCard e filtros
 
 DiscoveryCard, DiscoveryFilters e DiscoveryCardPresentation não criam collections na Etapa 4.5. São contratos e valores efêmeros. O card não deve ser persistido como cópia divergente de PublicProfileDTO sem decisão futura de cache, validade e revogação.
+
+## Contexto e explicação de afinidade
+
+`AffinityContext`, `AffinitySignal` e `AffinityExplanation` são valores efêmeros da Etapa 5. Nenhuma collection, documento, índice ou cache foi criado. Não persistir explicações como histórico comportamental sem finalidade, retenção e revisão próprias.
+
+A fonte máxima é `PublicProfileDTO`; Account, Identity e FanProfile persistido não entram no motor. A allowlist exclui identificadores internos, contato, nascimento, localização precisa, mensagens, denúncias e estado administrativo.

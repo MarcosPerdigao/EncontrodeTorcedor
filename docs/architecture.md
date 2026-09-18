@@ -96,3 +96,9 @@ Não há endpoint, repositório de candidatos, paginação funcional ou ação s
 projectDiscoveryCard recebe exclusivamente PublicProfileDTO e DiscoveryCardPresentation validados. Ela ordena as fotos pelo campo público, aplica limites de apresentação e cria um novo objeto validado por DiscoveryCard. Não consulta banco, não gera candidatos e não produz score.
 
 DiscoveryFilters é somente contrato declarativo. Uma futura API deverá aplicar audiência antes do card e manter filtros separados de autorização e ordenação.
+
+## Etapa 5 — afinidade explicável
+
+Depois da audiência, `createAffinityContext` deriva de cada `PublicProfileDTO` autorizado somente os campos necessários às regras V1. `explainAffinity` exige uma `DiscoveryEligibility` positiva, compara os dois contextos e devolve razões públicas explícitas.
+
+O módulo é puro e local: não consulta Firestore, não cria candidatos, não persiste resultados, não expõe endpoint e não ordena pessoas. A sequência obrigatória é audiência vigente → projeção pública autorizada → contexto mínimo → explicação.
