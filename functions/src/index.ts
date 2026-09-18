@@ -3,6 +3,7 @@ import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
 import { onRequest } from 'firebase-functions/v2/https';
 import { createHandler } from './http.js';
+import { localFanCatalog } from './domain/local-fan-catalog.js';
 import { firebaseAuthenticator } from './platform/auth.js';
 import { assertLocalRuntime, localAttestation } from './platform/local.js';
 import { firestoreStore } from './platform/store.js';
@@ -15,7 +16,7 @@ export const accountApi = onRequest(
   createHandler(
     firebaseAuthenticator(getAuth(app)),
     localAttestation(process.env),
-    createAccountService(firestoreStore(getFirestore(app))),
+    createAccountService(firestoreStore(getFirestore(app)), Date.now, localFanCatalog),
     (event) => {
       console.info(JSON.stringify(event));
     },

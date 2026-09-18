@@ -11,6 +11,7 @@ const routes: Record<string, Operation> = {
   '/session/bootstrap': 'bootstrap',
   '/session/state': 'state',
   '/account/complete': 'complete',
+  '/fan-profile/create': 'profileCreate',
   '/session/revoke': 'revoke',
 };
 export function createHandler(

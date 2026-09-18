@@ -27,10 +27,12 @@ export const sessionSchema = z.strictObject({
   eligibilityStatus: eligibilityStatusSchema,
   emailVerified: z.boolean(),
   identityVerificationStatus: identityStatusSchema,
+  trustLevel: z.enum(['basic', 'verified']),
   onboardingState: z.enum([
     'email_required',
     'birth_date_required',
-    'verification_required',
+    'fan_profile_required',
+    'access_unavailable',
     'ready',
   ]),
 });

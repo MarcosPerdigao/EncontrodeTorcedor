@@ -48,7 +48,6 @@ export function ageAt(birthDate: string, today: Date): number {
   ) {
     throw new ApiError(400, 'invalid_request');
   }
-  // Calendar UTC; 29/02 completes a year on 01/03 in non-leap years.
   const anniversaryPending =
     today.getUTCMonth() < date.getUTCMonth() ||
     (today.getUTCMonth() === date.getUTCMonth() && today.getUTCDate() < date.getUTCDate());
@@ -61,6 +60,20 @@ export function requireAccessible(account: Account): void {
   if (
     !['pending', 'active'].includes(account.accountStatus) ||
     account.eligibilityStatus === 'ineligible'
+  ) {
+    throw new ApiError(403, 'forbidden');
+  }
+}
+export function requireBasicProfileCreation(
+  account: Account,
+  principal: Principal,
+  hasBirthDate: boolean,
+): void {
+  requireAccessible(account);
+  if (
+    !principal.emailVerified ||
+    !hasBirthDate ||
+    !['review_required', 'eligible'].includes(account.eligibilityStatus)
   ) {
     throw new ApiError(403, 'forbidden');
   }
@@ -80,6 +93,7 @@ export function toSession(
   account: Account,
   principal: Principal,
   hasBirthDate: boolean,
+  hasFanProfile = false,
 ): SessionDTO {
   return sessionSchema.parse({
     accountRef: account.accountRef,
@@ -87,14 +101,15 @@ export function toSession(
     eligibilityStatus: account.eligibilityStatus,
     emailVerified: principal.emailVerified,
     identityVerificationStatus: account.identityVerificationStatus,
+    trustLevel: account.identityVerificationStatus === 'verified' ? 'verified' : 'basic',
     onboardingState: !principal.emailVerified
       ? 'email_required'
       : !hasBirthDate
         ? 'birth_date_required'
-        : account.accountStatus === 'active' &&
-            account.eligibilityStatus === 'eligible' &&
-            account.identityVerificationStatus === 'verified'
-          ? 'ready'
-          : 'verification_required',
+        : account.eligibilityStatus === 'ineligible'
+          ? 'access_unavailable'
+          : !hasFanProfile
+            ? 'fan_profile_required'
+            : 'ready',
   });
 }

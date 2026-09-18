@@ -1,19 +1,28 @@
 import { createHash, randomBytes } from 'node:crypto';
 import { z } from 'zod';
-import { completeAccountSchema, emptyCommandSchema, type SessionDTO } from '@social/contracts';
+import {
+  completeAccountSchema,
+  createFanProfileSchema,
+  emptyCommandSchema,
+  parseFanDomain,
+  type FanCatalog,
+  type FanDomain,
+  type SessionDTO,
+} from '@social/contracts';
 import {
   accountSchema,
   privateIdentitySchema,
   ApiError,
   assessDeclaredAge,
   requireAccessible,
+  requireBasicProfileCreation,
   toSession,
   type Account,
   type Principal,
 } from './domain/account.js';
 import type { Store } from './platform/store.js';
 
-export type Operation = 'bootstrap' | 'state' | 'complete' | 'revoke';
+export type Operation = 'bootstrap' | 'state' | 'complete' | 'profileCreate' | 'revoke';
 export const digest = (value: string): string => createHash('sha256').update(value).digest('hex');
 const sessionRecordSchema = z.strictObject({
   version: z.number().int().nonnegative(),
@@ -25,12 +34,20 @@ const limitSchema = z.strictObject({
   window: z.number().int(),
   count: z.number().int().nonnegative(),
 });
-const receiptSchema = z.strictObject({ operation: z.literal('complete') });
+const receiptSchema = z.strictObject({
+  operation: z.enum(['complete', 'profileCreate']),
+});
+const emptyCatalog: FanCatalog = { clubs: [], idols: [] };
 export interface ServiceResult {
   session: SessionDTO;
   sessionToken?: string;
+  fanDomain?: FanDomain;
 }
-export function createAccountService(store: Store, now: () => number = Date.now) {
+export function createAccountService(
+  store: Store,
+  now: () => number = Date.now,
+  catalog: FanCatalog = emptyCatalog,
+) {
   return async (
     operation: Operation,
     actor: Principal,
@@ -40,15 +57,20 @@ export function createAccountService(store: Store, now: () => number = Date.now)
     const command =
       operation === 'complete'
         ? completeAccountSchema.safeParse(body)
-        : emptyCommandSchema.safeParse(body);
+        : operation === 'profileCreate'
+          ? createFanProfileSchema.safeParse(body)
+          : emptyCommandSchema.safeParse(body);
     if (!command.success) throw new ApiError(400, 'invalid_request');
     const completed =
       operation === 'complete' ? completeAccountSchema.parse(command.data) : undefined;
+    const profileCommand =
+      operation === 'profileCreate' ? createFanProfileSchema.parse(command.data) : undefined;
     const time = now();
     if (actor.authTime > Math.floor(time / 1000) + 30) throw new ApiError(401, 'unauthenticated');
     const key = digest(actor.uid);
     const accountPath = 'accounts/' + key;
     const identityPath = 'identities/' + key;
+    const profilePath = 'fanProfiles/' + key;
     const newToken = operation === 'bootstrap' ? randomBytes(32).toString('base64url') : undefined;
     if (operation !== 'bootstrap' && !/^[A-Za-z0-9_-]{43}$/.test(sessionToken ?? '')) {
       throw new ApiError(401, 'unauthenticated');
@@ -56,28 +78,37 @@ export function createAccountService(store: Store, now: () => number = Date.now)
     const sessionPath = accountPath + '/sessions/' + digest(newToken ?? sessionToken ?? '');
     const lineagePath = accountPath + '/authSessions/' + String(actor.authTime);
     const limitPath = accountPath + '/rateLimits/' + operation;
-    const receiptPath = accountPath + '/operations/' + digest(completed?.requestKey ?? 'unused');
-    // Count authenticated attempts independently; a rejected mutation must not roll the counter back.
+    const requestKey = completed?.requestKey ?? profileCommand?.requestKey;
+    const receiptPath =
+      accountPath + '/operations/' + digest(operation + ':' + (requestKey ?? 'unused'));
     await store.transact(async (tx) => {
       const raw = await tx.get(limitPath);
       const window = Math.floor(time / 60_000);
       const limit = raw === undefined ? undefined : limitSchema.parse(raw);
       const count = limit?.window === window ? limit.count : 0;
-      const maximum = { bootstrap: 6, state: 30, complete: 5, revoke: 5 }[operation];
+      const maximum = {
+        bootstrap: 6,
+        state: 30,
+        complete: 5,
+        profileCreate: 5,
+        revoke: 5,
+      }[operation];
       if (count >= maximum) throw new ApiError(429, 'rate_limited');
       tx.set(limitPath, { window, count: count + 1 });
     });
     return store.transact(async (tx) => {
-      // All reads precede writes. Account is re-read in the transaction, never from claims/cache.
-      const [rawAccount, rawIdentity, rawSession, rawLineage, rawReceipt] = await Promise.all([
-        tx.get(accountPath),
-        tx.get(identityPath),
-        tx.get(sessionPath),
-        tx.get(lineagePath),
-        tx.get(receiptPath),
-      ]);
+      const [rawAccount, rawIdentity, rawProfile, rawSession, rawLineage, rawReceipt] =
+        await Promise.all([
+          tx.get(accountPath),
+          tx.get(identityPath),
+          tx.get(profilePath),
+          tx.get(sessionPath),
+          tx.get(lineagePath),
+          tx.get(receiptPath),
+        ]);
       const identity =
         rawIdentity === undefined ? undefined : privateIdentitySchema.parse(rawIdentity);
+      let fanDomain = rawProfile === undefined ? undefined : parseFanDomain(rawProfile, catalog);
       const account: Account =
         rawAccount === undefined
           ? {
@@ -119,12 +150,38 @@ export function createAccountService(store: Store, now: () => number = Date.now)
         if (!identity) {
           if (rawReceipt !== undefined) throw new ApiError(409, 'conflict');
           const declared = assessDeclaredAge(completed.birthDate, new Date(time));
-          // A declaration alone never proves age or activates an account.
           account.eligibilityStatus = declared === 'ineligible' ? 'ineligible' : 'review_required';
           tx.set(identityPath, { birthDate: completed.birthDate, createdAt: time });
           hasBirthDate = true;
         }
         tx.set(receiptPath, { operation: 'complete' });
+      }
+      if (profileCommand) {
+        requireBasicProfileCreation(account, actor, hasBirthDate);
+        if (rawReceipt !== undefined) receiptSchema.parse(rawReceipt);
+        if (!fanDomain) {
+          if (rawReceipt !== undefined) throw new ApiError(409, 'conflict');
+          const { requestKey: ignoredRequestKey, ...draft } = profileCommand;
+          void ignoredRequestKey;
+          try {
+            fanDomain = parseFanDomain(
+              {
+                ...draft,
+                fanProfile: {
+                  ...draft.fanProfile,
+                  fanProfileRef: 'fan_' + randomBytes(24).toString('base64url'),
+                },
+              },
+              catalog,
+            );
+          } catch {
+            throw new ApiError(400, 'invalid_request');
+          }
+          tx.set(profilePath, fanDomain);
+        } else if (rawReceipt === undefined) {
+          throw new ApiError(409, 'conflict');
+        }
+        tx.set(receiptPath, { operation: 'profileCreate' });
       }
       if (operation === 'revoke') {
         if (Math.floor(time / 1000) - actor.authTime > 300)
@@ -143,8 +200,11 @@ export function createAccountService(store: Store, now: () => number = Date.now)
         });
         tx.set(lineagePath, { version: account.sessionVersion });
       }
-      const result: ServiceResult = { session: toSession(account, actor, hasBirthDate) };
+      const result: ServiceResult = {
+        session: toSession(account, actor, hasBirthDate, fanDomain !== undefined),
+      };
       if (newToken) result.sessionToken = newToken;
+      if (profileCommand && fanDomain) result.fanDomain = fanDomain;
       return result;
     });
   };

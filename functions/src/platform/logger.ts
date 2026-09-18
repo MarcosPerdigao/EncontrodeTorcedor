@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 const eventSchema = z.strictObject({
   requestId: z.string().uuid(),
-  operation: z.enum(['bootstrap', 'state', 'complete', 'revoke', 'unknown']),
+  operation: z.enum(['bootstrap', 'state', 'complete', 'profileCreate', 'revoke', 'unknown']),
   result: z.enum([
     'ok',
     'invalid_request',

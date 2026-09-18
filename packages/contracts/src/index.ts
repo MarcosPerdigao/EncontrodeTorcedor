@@ -49,3 +49,6 @@ export type {
   LifestyleProfile,
   FanDomain,
 } from './fan-domain.js';
+
+export { createFanProfileSchema, fanProfileResponseSchema } from './onboarding.js';
+export type { CreateFanProfileCommand, FanProfileResponse } from './onboarding.js';
