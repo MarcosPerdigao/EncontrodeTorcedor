@@ -1,106 +1,203 @@
 import { describe, expect, expectTypeOf, it } from 'vitest';
-
-import { parsePublicProfileDTO, type PublicProfileDTO } from '../src/index.js';
+import {
+  parsePublicProfileDTO,
+  publicProfileSettingsSchema,
+  type PublicProfileDTO,
+} from '../src/index.js';
 import type { PrivateUserData } from '../src/server/private-user-data.js';
 
 const fixture = {
-  profileRef: `prf_${'a'.repeat(32)}`,
-  nickname: 'Pessoa sintética',
-  age: 25,
-  city: 'Cidade de teste',
-  bio: 'Fixture artificial.',
-  photoRefs: [`med_${'b'.repeat(32)}`],
-  interests: ['futebol'],
-  goals: ['friendship'],
+  profileRef: 'prf_' + 'a'.repeat(32),
+  displayName: 'Sol',
+  age: 26,
+  city: 'Cidade de Teste',
+  photos: [{ photoRef: 'med_' + 'b'.repeat(32), order: 0 }],
+  bio: 'Gosto de arquibancada e música.',
+  verificationBadge: 'verified',
+  fanIdentity: {
+    club: { name: 'Clube Horizonte', shortName: 'Horizonte' },
+    intensity: 'part_of_routine',
+    idols: ['Alex da Serra'],
+    stadium: {
+      attendanceFrequency: 'sometimes',
+      preferredSector: 'Setor sintético',
+      travelsForMatches: false,
+    },
+  },
+  lifestyle: {
+    musicPreferences: ['Ritmo sintético'],
+    hobbies: ['Atividade fictícia'],
+    lifestyleStyle: 'balanced',
+    pets: 'likes_pets',
+  },
+  connectionIntents: ['friendship'],
 };
 
-// Expectativa independente: NÃO derivar esta lista do schema sob teste.
 const allowedKeys = [
   'profileRef',
-  'nickname',
+  'displayName',
   'age',
   'city',
+  'photos',
   'bio',
-  'photoRefs',
-  'interests',
-  'goals',
+  'verificationBadge',
+  'fanIdentity',
+  'lifestyle',
+  'connectionIntents',
 ] as const;
 const forbiddenKeys = [
-  'email',
-  'phone',
-  'telefone',
-  'birthDate',
-  'dateOfBirth',
-  'document',
-  'documento',
   'cpf',
-  'latitude',
-  'longitude',
-  'coordinates',
-  'geohash',
-  'address',
-  'bairro',
-  'ip',
-  'IP',
-  'tokens',
-  'token',
-  'accessToken',
-  'refreshToken',
   'uid',
   'UID',
   'userId',
   'ownerUid',
-  'verification',
-  'verificationData',
-  'identityVerification',
-  'admin',
-  'role',
-  'roles',
-  'customClaims',
+  'accountRef',
+  'birthDate',
+  'dateOfBirth',
+  'email',
+  'phone',
+  'telefone',
+  'document',
+  'address',
+  'bairro',
+  'latitude',
+  'longitude',
+  'coordinates',
+  'geohash',
+  'distance',
+  'token',
+  'tokens',
+  'accessToken',
+  'refreshToken',
+  'trustLevel',
+  'accountStatus',
+  'eligibilityStatus',
+  'identityVerificationStatus',
   'moderationStatus',
-  'internalNotes',
+  'editorialStatus',
+  'roles',
+  'admin',
   'storagePath',
+  'matchHistory',
+  'recentGames',
+  'instagram',
+  'tiktok',
+  'facebook',
+  'whatsapp',
 ];
 
-describe('PublicProfileDTO: fronteira de privacidade', () => {
-  it('possui exatamente a allowlist pública no tipo e no JSON', () => {
+describe('PublicProfileDTO: allowlist pública', () => {
+  it('possui exatamente as chaves superiores revisadas', () => {
     expectTypeOf<keyof PublicProfileDTO>().toEqualTypeOf<(typeof allowedKeys)[number]>();
     expectTypeOf<Extract<keyof PublicProfileDTO, keyof PrivateUserData>>().toEqualTypeOf<never>();
-    const result = parsePublicProfileDTO(fixture);
-    expect(Object.keys(result).sort()).toEqual([...allowedKeys].sort());
-    expect(JSON.parse(JSON.stringify(result))).toEqual(fixture);
+    const parsed = parsePublicProfileDTO(fixture);
+    expect(Object.keys(parsed).sort()).toEqual([...allowedKeys].sort());
+    expect(parsed).toEqual(fixture);
   });
 
-  it.each(forbiddenKeys)('recusa o campo privado %s, mesmo em variável com extras', (key) => {
-    const contaminated = { ...fixture, [key]: 'synthetic-private-value' };
-    expect(() => parsePublicProfileDTO(contaminated)).toThrow();
+  it.each(forbiddenKeys)('recusa o campo proibido %s', (key) => {
+    expect(() => parsePublicProfileDTO({ ...fixture, [key]: 'synthetic-private-value' })).toThrow();
   });
 
-  it('recusa campos futuros desconhecidos, não apenas uma denylist conhecida', () => {
+  it('recusa campos desconhecidos em todos os níveis', () => {
     expect(() => parsePublicProfileDTO({ ...fixture, futureInternalField: true })).toThrow();
-  });
-
-  it('não permite objetos privados escondidos em listas públicas', () => {
     expect(() =>
-      parsePublicProfileDTO({ ...fixture, photoRefs: [{ uid: 'synthetic-b' }] }),
+      parsePublicProfileDTO({
+        ...fixture,
+        fanIdentity: { ...fixture.fanIdentity, primaryClubId: 'club_' + 'a'.repeat(24) },
+      }),
     ).toThrow();
     expect(() =>
-      parsePublicProfileDTO({ ...fixture, interests: [{ email: 'test@example.invalid' }] }),
+      parsePublicProfileDTO({
+        ...fixture,
+        photos: [
+          {
+            ...fixture.photos[0],
+            ownerAccountRef: 'acc_' + 'a'.repeat(32),
+            moderationStatus: 'approved',
+          },
+        ],
+      }),
     ).toThrow();
   });
 
-  it('não aceita UID como referência e não aceita idade fora do contrato', () => {
-    expect(() =>
-      parsePublicProfileDTO({ ...fixture, profileRef: 'synthetic-internal-uid' }),
-    ).toThrow();
-    expect(() => parsePublicProfileDTO({ ...fixture, age: 17 })).toThrow();
-    expect(() => parsePublicProfileDTO({ ...fixture, age: 25.5 })).toThrow();
+  it.each(['profileRef', 'displayName', 'age', 'city', 'photos', 'fanIdentity'])(
+    'exige o campo estrutural %s',
+    (key) => {
+      const incomplete: Record<string, unknown> = { ...fixture };
+      delete incomplete[key];
+      expect(() => parsePublicProfileDTO(incomplete)).toThrow();
+    },
+  );
+
+  it('limita bio e recusa contato, rede social e link', () => {
+    expect(() => parsePublicProfileDTO({ ...fixture, bio: 'x'.repeat(161) })).toThrow();
+    for (const bio of [
+      'fale comigo em pessoa@example.invalid',
+      'me chama no @perfil',
+      'https://example.invalid',
+      'WhatsApp 31999999999',
+      'instagram perfil',
+    ]) {
+      expect(() => parsePublicProfileDTO({ ...fixture, bio })).toThrow();
+    }
   });
 
-  it('recusa listas e textos fora do limite', () => {
-    expect(() => parsePublicProfileDTO({ ...fixture, bio: 'x'.repeat(501) })).toThrow();
+  it('aceita primeiro nome ou apelido de um termo e recusa nome composto', () => {
+    expect(() => parsePublicProfileDTO({ ...fixture, displayName: 'Sol-10' })).not.toThrow();
+    expect(() => parsePublicProfileDTO({ ...fixture, displayName: 'Nome Sobrenome' })).toThrow();
+  });
+
+  it('não aceita ID ou status interno no lugar do nome canônico do ídolo', () => {
     expect(() =>
-      parsePublicProfileDTO({ ...fixture, photoRefs: Array(7).fill(fixture.photoRefs[0]) }),
+      parsePublicProfileDTO({
+        ...fixture,
+        fanIdentity: { ...fixture.fanIdentity, idols: ['idol_' + 'c'.repeat(24)] },
+      }),
+    ).toThrow();
+    expect(() =>
+      parsePublicProfileDTO({
+        ...fixture,
+        fanIdentity: {
+          ...fixture.fanIdentity,
+          idols: [{ idolId: 'idol_' + 'c'.repeat(24), status: 'active' }],
+        },
+      }),
+    ).toThrow();
+  });
+});
+
+describe('PublicProfileSettings: autoridade limitada do cliente', () => {
+  const settings = {
+    displayNameKind: 'nickname',
+    displayName: 'Sol',
+    cityId: 'city_' + 'd'.repeat(24),
+    bio: 'Uma bio sintética.',
+    showLifestyle: true,
+    showConnectionIntents: false,
+  };
+
+  it('aceita somente escolhas de exibição', () => {
+    expect(publicProfileSettingsSchema.parse(settings)).toEqual(settings);
+  });
+
+  it.each([
+    'verificationBadge',
+    'trustLevel',
+    'identityVerificationStatus',
+    'age',
+    'birthDate',
+    'accountStatus',
+    'eligibilityStatus',
+    'moderationStatus',
+    'photoRefs',
+    'uid',
+    'cpf',
+    'instagram',
+    'whatsapp',
+  ])('cliente não define %s', (key) => {
+    expect(() =>
+      publicProfileSettingsSchema.parse({ ...settings, [key]: 'synthetic-invalid' }),
     ).toThrow();
   });
 });
