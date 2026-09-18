@@ -1,6 +1,6 @@
 # Estado do projeto
 
-Última atualização: 18/09/2026. Branch: codex/stage-3-onboarding-profile. Base aprovada: 66110d3.
+Última atualização: 18/09/2026. Branch: codex/public-profile-security. Base aprovada: 66110d3.
 
 ## Visão
 
@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-0, 1, 1.5 e 2 concluídas e aprovadas. Etapa 2.5 concluída localmente. Etapa 3 concluída localmente e aguardando revisão. Nenhuma etapa posterior está autorizada.
+0, 1, 1.5 e 2 concluídas e aprovadas. Etapa 2.5 concluída localmente. Etapas 2.5 e 3 aprovadas. Etapa 3.5 em implementação restrita a perfil público e segurança de exposição.
 
 ## Entregue na Etapa 2
 
@@ -20,7 +20,7 @@ API local: bootstrap, estado próprio, completar nascimento e revogar sessões. 
 
 Domínio multiclube com Club e Idol canônicos, aliases não ambíguos e status editoriais; FanProfile separado da conta; preferências de clube e conexão autodeclaradas; intenções múltiplas; LifestyleProfile opcional e minimizado. Referências são validadas contra catálogo ativo fornecido ao parser. Fixtures são integralmente fictícias. Não há endpoint, persistência, tela, catálogo real, descoberta, score, foto, interação ou analytics.
 
-Ver modelo do torcedor em FAN_DOMAIN_MODEL.md, entradas futuras do motor em MATCH_ENGINE_INPUTS.md, ADR 0010 e revisão da Etapa 2.5.
+Ver modelo do torcedor em FAN_DOMAIN_MODEL.md, entradas futuras do motor em MATCH_ENGINE_INPUTS.md, ADR 0011 e revisão da Etapa 2.5.
 
 ## Entregue na Etapa 3
 
@@ -68,4 +68,4 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 - Etapa 2.5: 71ea170, 7db948d, 5e8fbdf e fbe25c9.
 - Etapa 3: 3712595, 28ae668, bb6fc9b, 0ed79d1 e 82165e0; revisão documental final pendente de commit.
 
-Etapa 3 concluída localmente: PARAR e aguardar revisão. Descoberta, swipe, likes, match, chat, fotos reais e moderação automática continuam proibidos.
+Etapa 3.5 em andamento. Descoberta, swipe, likes, match, chat, fotos reais e moderação automática continuam proibidos.

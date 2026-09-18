@@ -32,7 +32,7 @@ Checkpoint completo aprovado: formato, lint, TypeScript strict e builds passaram
 - packages/contracts/tests/fan-domain.test.ts
 - docs/FAN_DOMAIN_MODEL.md
 - docs/MATCH_ENGINE_INPUTS.md
-- docs/decisions/0010-canonical-fan-domain-catalogs.md
+- docs/decisions/0011-canonical-fan-domain-catalogs.md
 - docs/stage-2.5-review.md
 
 ## Arquivos alterados

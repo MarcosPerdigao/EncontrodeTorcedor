@@ -1,4 +1,4 @@
-# ADR 0010 — Catálogos canônicos e agregado do torcedor
+# ADR 0011 — Catálogos canônicos e agregado do torcedor
 
 Status: aceito para a Etapa 2.5 em 18/09/2026.
 
