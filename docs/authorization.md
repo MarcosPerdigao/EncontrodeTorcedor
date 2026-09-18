@@ -47,3 +47,9 @@ Identidade do token, conta vigente, sessionVersion, elegibilidade, schema, opera
 fan-profile/create exige token Firebase vigente, sessão da API pertencente ao mesmo ator, conta acessível, e-mail confirmado, identidade privada já criada e declaração adulta em review_required ou eligible. Conta suspensa, banida, inelegível, excluída ou em exclusão falha antes da operação. identityVerificationStatus not_started é permitido para esta única capacidade básica.
 
 O comando é estrito e não aceita UID, accountRef, CPF, nascimento, contato, trustLevel, status de identidade/conta/elegibilidade ou papéis. Referências de clube e ídolo precisam existir e estar ativas no catálogo injetado. O cliente nunca escolhe o caminho do documento. Firestore e Storage permanecem deny-all para qualquer SDK cliente.
+
+## Exposição futura do perfil
+
+A Etapa 3.5 implementa somente contrato e projeção pura. Não existe rota para ler perfil próprio ou alheio. Uma futura operação deve verificar conta vigente, audiência, bloqueio em ambas as direções e contexto antes de projetar. PublicProfileDTO não concede autorização por si só e profileRef opaca não é capability.
+
+O cliente pode propor apenas displayName, cityId, bio e opt-ins pelo schema PublicProfileSettings. Selo, idade, trustLevel, estado administrativo e foto/moderação vêm de fontes internas.

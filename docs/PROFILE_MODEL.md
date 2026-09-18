@@ -33,6 +33,10 @@ Informação suficiente para gerar interesse e conversa, mas não para eliminar 
 
 ## Estado implementado na Etapa 3
 
-O agregado privado FanDomain e sua criação local estão implementados. A interface coleta catálogo fictício, intensidade, ídolo opcional, estádio opcional, múltiplas intenções, abertura declarada, música, hobbies e estilo de vida. PublicProfileDTO não foi ampliado, fotos não existem e nenhuma pessoa pode consultar perfil alheio.
+O agregado privado FanDomain e sua criação local estão implementados. A interface coleta catálogo fictício, intensidade, ídolo opcional, estádio opcional, múltiplas intenções, abertura declarada, música, hobbies e estilo de vida. A Etapa 3.5 implementou PublicProfileDTO e sua projeção pura; fotos continuam apenas como contrato e nenhuma pessoa pode consultar perfil alheio.
 
 A verificação de identidade é progressiva. Perfil básico aceita not_started; selo e capacidades verificadas permanecem futuros. Ver ADR 0009.
+
+## Estado implementado na Etapa 3.5
+
+A allowlist pública contém displayName, idade calculada, cidade ampla canônica, bio curta, fotos opacas aprovadas, selo derivado, identidade futebolística canônica e lifestyle/intenções sob opt-in. Não há endpoint público ou persistência dessa projeção. Ver PUBLIC_PROFILE_MODEL.md e ADR 0010.

@@ -78,3 +78,9 @@ A API local adiciona POST /fan-profile/create. A identidade continua derivada do
 O servidor deriva trustLevel basic ou verified do estado de identidade vigente. O cliente não envia esse nível nem status administrativos. FanProfile é persistido separado de Account e Identity, validado contra catálogo local fictício injetado no serviço. A criação é transacional, idempotente e limitada a cinco tentativas por conta/minuto. Edição ainda não existe.
 
 O mobile implementa seis passos: boas-vindas e cultura de segurança, identidade de torcedor, intenções, abertura entre torcidas, poucos dados opcionais e revisão. O catálogo é explicitamente fictício e local. Não há fotos, perfil público, descoberta, swipe, interação, analytics ou provedor de identidade.
+
+## Etapa 3.5 — fronteira de exposição pública
+
+PublicProfileDTO é gerado somente por projectPublicProfile no servidor a partir de fontes privadas validadas. A função calcula idade, deriva selo, resolve nomes canônicos, aplica opt-ins e filtra fotos aprovadas; ela cria um objeto novo e o valida pelo contrato público estrito.
+
+Nenhum endpoint para consultar perfis foi criado. Autorização por audiência, bloqueio e contexto deve envolver a projeção antes de futura descoberta. PublicProfileSettings representa apenas escolhas editáveis; trustLevel, selo, idade e estados administrativos não são aceitos do cliente.

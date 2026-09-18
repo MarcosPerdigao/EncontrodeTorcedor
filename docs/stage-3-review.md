@@ -1,6 +1,6 @@
 # Revisão da Etapa 3 — Onboarding e Perfil de Torcedor
 
-Estado: implementação local concluída em codex/stage-3-onboarding-profile; aguardando revisão e autorização explícita para publicação.
+Estado: concluída e aprovada; usada como base da Etapa 3.5.
 
 ## Resultado
 

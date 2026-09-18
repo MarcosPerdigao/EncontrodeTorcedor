@@ -1,6 +1,6 @@
 # Estado do projeto
 
-Última atualização: 18/09/2026. Branch: codex/public-profile-security. Base aprovada: 66110d3.
+Última atualização: 18/09/2026. Branch: codex/public-profile-security. Base aprovada: 07a834b.
 
 ## Visão
 
@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-0, 1, 1.5 e 2 concluídas e aprovadas. Etapa 2.5 concluída localmente. Etapas 2.5 e 3 aprovadas. Etapa 3.5 em implementação restrita a perfil público e segurança de exposição.
+0, 1, 1.5 e 2 concluídas e aprovadas. Etapa 2.5 concluída localmente. Etapas 2.5 e 3 aprovadas. Etapa 3.5 concluída localmente e aguardando revisão. Nenhuma etapa posterior está autorizada.
 
 ## Entregue na Etapa 2
 
@@ -28,13 +28,17 @@ Confiança progressiva conforme ADR 0009; trustLevel derivado; criação transac
 
 Firestore/Storage seguem fechados ao cliente. Não existem fotos, perfil público ampliado, descoberta, swipe, likes, match, chat, algoritmo, analytics, moderação automática ou ambiente real.
 
+## Entregue na Etapa 3.5
+
+PublicProfileDTO por allowlist; PublicProfileSettings com autoridade limitada; idade e selo derivados; projeção canônica de clube/ídolos; lifestyle e intenções sob opt-in; PhotoReference interno e filtro de fotos aprovadas. Nenhum endpoint público, upload, Storage aberto ou descoberta foi criado. Ver PUBLIC_PROFILE_MODEL.md, ADR 0010 e stage-3.5-review.md.
+
 ## Decisões preservadas
 
 Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive signals; somente fixtures sintéticas; sem localização precisa; jogos fora do MVP; retenção de mensagens não aprovada. Uma declaração de idade adulta resulta em revisão pendente, não conta verificada. A confiança progressiva permite perfil básico sem identidade verificada; identidade/idade definitivas dependem de mecanismo posterior validado. CPF permanece fora do fluxo.
 
 ## Evidência local
 
-397 testes aprovados: 159 unitários, 211 Rules, 27 integração. npm run check com saída 0; lint, TypeScript strict, formato e builds aprovados. Scanner: 101 arquivos, 0 ocorrências. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
+427 testes aprovados: 189 unitários, 211 Rules, 27 integração. npm run check com saída 0; lint, TypeScript strict, formato e builds aprovados. Scanner: 107 arquivos, 0 ocorrências. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
 
 ## Evidência remota
 
@@ -54,7 +58,7 @@ Google não habilitado; se adotado no iOS, avaliar Sign in with Apple/regras de 
 
 ## Versões futuras
 
-V1 conexões, segurança, perfil e interações ainda não implementadas; V2 Passaporte; V3 Dia de Jogo; V4 aprimoramento de compatibilidade; V5 gamificação saudável. Ver ROADMAP. Esses itens não estão autorizados para implementação agora.
+V1 perfil público possui contrato/projeção, mas conexões e interações ainda não foram implementadas; V2 Passaporte; V3 Dia de Jogo; V4 aprimoramento de compatibilidade; V5 gamificação saudável. Ver ROADMAP. Esses itens não estão autorizados para implementação agora.
 
 ## GitHub e processo
 
@@ -66,6 +70,7 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 - Etapa 2 publicada: 09dc2ca (modelos/contratos), aa96138 (API/sessão), 9e991d3 (mobile), 0b4138b (testes/CI), e2616b0 (revisão/limites). O registro do resultado remoto é um commit documental posterior.
 - [Revisão da etapa 2](stage-2-review.md), [ADR 0008](decisions/0008-local-authentication-and-session-boundary.md).
 - Etapa 2.5: 71ea170, 7db948d, 5e8fbdf e fbe25c9.
-- Etapa 3: 3712595, 28ae668, bb6fc9b, 0ed79d1 e 82165e0; revisão documental final pendente de commit.
+- Etapa 3 aprovada: 3712595, 28ae668, bb6fc9b, 0ed79d1, 82165e0 e 07a834b.
+- Etapa 3.5 local: ab68d77 (documentação), 51ed3df (contratos), e092b97 (projeção) e 4c618f2 (testes); revisão documental no commit final da etapa.
 
-Etapa 3.5 em andamento. Descoberta, swipe, likes, match, chat, fotos reais e moderação automática continuam proibidos.
+Etapa 3.5 concluída localmente: PARAR e aguardar revisão. Descoberta, algoritmo, swipe, likes, match, chat e fotos reais continuam proibidos.

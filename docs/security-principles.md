@@ -42,3 +42,9 @@ SAFETY_CHARTER.md é regra superior de produto. Plataforma nacional, filtros bil
 Identidade not_started permite somente capacidades básicas explicitamente autorizadas. Não verificado não significa suspeito e verificado não significa pessoa segura. Nível de confiança é derivado no servidor e nunca aceito do cliente. Suspensão, banimento, inelegibilidade, bloqueios e demais controles prevalecem.
 
 CPF permanece fora do cadastro, mobile, logs, analytics, modelos comuns, fixtures e identificadores. Integração futura usa provedor especializado e prova mínima. Nenhuma coleta de documento ou provedor real é implementado nesta etapa.
+
+## Exposição pública — Etapa 3.5
+
+Nunca serializar Account, Identity, FanDomain, documento Firestore ou PhotoReference diretamente. Construir PublicProfileDTO por allowlist e validar novamente na saída. Selo e idade são derivados no servidor. Opt-in não substitui autorização, bloqueio ou audiência.
+
+Bio/displayName recusam contato, link e handle. Cidade vem de catálogo amplo; não há GPS, bairro, endereço ou distância. Fotos públicas futuras exigem owner correto, processamento concluído e moderação aprovada. Storage permanece deny-all.

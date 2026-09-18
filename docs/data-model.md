@@ -13,31 +13,31 @@ A etapa 2 persiste somente conta, identidade mínima e metadados de sessão nos 
 
 ## Collections futuras
 
-| Caminho                            | Finalidade/campos                                                                          | Relação e risco                                              |
-| ---------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
-| accounts/{uid}                     | status, eligibilityStatus, sessionVersion, timestamps                                      | Autoridade da conta; cliente não pode alterar estado         |
-| identities/{uid}                   | birthDate, comprovação mínima de elegibilidade                                             | Privado; sem senha ou coleta padrão de documento             |
-| profiles/{uid}                     | nickname, cityId, bio, interests, goals, photoIds, fanFields, visibility, moderationStatus | Somente projeção autorizada; moderacão/UID não saem no DTO   |
-| preferences/{uid}                  | modes, ageRange, cityScope, preferências opcionais                                         | Não publicar; podem revelar informações sensíveis            |
-| consents/{uid}/records/{id}        | finalidade, versão, decisão, timestamp, revogação                                          | Histórico privado; sem consentimento genérico                |
-| media/{id}                         | ownerUid, paths, status, dimensions, moderation                                            | Caminhos e proprietário internos                             |
-| discoverySessions/{id}             | solicitante, filtros, validade                                                             | Sessão com universo limitado de candidatos                   |
-| discoverySessions/{id}/cards/{ref} | candidato interno, contexto, validade                                                      | Ref opaca vinculada ao solicitante                           |
-| pairStates/{key}                   | participantes, bloqueios por direção, versão, estados por contexto                         | Fonte de verdade transacional                                |
-| decisions/{id}                     | ator, alvo, contexto, like/pass, timestamps                                                | Chave determinística interna; não revelar likes de terceiros |
-| matches/{id}                       | participantes, contexto, status, timestamps                                                | Criado somente após reciprocidade válida                     |
-| matches/{id}/messages/{id}         | autor, texto, sequência, timestamps                                                        | Mensagem privada; retenção pendente                          |
-| reports/{id}                       | denunciante, alvo, motivo, descrição, refs, status, responsável                            | Só moderação; denunciante recebe protocolo separado          |
-| reportEvidence/{id}                | evidência mínima, origem, retenção, legalHold                                              | Não misturar com logs; acesso por caso                       |
-| moderationActions/{id}             | caso, operador, ação, motivo, timestamp                                                    | Auditoria da decisão                                         |
-| devices/{uid}/tokens/{id}          | token FCM, plataforma, atualização                                                         | Tokens nunca públicos                                        |
-| signals/{uid}                      | contador de atualização                                                                    | Possível leitura própria futura; fechado agora               |
-| privacyRequests/{id}               | titular, tipo, estado, prazo, referência do resultado                                      | Exportação não expõe dados privados de terceiros             |
-| rateLimits/{key}                   | janela, contador, expiração                                                                | Só serviço; sem contador global concentrador                 |
-| operations/{id}                    | ator, operação, chave idempotente, estado, validade                                        | Impede repetição de efeitos                                  |
-| outbox/{id}                        | evento, versão, tentativas, estado                                                         | Trabalho assíncrono após commit                              |
-| staffAccess/{uid}                  | papel, estado, escopo                                                                      | Provisionamento privilegiado; nunca campo editável no perfil |
-| auditEvents/{id}                   | operador, ação, recurso, justificativa, resultado                                          | Sem payload sensível; cópia protegida independente           |
+| Caminho                            | Finalidade/campos                                                  | Relação e risco                                              |
+| ---------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
+| accounts/{uid}                     | status, eligibilityStatus, sessionVersion, timestamps              | Autoridade da conta; cliente não pode alterar estado         |
+| identities/{uid}                   | birthDate, comprovação mínima de elegibilidade                     | Privado; sem senha ou coleta padrão de documento             |
+| publicProfileSettings/{uid}        | displayNameKind, displayName, cityId, bio, opt-ins                 | Configuração privada; selo/idade/moderação não são editáveis |
+| preferences/{uid}                  | modes, ageRange, cityScope, preferências opcionais                 | Não publicar; podem revelar informações sensíveis            |
+| consents/{uid}/records/{id}        | finalidade, versão, decisão, timestamp, revogação                  | Histórico privado; sem consentimento genérico                |
+| media/{id}                         | ownerUid, paths, status, dimensions, moderation                    | Caminhos e proprietário internos                             |
+| discoverySessions/{id}             | solicitante, filtros, validade                                     | Sessão com universo limitado de candidatos                   |
+| discoverySessions/{id}/cards/{ref} | candidato interno, contexto, validade                              | Ref opaca vinculada ao solicitante                           |
+| pairStates/{key}                   | participantes, bloqueios por direção, versão, estados por contexto | Fonte de verdade transacional                                |
+| decisions/{id}                     | ator, alvo, contexto, like/pass, timestamps                        | Chave determinística interna; não revelar likes de terceiros |
+| matches/{id}                       | participantes, contexto, status, timestamps                        | Criado somente após reciprocidade válida                     |
+| matches/{id}/messages/{id}         | autor, texto, sequência, timestamps                                | Mensagem privada; retenção pendente                          |
+| reports/{id}                       | denunciante, alvo, motivo, descrição, refs, status, responsável    | Só moderação; denunciante recebe protocolo separado          |
+| reportEvidence/{id}                | evidência mínima, origem, retenção, legalHold                      | Não misturar com logs; acesso por caso                       |
+| moderationActions/{id}             | caso, operador, ação, motivo, timestamp                            | Auditoria da decisão                                         |
+| devices/{uid}/tokens/{id}          | token FCM, plataforma, atualização                                 | Tokens nunca públicos                                        |
+| signals/{uid}                      | contador de atualização                                            | Possível leitura própria futura; fechado agora               |
+| privacyRequests/{id}               | titular, tipo, estado, prazo, referência do resultado              | Exportação não expõe dados privados de terceiros             |
+| rateLimits/{key}                   | janela, contador, expiração                                        | Só serviço; sem contador global concentrador                 |
+| operations/{id}                    | ator, operação, chave idempotente, estado, validade                | Impede repetição de efeitos                                  |
+| outbox/{id}                        | evento, versão, tentativas, estado                                 | Trabalho assíncrono após commit                              |
+| staffAccess/{uid}                  | papel, estado, escopo                                              | Provisionamento privilegiado; nunca campo editável no perfil |
+| auditEvents/{id}                   | operador, ação, recurso, justificativa, resultado                  | Sem payload sensível; cópia protegida independente           |
 
 V2: Passaporte do Torcedor, histórico opcional e agregados por padrão. V3: games/{id} e gameAttendance/{id} para presença voluntária/temporária, somente após análise específica de stalking. Nenhum desses modelos é implementado agora.
 
@@ -76,3 +76,9 @@ Etapa 2 autoriza modelo de conta, sessão e nascimento privado mínimo. CPF brut
 fanProfiles/{hash-do-uid} contém somente o agregado FanDomain validado: referência opaca, clube/ídolos canônicos, intensidade, estádio/história opcionais, preferências autodeclaradas, intenções e lifestyle opcional. O hash é chave interna de particionamento e não sai da API. O documento não contém UID, accountRef, CPF, nascimento, contato, trustLevel ou estado administrativo.
 
 Account e Identity permanecem collections separadas. trustLevel é projeção calculada a partir de identityVerificationStatus e não é persistido no perfil. A resposta de criação devolve somente SessionDTO e FanDomain do titular. Não é PublicProfileDTO e não autoriza exposição a terceiros.
+
+## Projeção pública da Etapa 3.5
+
+PublicProfileDTO não é persistência nem espelho de FanDomain. A projeção recebe Account/Identity/FanDomain/configuração/catálogos/fotos já autorizados e devolve somente a allowlist. Idade é calculada; selo é derivado; IDs de clube/ídolo, status editoriais e preferências privadas não saem.
+
+PhotoReference interno contém photoId opaco, ownerAccountRef, status, ordering e moderationStatus. Não há coleção, upload ou Storage aberto nesta etapa. Somente contrato e filtro de exposição foram implementados.

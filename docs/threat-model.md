@@ -58,3 +58,9 @@ Etapa 2 deve testar tokens inválidos, revogação lógica, claims antigas, esta
 Permitir perfil básico antes de verificação reduz atrito e amplia risco de identidades falsas, contas em massa e engenharia social. A mitigação vigente limita-se a conta autenticada, e-mail confirmado, declaração adulta em revisão, autorização transacional, cotas e estados bloqueantes. Descoberta e interação continuam indisponíveis.
 
 Antes de expor pessoas entre si: definir capacidades por nível, antifraude, App Check, moderação, bloqueio e denúncia; medir abuso sem registrar CPF, payload de perfil ou localização; impedir que o selo seja interpretado como garantia. O cliente não escolhe trustLevel nem identityVerificationStatus. Um provedor futuro recebe dados em fronteira dedicada e devolve prova mínima; evidências e documentos não pertencem ao perfil.
+
+## Riscos da projeção pública
+
+Mesmo um DTO mínimo pode facilitar scraping, correlação, assédio e inferência de rotina. Cidade, setor de estádio e intenções exigem audiência e bloqueio antes de qualquer consulta de terceiros. Opt-in pode ser obtido por interface enganosa; texto pode codificar contato apesar de filtros; selo pode ser interpretado como garantia.
+
+A Etapa 3.5 mitiga vazamento estrutural com allowlist, nomes canônicos, selo/idade derivados, bio limitada e fotos filtradas. Ainda faltam endpoint autorizado, bloqueio, cotas, moderação textual, upload seguro, revogação/cache de mídia e testes de abuso. Por isso não existe descoberta nem rota pública.
