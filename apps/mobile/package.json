@@ -9,12 +9,12 @@
     "export": "expo export --platform android --platform ios --output-dir ../../artifacts/mobile"
   },
   "dependencies": {
-    "expo": "57.0.23",
+    "@social/contracts": "0.0.0",
+    "expo": "57.0.24",
     "expo-dev-client": "57.0.19",
-    "react": "19.2.3",
-    "react-native": "0.86.3",
     "firebase": "12.19.0",
-    "@social/contracts": "0.0.0"
+    "react": "19.2.3",
+    "react-native": "0.86.3"
   },
   "devDependencies": {
     "@types/react": "19.2.18"
