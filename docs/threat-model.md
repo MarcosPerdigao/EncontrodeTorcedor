@@ -52,3 +52,9 @@ Mudança de política, endpoint, SDK móvel ou coleta exige atualizar esta anál
 Brigading entre torcidas exige deduplicar denúncias e avaliar procedência, não contagem bruta. Autocomplete/aliases exigem moderação e decisões editoriais auditáveis; não julgar automaticamente por notícias ou IA. Há risco de expor preferências privadas em explicações de compatibilidade: usar somente atributos autorizados. Analytics de coortes pequenas pode reidentificar pessoas.
 
 Etapa 2 deve testar tokens inválidos, revogação lógica, claims antigas, estados forjados, nascimento adulterado e enumeração no provedor. CPF possui espaço limitado: não armazenar bruto ou hash simples. Nascer há 18 anos não prova identidade/idade declarada. Não ativar conta automaticamente com declaração. App Check não substitui autenticação. Provedores reais e controles de lançamento permanecem pendentes.
+
+## Riscos da confiança progressiva
+
+Permitir perfil básico antes de verificação reduz atrito e amplia risco de identidades falsas, contas em massa e engenharia social. A mitigação vigente limita-se a conta autenticada, e-mail confirmado, declaração adulta em revisão, autorização transacional, cotas e estados bloqueantes. Descoberta e interação continuam indisponíveis.
+
+Antes de expor pessoas entre si: definir capacidades por nível, antifraude, App Check, moderação, bloqueio e denúncia; medir abuso sem registrar CPF, payload de perfil ou localização; impedir que o selo seja interpretado como garantia. O cliente não escolhe trustLevel nem identityVerificationStatus. Um provedor futuro recebe dados em fronteira dedicada e devolve prova mínima; evidências e documentos não pertencem ao perfil.

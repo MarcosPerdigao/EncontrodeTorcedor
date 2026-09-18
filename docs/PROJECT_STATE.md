@@ -1,6 +1,6 @@
 # Estado do projeto
 
-Última atualização: 18/09/2026. Branch: codex/fan-domain-model. Base aprovada: 66110d3.
+Última atualização: 18/09/2026. Branch: codex/stage-3-onboarding-profile. Base aprovada: 66110d3.
 
 ## Visão
 
@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-0, 1, 1.5 e 2 concluídas e aprovadas. Etapa 2.5 implementada localmente e em validação. A decisão posterior autoriza a Etapa 3 somente após consolidar este domínio.
+0, 1, 1.5 e 2 concluídas e aprovadas. Etapa 2.5 concluída localmente. Etapa 3 em implementação restrita a onboarding e perfil de torcedor.
 
 ## Entregue na Etapa 2
 
@@ -24,7 +24,7 @@ Ver modelo do torcedor em FAN_DOMAIN_MODEL.md, entradas futuras do motor em MATC
 
 ## Decisões preservadas
 
-Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive signals; somente fixtures sintéticas; sem localização precisa; jogos fora do MVP; retenção de mensagens não aprovada. Uma declaração de idade adulta resulta em revisão pendente, não conta ativa. Identidade/idade definitivas dependem de mecanismo posterior validado.
+Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive signals; somente fixtures sintéticas; sem localização precisa; jogos fora do MVP; retenção de mensagens não aprovada. Uma declaração de idade adulta resulta em revisão pendente, não conta verificada. A confiança progressiva permite perfil básico sem identidade verificada; identidade/idade definitivas dependem de mecanismo posterior validado. CPF permanece fora do fluxo.
 
 ## Evidência local
 
@@ -35,6 +35,10 @@ Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive sign
 GitHub Actions [35301636217](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35301636217) aprovado em 18/09/2026; job `verify` em 1min52s. Passaram instalação reproduzível, scanner, formato, lint, TypeScript strict, 368 testes, builds, auditoria, compatibilidade Expo e exportação Android/iOS. Nenhum deploy ou ambiente Firebase real integra o workflow.
 
 Avisos não bloqueantes: actions fixadas por SHA ainda miram runtime Node 20 e foram executadas pelo GitHub em Node 24; `ubuntu-latest` migrará para Ubuntu 26 em outubro de 2026. Exigem manutenção futura e nova validação, sem alterar o resultado desta execução.
+
+## Decisão de confiança progressiva
+
+ADR 0009: identityVerificationStatus começa em not_started. Conta básica pode criar perfil após e-mail confirmado e declaração adulta em revisão, sem CPF e sem alterar estados administrativos. trustLevel é projeção derivada no servidor; verificação futura não modifica a identidade do torcedor. Conta suspensa, banida, inelegível ou em exclusão continua sem acesso.
 
 ## Riscos e decisões pendentes
 
@@ -56,4 +60,4 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 - Etapa 2 publicada: 09dc2ca (modelos/contratos), aa96138 (API/sessão), 9e991d3 (mobile), 0b4138b (testes/CI), e2616b0 (revisão/limites). O registro do resultado remoto é um commit documental posterior.
 - [Revisão da etapa 2](stage-2-review.md), [ADR 0008](decisions/0008-local-authentication-and-session-boundary.md).
 
-Etapa 2.5: concluir validações e commits. A Etapa 3 foi autorizada por decisão posterior, em branch separada e sem descoberta, match ou chat.
+Etapa 3 em andamento somente para onboarding e perfil. Descoberta, swipe, likes, match, chat, fotos reais e moderação automática continuam proibidos.

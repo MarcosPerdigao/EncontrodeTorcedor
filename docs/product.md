@@ -13,3 +13,9 @@ Sem publicidade comportamental, importação de contatos, presença online, últ
 Bloqueio, denúncia e moderação são centrais. Sem banimento por contagem bruta. Segurança para mulheres com ferramentas disponíveis a todos. Privacidade, acessibilidade, botões alternativos a gestos e notificações genéricas são requisitos.
 
 Etapa 1.5 concluída e aprovada. Etapa 2 autorizada para autenticação, sessão e estado da conta local; perfil completo, catálogos reais e interações permanecem fora da entrega. Retenção de mensagens continua pendente; 180 dias é apenas hipótese. Ver [retenção](retention.md).
+
+## Confiança progressiva
+
+A pessoa conhece o produto e cria sua identidade de torcedor antes de uma verificação de identidade opcional. Conta básica não é suspeita: ela participa dentro de limites futuros ainda não autorizados. Conta verificada recebe um indicador de confiança e capacidades adicionais somente após análise específica. A comunicação é “A verificação ajuda a manter a comunidade segura.”
+
+CPF não integra cadastro inicial, aplicativo, logs, analytics, modelos comuns ou identificadores. Um provedor especializado futuro deverá devolver somente prova mínima. Verificação não muda clube, ídolos, intenções ou estilo de vida.

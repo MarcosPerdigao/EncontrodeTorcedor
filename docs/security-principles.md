@@ -36,3 +36,9 @@ Arquivos product, architecture, data-model, authorization, threat-model, retenti
 ## Invariantes adicionais 1.5
 
 SAFETY_CHARTER.md é regra superior de produto. Plataforma nacional, filtros bilaterais e catálogos configuráveis. Sem banimento por denúncias brutas, score de beleza, percentual público de compatibilidade ou analytics de dados privados. CPF bruto e hash simples proibidos; provedor futuro entrega prova mínima. Etapa 1.5 concluída; etapa 2 expressamente autorizada após revisão intermediária e CI aprovado, exclusivamente no escopo de autenticação/conta. Etapa 3 depende de nova autorização. A revisão acima é registro histórico da base 0/1.
+
+## Confiança progressiva — Etapa 3
+
+Identidade not_started permite somente capacidades básicas explicitamente autorizadas. Não verificado não significa suspeito e verificado não significa pessoa segura. Nível de confiança é derivado no servidor e nunca aceito do cliente. Suspensão, banimento, inelegibilidade, bloqueios e demais controles prevalecem.
+
+CPF permanece fora do cadastro, mobile, logs, analytics, modelos comuns, fixtures e identificadores. Integração futura usa provedor especializado e prova mínima. Nenhuma coleta de documento ou provedor real é implementado nesta etapa.
