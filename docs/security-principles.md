@@ -54,3 +54,9 @@ Bio/displayName recusam contato, link e handle. Cidade vem de catálogo amplo; n
 Confiança verificada não supera bloqueio, restrição, suspensão, banimento ou cota. Conta básica não recebe marca negativa. A mesma regra de bloqueio vale nos dois sentidos e é aplicada antes da projeção pública.
 
 Falhas são genéricas e fechadas. Nenhum detalhe privado explica indisponibilidade. A descoberta futura deve impedir enumeração com paginação opaca, exposição gradual, cotas em camadas e auditoria mínima.
+
+## Exposição gradual no card — Etapa 4.5
+
+Projetar o card somente a partir de PublicProfileDTO já autorizado. Aplicar uma allowlist menor, omitir experiência de estádio e limitar fotos, ídolos e lifestyle. Regra de apresentação pode reduzir exposição, nunca acrescentar dados privados ou inventar selo.
+
+Filtros não são autorização. Coordenadas, distância, score, rank e motivo de recomendação permanecem proibidos.

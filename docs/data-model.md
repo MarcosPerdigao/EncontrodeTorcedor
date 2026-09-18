@@ -88,3 +88,7 @@ PhotoReference interno contém photoId opaco, ownerAccountRef, status, ordering 
 A Etapa 4 não cria collections. Uma integração futura precisará obter bloqueios bidirecionais, restrição derivada e consumo de cota de fontes protegidas e consistentes. Detalhes de denúncia, estado administrativo e contadores não pertencem ao PublicProfileDTO.
 
 TrustContext e AudienceRule são valores internos efêmeros. DiscoveryEligibility e InteractionPermission são decisões mínimas; não constituem lista de candidatos, match ou autorização reutilizável.
+
+## DiscoveryCard e filtros
+
+DiscoveryCard, DiscoveryFilters e DiscoveryCardPresentation não criam collections na Etapa 4.5. São contratos e valores efêmeros. O card não deve ser persistido como cópia divergente de PublicProfileDTO sem decisão futura de cache, validade e revogação.

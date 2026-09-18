@@ -70,3 +70,9 @@ A Etapa 3.5 mitiga vazamento estrutural com allowlist, nomes canônicos, selo/id
 A fronteira reduz exposição indevida, mas ainda depende de armazenamento futuro confiável. Corridas no contador podem exceder cotas; cache pode manter bloqueio antigo; diferenças de resposta podem revelar existência ou estado; múltiplas contas e automação podem contornar limites simples.
 
 Antes de qualquer endpoint: aplicar bloqueio e estado vigente na mesma decisão, consumir cota de modo atômico, limitar por camadas, uniformizar respostas, testar enumeração e automação e auditar sem armazenar payload do perfil ou detalhes sensíveis.
+
+## Ameaças do DiscoveryCard
+
+Mesmo reduzido, um card pode ser coletado em massa, correlacionado ou mantido após bloqueio. Antes de endpoint real, aplicar paginação opaca, expiração curta, limitação por camadas, bloqueio antes da projeção e revogação de mídia/cache.
+
+A fronteira atual mitiga vazamento estrutural com fonte única, allowlist e limites de apresentação. Ela não implementa entrega, cache, enumeração de candidatos ou interação.

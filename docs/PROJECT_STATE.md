@@ -1,6 +1,6 @@
 # Estado do projeto
 
-Última atualização: 18/09/2026. Branch: codex/discovery-safety-boundary. Base aprovada: 40dfb9a.
+Última atualização: 18/09/2026. Branch: codex/discovery-card. Base aprovada: 38f8707.
 
 ## Visão
 
@@ -8,7 +8,7 @@ Plataforma nacional de conexões entre torcedores. Atlético Mineiro é somente 
 
 ## Etapas
 
-Etapas 0, 1, 1.5, 2, 2.5, 3, 3.5 e 4 concluídas e aprovadas. Etapa 4.5 autorizada, ainda não iniciada. Etapa 5 não está autorizada.
+Etapas 0, 1, 1.5, 2, 2.5, 3, 3.5 e 4 concluídas e aprovadas. Etapa 4.5 concluída localmente e aguardando revisão. Etapa 5 não está autorizada.
 
 ## Entregue na Etapa 2
 
@@ -36,17 +36,21 @@ PublicProfileDTO por allowlist; PublicProfileSettings com autoridade limitada; i
 
 TrustLevel derivado no servidor; contratos estritos de contexto, regra, elegibilidade e interação; matriz de audiência sem algoritmo; bloqueio bidirecional; estados bloqueantes; exigência opcional de verificação para interação; cota diária finita. Basic→basic permanece pendente e negado por padrão. Nenhum endpoint, candidato, card ou ação social foi criado. Ver DISCOVERY_AUDIENCE_RULES.md, ADR 0012 e stage-4-review.md.
 
+## Entregue na Etapa 4.5
+
+DiscoveryCard por allowlist menor que PublicProfileDTO; projeção pura com PublicProfile como fonte única; filtros declarativos estritos; regras do servidor que somente reduzem apresentação. O card omite estádio, limita fotos/ídolos/lifestyle e não contém localização precisa, contatos, estado interno, score ou ranking. Não existe endpoint, candidato, algoritmo ou interação. Ver DISCOVERY_CARD_MODEL.md e stage-4.5-review.md.
+
 ## Decisões preservadas
 
 Cartilha superior de segurança; Rules Firestore/Storage deny-all inclusive signals; somente fixtures sintéticas; sem localização precisa; jogos fora do MVP; retenção de mensagens não aprovada. Uma declaração de idade adulta resulta em revisão pendente, não conta verificada. A confiança progressiva permite perfil básico sem identidade verificada; identidade/idade definitivas dependem de mecanismo posterior validado. CPF permanece fora do fluxo.
 
 ## Evidência local
 
-451 testes aprovados: 213 unitários, 211 Rules, 27 integração. npm run check com saída 0; lint, TypeScript strict, formato e builds aprovados. Scanner: 115 arquivos, 0 ocorrências. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
+496 testes aprovados: 258 unitários, 211 Rules, 27 integração. npm run check com saída 0; lint, TypeScript strict, formato e builds aprovados. Scanner: 121 arquivos, 0 ocorrências. Auditoria: 0 vulnerabilidades conhecidas. Exportação Android/iOS e compatibilidade Expo aprovadas. Nenhum teste em dispositivo físico ou infraestrutura Firebase real foi alegado.
 
 ## Evidência remota
 
-GitHub Actions [35301636217](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35301636217) aprovado em 18/09/2026; job `verify` em 1min52s. Passaram instalação reproduzível, scanner, formato, lint, TypeScript strict, 368 testes, builds, auditoria, compatibilidade Expo e exportação Android/iOS. Nenhum deploy ou ambiente Firebase real integra o workflow.
+GitHub Actions da Etapa 4 [35382987930](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35382987930) aprovado em 18/09/2026 após a correção Expo 57.0.24 em 38f8707. Passaram instalação reproduzível, scanner, formato, lint, TypeScript strict, 451 testes, builds, auditoria, compatibilidade Expo e exportação Android/iOS. A execução anterior 35357728151 falhou somente na compatibilidade Expo 57.0.23→57.0.24. Nenhum deploy ou ambiente Firebase real integra o workflow.
 
 Avisos não bloqueantes: actions fixadas por SHA ainda miram runtime Node 20 e foram executadas pelo GitHub em Node 24; `ubuntu-latest` migrará para Ubuntu 26 em outubro de 2026. Exigem manutenção futura e nova validação, sem alterar o resultado desta execução.
 
@@ -76,6 +80,7 @@ Repositório observado como público; nenhuma visibilidade, ruleset ou configura
 - Etapa 2.5: 71ea170, 7db948d, 5e8fbdf e fbe25c9.
 - Etapa 3 aprovada: 3712595, 28ae668, bb6fc9b, 0ed79d1, 82165e0 e 07a834b.
 - Etapa 3.5 aprovada: ab68d77, 51ed3df, e092b97, 4c618f2 e 40dfb9a.
-- Etapa 4 aprovada: f9390fe (princípios), 284f3d0 (contratos), c5d1a0d (fronteira), 3717fe6 (testes) e 7e49cb6 (revisão).
+- Etapa 4 aprovada e publicada: f9390fe, 284f3d0, c5d1a0d, 3717fe6, 7e49cb6, c84cff0 e correção Expo 38f8707; CI remoto 35382987930 aprovado.
+- Etapa 4.5 local: 747a30c (exposição), 3af6f5c (contratos), 3cabf3d (projeção) e 0ed707a (testes); revisão documental no commit final da etapa.
 
-Etapa 4 concluída e aprovada. Etapa 4.5 autorizada somente para DiscoveryCard, projeção pública, filtros e apresentação; algoritmo, score, ranking, recomendação, swipe, likes, match e chat continuam proibidos.
+Etapa 4.5 concluída localmente: PARAR após publicação e CI remoto. Etapa 5 não está autorizada; algoritmo, score, ranking, recomendação, swipe, likes, match e chat continuam proibidos.

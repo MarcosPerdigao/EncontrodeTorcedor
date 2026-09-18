@@ -72,3 +72,9 @@ Sem GPS no MVP. Cidade ou região ampla poderão limitar um universo futuro, mas
 - paginação, diversidade, antifraude e auditoria operacionais.
 
 Nenhuma dessas pendências autoriza algoritmo, score, ranking, cards, swipe, like, match ou chat.
+
+## Apresentação após audiência — Etapa 4.5
+
+Uma decisão `canView: true` permite que o servidor projete um DiscoveryCard a partir de PublicProfileDTO. A decisão não entrega entidades privadas e não escolhe conteúdo adicional. Bloqueio ou indisponibilidade interrompem o fluxo antes da projeção.
+
+Filtros são preferências declarativas e não alteram essa ordem. Nenhum filtro concede audiência, ignora bloqueio ou cria ordenação.

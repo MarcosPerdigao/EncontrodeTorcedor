@@ -62,3 +62,9 @@ Permanece V2. Jogos específicos, datas, ingressos, estádios recentes e histór
 ## Riscos e itens adiados
 
 Autorização por audiência e bloqueio, política de edição, catálogo real de cidades, moderação de texto, upload/processamento de fotos, cache/revogação de mídia, retenção, acessibilidade da apresentação e testes culturais do displayName. Descoberta, ranking, algoritmo, swipe, like, match e chat continuam fora do escopo.
+
+## Uso no DiscoveryCard — Etapa 4.5
+
+DiscoveryCard é uma projeção menor de PublicProfileDTO e nunca consulta Account, Identity, FanProfile ou persistência diretamente. A projeção omite experiência de estádio, limita fotos, ídolos e lifestyle e pode retirar bio, lifestyle e intenções conforme regra do servidor.
+
+Essa relação é unidirecional: PublicProfileDTO pode gerar um card; um card não reconstrói o perfil completo nem funciona como autorização.
