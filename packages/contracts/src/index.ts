@@ -1,4 +1,20 @@
 export {
+  AFFINITY_SIGNAL_KINDS,
+  affinitySignalKindSchema,
+  affinitySharedTextSchema,
+  affinityContextSchema,
+  affinitySignalSchema,
+  affinityExplanationSchema,
+  affinityEngineInputSchema,
+} from './affinity.js';
+export type {
+  AffinitySignalKind,
+  AffinityContext,
+  AffinitySignal,
+  AffinityExplanation,
+  AffinityEngineInput,
+} from './affinity.js';
+export {
   discoveryAgeRangeSchema,
   discoveryFiltersSchema,
   discoveryCardPresentationSchema,
