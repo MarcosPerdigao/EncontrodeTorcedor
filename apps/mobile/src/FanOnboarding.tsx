@@ -288,7 +288,8 @@ export function FanOnboarding({ busy, onSubmit }: Props) {
           <Text>Intenções selecionadas: {selectedIntentions.length}</Text>
           <Text>Interesses opcionais: {music || hobbies || 'não informados'}</Text>
           <Text>
-            Sobrenome, telefone, CPF, nascimento e localização precisa não fazem parte deste perfil.
+            Sobrenome, telefone, documentos, nascimento e localização precisa não fazem parte deste
+            perfil.
           </Text>
           <Text>A verificação ajuda a manter a comunidade segura e poderá ser feita depois.</Text>
           <Button
