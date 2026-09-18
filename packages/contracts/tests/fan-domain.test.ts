@@ -213,7 +213,8 @@ describe('domínio do torcedor e limites de catálogo', () => {
         eligibilityStatus: 'pending',
         emailVerified: true,
         identityVerificationStatus: 'not_started',
-        onboardingState: 'verification_required',
+        trustLevel: 'basic',
+        onboardingState: 'fan_profile_required',
         primaryClubId: activeClub,
       }),
     ).toThrow();

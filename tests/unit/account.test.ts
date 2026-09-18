@@ -90,6 +90,7 @@ describe('estado vigente prevalece', () => {
         'eligibilityStatus',
         'emailVerified',
         'identityVerificationStatus',
+        'trustLevel',
         'onboardingState',
       ].sort(),
     );

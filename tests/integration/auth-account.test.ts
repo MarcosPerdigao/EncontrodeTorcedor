@@ -5,6 +5,7 @@ import { getFirestore } from 'firebase-admin/firestore';
 import { beforeAll, afterAll, describe, expect, it } from 'vitest';
 import {
   bootstrapResponseSchema,
+  fanProfileResponseSchema,
   sessionResponseSchema,
 } from '../../packages/contracts/src/index.js';
 
@@ -265,5 +266,103 @@ describe('HTTP real + Auth/Firestore/Functions emulados', () => {
     expect(duplicate.status).toBe(400);
     expect(JSON.stringify(duplicate.body)).toContain('EMAIL_EXISTS');
     // This explicitly records the provider limitation; real deployment remains blocked.
+  });
+
+  it('cria perfil básico sem verificação e preserva a identidade de torcedor', async () => {
+    const a = await user();
+    const session = await boot(a.token);
+    const command = {
+      fanProfile: {
+        primaryClubId: 'club_aaaaaaaaaaaaaaaaaaaaaaaa',
+        intensity: 'when_possible',
+        favoriteIdolIds: ['idol_cccccccccccccccccccccccc'],
+        clubPreferences: [
+          {
+            clubId: 'club_aaaaaaaaaaaaaaaaaaaaaaaa',
+            relationshipType: 'supporter',
+          },
+        ],
+      },
+      connectionIntents: ['friendship'],
+      connectionPreference: { scopes: ['same_club'], specificClubIds: [] },
+      requestKey: 'synthetic-profile-0001',
+    };
+    expect((await api('/fan-profile/create', a.token, command, session.sessionToken)).status).toBe(
+      403,
+    );
+    await api(
+      '/account/complete',
+      a.token,
+      { birthDate: '2000-01-01', requestKey: 'synthetic-birth-0001' },
+      session.sessionToken,
+    );
+    const response = await api('/fan-profile/create', a.token, command, session.sessionToken);
+    expect(response.status).toBe(200);
+    const created = fanProfileResponseSchema.parse(response.body);
+    expect(created.session).toMatchObject({
+      identityVerificationStatus: 'not_started',
+      trustLevel: 'basic',
+      onboardingState: 'ready',
+    });
+    expect(JSON.stringify(response.body)).not.toContain(a.uid);
+    expect(JSON.stringify(response.body).toLowerCase()).not.toContain('cpf');
+    expect(JSON.stringify(response.body)).not.toContain('2000-01-01');
+
+    const profilePath = 'fanProfiles/' + digest(a.uid);
+    const before = (await database.doc(profilePath).get()).data();
+    await database
+      .doc('accounts/' + digest(a.uid))
+      .update({ identityVerificationStatus: 'verified' });
+    const state = await api('/session/state', a.token, {}, session.sessionToken);
+    expect(sessionResponseSchema.parse(state.body).session.trustLevel).toBe('verified');
+    expect((await database.doc(profilePath).get()).data()).toEqual(before);
+  });
+
+  it('recusa catálogo inválido e autoridade de verificação no perfil', async () => {
+    const a = await user();
+    const session = await boot(a.token);
+    await api(
+      '/account/complete',
+      a.token,
+      { birthDate: '2000-01-01', requestKey: 'synthetic-birth-0001' },
+      session.sessionToken,
+    );
+    const base = {
+      fanProfile: {
+        primaryClubId: 'club_aaaaaaaaaaaaaaaaaaaaaaaa',
+        intensity: 'when_possible',
+        favoriteIdolIds: [],
+        clubPreferences: [],
+      },
+      connectionIntents: ['friendship'],
+      connectionPreference: { scopes: ['same_club'], specificClubIds: [] },
+      requestKey: 'synthetic-profile-0001',
+    };
+    expect(
+      (
+        await api(
+          '/fan-profile/create',
+          a.token,
+          {
+            ...base,
+            fanProfile: {
+              ...base.fanProfile,
+              primaryClubId: 'club_zzzzzzzzzzzzzzzzzzzzzzzz',
+            },
+          },
+          session.sessionToken,
+        )
+      ).status,
+    ).toBe(400);
+    expect(
+      (
+        await api(
+          '/fan-profile/create',
+          a.token,
+          { ...base, identityVerificationStatus: 'verified' },
+          session.sessionToken,
+        )
+      ).status,
+    ).toBe(400);
   });
 });

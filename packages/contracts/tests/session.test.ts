@@ -11,6 +11,7 @@ const keys = [
   'eligibilityStatus',
   'emailVerified',
   'identityVerificationStatus',
+  'trustLevel',
   'onboardingState',
 ] as const;
 const fixture = {
@@ -19,6 +20,7 @@ const fixture = {
   eligibilityStatus: 'pending',
   emailVerified: false,
   identityVerificationStatus: 'not_started',
+  trustLevel: 'basic',
   onboardingState: 'email_required',
 };
 it('SessionDTO possui allowlist exata independente', () => {
