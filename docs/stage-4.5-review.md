@@ -1,6 +1,6 @@
 # Revisão da Etapa 4.5 — Descoberta e Card de Perfil
 
-Estado: implementação local concluída em codex/discovery-card; aguardando revisão após publicação e CI remoto.
+Estado: implementação concluída e publicada em codex/discovery-card; CI remoto aprovado; aguardando revisão.
 
 Base aprovada: Etapa 4 em 38f8707, incluindo correção de compatibilidade Expo validada pelo CI remoto.
 
@@ -59,7 +59,7 @@ A instalação limpa `npm ci` instalou 1.346 pacotes e terminou sem vulnerabilid
 
 A primeira execução remota 35357728151 aprovou o bloco principal e falhou somente porque o catálogo Expo passou a exigir 57.0.24 enquanto a branch usava 57.0.23. A correção mínima foi publicada em 38f8707. A execução 35382987930 passou integralmente, incluindo `npm ci`, checkpoint, compatibilidade Expo e exportações Android/iOS.
 
-O CI remoto específico desta branch será registrado após a publicação autorizada.
+O CI remoto da Etapa 4.5 [35383947519](https://github.com/MarcosPerdigao/EncontrodeTorcedor/actions/runs/35383947519) foi aprovado em 2min05s. Passaram instalação reproduzível, scanner, formato, lint, TypeScript strict, 496 testes, builds, auditoria, compatibilidade Expo e exportações Android/iOS.
 
 ## Divergências encontradas
 
@@ -76,4 +76,4 @@ O CI remoto específico desta branch será registrado após a publicação autor
 - Regras de apresentação são autoridade do servidor em uma integração futura; aceitar esse objeto do mobile ampliaria exposição indevidamente.
 - A preferência `verified_only` não substitui a fronteira de audiência nem transforma selo em garantia pessoal.
 
-Etapa 4.5 concluída localmente. Parar após publicação, CI remoto e registro dos resultados.
+Etapa 4.5 concluída e publicada. Parar e aguardar revisão.
