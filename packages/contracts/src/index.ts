@@ -1,6 +1,16 @@
 // Único entrypoint público. Não reexportar entidades privadas ou tipos de persistência.
-export { parsePublicProfileDTO, publicProfileSchema } from './public-profile.js';
-export type { PublicProfileDTO } from './public-profile.js';
+export {
+  cityIdSchema,
+  displayNameSchema,
+  publicBioSchema,
+  publicProfileSettingsSchema,
+  publicPhotoSchema,
+  publicFanIdentitySchema,
+  publicLifestyleSchema,
+  publicProfileSchema,
+  parsePublicProfileDTO,
+} from './public-profile.js';
+export type { PublicProfileSettings, PublicPhotoDTO, PublicProfileDTO } from './public-profile.js';
 
 export {
   accountStatusSchema,
